@@ -7,28 +7,29 @@ namespace MakingAPlatformer
 {
     public class Animator
     {
-        public Animation RunRight;
-        public Animation RunLeft;
-
         public List<Animation> Animations;
 
         public Animator()
         {
             Animations = new List<Animation>();
             Animations.Add(new Animation("Hero/Normal/Run"));
-            Animations[0].AddFrame(new AnimationFrame(new Rectangle(0, 0, 150, 150)));
-            Animations[0].AddFrame(new AnimationFrame(new Rectangle(150, 0, 150, 150)));
-            Animations[0].AddFrame(new AnimationFrame(new Rectangle(300, 0, 150, 150)));
-            Animations[0].AddFrame(new AnimationFrame(new Rectangle(450, 0, 150, 150)));
-            Animations[0].AddFrame(new AnimationFrame(new Rectangle(600, 0, 150, 150)));
-            Animations[0].AddFrame(new AnimationFrame(new Rectangle(750, 0, 150, 150)));
-            Animations[0].AddFrame(new AnimationFrame(new Rectangle(900, 0, 150, 150)));
-            Animations[0].AddFrame(new AnimationFrame(new Rectangle(1050, 0, 150, 150)));
+            Animations.Add(new Animation("Hero/Mirrored/Run-MIRRORED"));
+
+            foreach (Animation animation in Animations)
+            {
+                for (int i = 0; i <= 1050; i = i + 150)
+                {
+                    animation.AddFrame(new AnimationFrame(new Rectangle(i, 0, 150, 150)));
+                }
+            }
         }
 
         public void Update(GameTime gameTime)
         {
-            Animations[0].Update(gameTime);
+            foreach (Animation animation in Animations)
+            {
+                animation.Update(gameTime);
+            }
         }
     }
 }

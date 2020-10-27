@@ -43,8 +43,6 @@ namespace MakingAPlatformer
                 frameMovement = 0;
             }
 
-            
-
             if (counter >= frames.Count)
                 counter = 0;
         }

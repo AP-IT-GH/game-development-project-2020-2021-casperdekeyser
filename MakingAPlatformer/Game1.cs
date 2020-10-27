@@ -25,7 +25,6 @@ namespace MakingAPlatformer
         {
             // TODO: Add your initialization logic here
 
-            //init hero + animator
             hero = new Hero();
 
             base.Initialize();
@@ -36,10 +35,11 @@ namespace MakingAPlatformer
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
-            //texture = Content.Load<Texture2D>("Hero/Normal/Run");
 
-            // load spritesheets
-            hero.Animator.Animations[0].SpriteSheet = Content.Load<Texture2D>(hero.Animator.Animations[0].SpriteSheetPath);
+            foreach (Animation animation in hero.Animator.Animations)
+            {
+                animation.SpriteSheet = Content.Load<Texture2D>(animation.SpriteSheetPath);
+            }
         }
 
 
