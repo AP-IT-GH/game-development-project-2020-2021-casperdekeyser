@@ -8,7 +8,7 @@ using System.Text;
 
 namespace MakingAPlatformer
 {
-    public class HeroAnimation
+    public class HeroAnimation // : NormalAnimation
     {
         public AnimationFrame CurrentFrame { get; set; }
         public Texture2D SpriteSheet { get; set; }
@@ -46,24 +46,6 @@ namespace MakingAPlatformer
 
             if (counter >= frames.Count)
                 counter = 0;
-
-
-            // test left animation
-            //CurrentFrame = frames[counter];
-
-            //frameMovement += CurrentFrame.sourceRectangle.Width * gameTime.ElapsedGameTime.TotalSeconds;
-
-            //if (frameMovement <= CurrentFrame.sourceRectangle.Width * framesPerSecond)
-            //{
-            //    counter--;
-            //    frameMovement = 0;
-            //}
-
-            //if (counter <= 0)
-            //    counter = frames.Count-1;
-
-
-
         }
     }
 }
