@@ -1,21 +1,28 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Text;
+
 
 namespace MakingAPlatformer
 {
     public class Animation
     {
+        public AnimationFrame CurrentFrame { get; set; }
+        public Texture2D SpriteSheet { get; set; }
+
         private List<AnimationFrame> frames;
         private int counter;
         private double frameMovement = 0;
         private int framesPerSecond = 12;
-        public AnimationFrame CurrentFrame { get; set; }
+        public string SpriteSheetPath;
 
-        public Animation()
+        public Animation(string path)
         {
             frames = new List<AnimationFrame>();
+            SpriteSheetPath = path;
         }
 
         public void AddFrame(AnimationFrame animationFrame)
@@ -35,6 +42,8 @@ namespace MakingAPlatformer
                 counter++;
                 frameMovement = 0;
             }
+
+            
 
             if (counter >= frames.Count)
                 counter = 0;

@@ -11,7 +11,6 @@ namespace MakingAPlatformer
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
-        private Texture2D texture;
         Hero hero;
 
 
@@ -26,6 +25,9 @@ namespace MakingAPlatformer
         {
             // TODO: Add your initialization logic here
 
+            //init hero + animator
+            hero = new Hero();
+
             base.Initialize();
         }
 
@@ -34,15 +36,12 @@ namespace MakingAPlatformer
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
-            texture = Content.Load<Texture2D>("Hero/Normal/Run");
+            //texture = Content.Load<Texture2D>("Hero/Normal/Run");
 
-            InitializeGameObjects();
+            // load spritesheets
+            hero.Animator.Animations[0].SpriteSheet = Content.Load<Texture2D>(hero.Animator.Animations[0].SpriteSheetPath);
         }
 
-        private void InitializeGameObjects()
-        {
-            hero = new Hero(texture);
-        }
 
         protected override void Update(GameTime gameTime)
         {
