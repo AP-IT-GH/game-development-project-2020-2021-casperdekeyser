@@ -1,6 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System;
+using System.Xml.Serialization;
 
 namespace MakingAPlatformer
 {
@@ -10,6 +12,8 @@ namespace MakingAPlatformer
         private SpriteBatch _spriteBatch;
 
         private Texture2D texture;
+        Hero hero;
+
 
         public Game1()
         {
@@ -31,15 +35,23 @@ namespace MakingAPlatformer
 
             // TODO: use this.Content to load your game content here
             texture = Content.Load<Texture2D>("Hero/Normal/Run");
+
+            InitializeGameObjects();
+        }
+
+        private void InitializeGameObjects()
+        {
+            hero = new Hero(texture);
         }
 
         protected override void Update(GameTime gameTime)
         {
+            
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
             // TODO: Add your update logic here
-
+            hero.Update(gameTime);
             base.Update(gameTime);
         }
 
@@ -50,9 +62,10 @@ namespace MakingAPlatformer
             // TODO: Add your drawing code here
             _spriteBatch.Begin();
 
-            _spriteBatch.Draw(texture, new Vector2(10, 10), Color.White);
+            hero.Draw(_spriteBatch);
 
             _spriteBatch.End();
+
 
             base.Draw(gameTime);
         }
