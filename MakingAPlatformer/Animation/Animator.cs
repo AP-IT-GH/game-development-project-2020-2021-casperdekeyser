@@ -7,15 +7,15 @@ namespace MakingAPlatformer
 {
     public class Animator
     {
-        public List<Animation> Animations;
+        public List<HeroAnimation> Animations;
 
         public Animator()
         {
-            Animations = new List<Animation>();
-            Animations.Add(new Animation("Hero/Normal/Run"));
-            Animations.Add(new Animation("Hero/Mirrored/Run-MIRRORED"));
+            Animations = new List<HeroAnimation>();
+            Animations.Add(new HeroAnimation("Hero/Normal/Run"));
+            Animations.Add(new HeroAnimation("Hero/Mirrored/Run-MIRRORED"));
 
-            foreach (Animation animation in Animations)
+            foreach (HeroAnimation animation in Animations)
             {
                 for (int i = 0; i <= 1050; i = i + 150)
                 {
@@ -26,7 +26,7 @@ namespace MakingAPlatformer
 
         public void Update(GameTime gameTime)
         {
-            foreach (Animation animation in Animations)
+            foreach (HeroAnimation animation in Animations)
             {
                 animation.Update(gameTime);
             }

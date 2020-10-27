@@ -15,7 +15,7 @@ namespace MakingAPlatformer
 
         private Texture2D heroTexture;
         private int speed = 2;
-        private Animation currentAnimation;
+        private HeroAnimation currentAnimation;
 
         public Hero()
         {
