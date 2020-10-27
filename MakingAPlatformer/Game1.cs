@@ -9,6 +9,8 @@ namespace MakingAPlatformer
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
+        private Texture2D texture;
+
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
@@ -28,6 +30,7 @@ namespace MakingAPlatformer
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
+            texture = Content.Load<Texture2D>("Hero/Normal/Run");
         }
 
         protected override void Update(GameTime gameTime)
@@ -45,6 +48,11 @@ namespace MakingAPlatformer
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // TODO: Add your drawing code here
+            _spriteBatch.Begin();
+
+            _spriteBatch.Draw(texture, new Vector2(10, 10), Color.White);
+
+            _spriteBatch.End();
 
             base.Draw(gameTime);
         }
