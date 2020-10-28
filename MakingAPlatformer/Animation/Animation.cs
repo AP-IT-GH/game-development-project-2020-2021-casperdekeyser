@@ -14,13 +14,15 @@ namespace MakingAPlatformer
 
         protected List<AnimationFrame> frames;
         protected int counter;
+
         protected double frameMovement = 0;
         protected int framesPerSecond = 12;
 
-        public Animation(string path)
+        public Animation(string path, int frameamount)
         {
             frames = new List<AnimationFrame>();
             SpriteSheetPath = path;
+            counter = frameamount-1;
         }
 
         public void AddFrame(AnimationFrame animationFrame)

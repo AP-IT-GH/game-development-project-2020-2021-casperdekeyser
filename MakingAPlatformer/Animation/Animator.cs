@@ -12,8 +12,8 @@ namespace MakingAPlatformer
         public Animator()
         {
             Animations = new List<Animation>();
-            Animations.Add(new NormalAnimation("Hero/Normal/Run"));
-            Animations.Add(new MirroredAnimation("Hero/Mirrored/Run-MIRRORED"));
+            Animations.Add(new NormalAnimation("Hero/Normal/Run", 8));
+            Animations.Add(new MirroredAnimation("Hero/Mirrored/Run-MIRRORED", 8));
 
             foreach (Animation animation in Animations)
             {

@@ -7,22 +7,25 @@ namespace MakingAPlatformer
 {
     public class MirroredAnimation : Animation
     {
-        public MirroredAnimation(string path) : base(path) { }
+        public MirroredAnimation(string path, int frames) : base(path, frames) { }
 
         public override void Update(GameTime gameTime)
         {
-            CurrentFrame = frames[counter];
+            throw new NotImplementedException();
+            // test left animation --> WERKT NOG NIET!
 
-            frameMovement += CurrentFrame.sourceRectangle.Width * gameTime.ElapsedGameTime.TotalSeconds;
+            //CurrentFrame = frames[counter];
 
-            if (frameMovement >= CurrentFrame.sourceRectangle.Width / framesPerSecond)
-            {
-                counter++;
-                frameMovement = 0;
-            }
+            //frameMovement += CurrentFrame.sourceRectangle.Width * gameTime.ElapsedGameTime.TotalSeconds;
 
-            if (counter >= frames.Count)
-                counter = 0;
+            //if (frameMovement <= CurrentFrame.sourceRectangle.Width * framesPerSecond)
+            //{
+            //    counter--;
+            //    frameMovement = 0;
+            //}
+
+            //if (counter <= 0)
+            //    counter = frames.Count-1;
         }
     }
 }
