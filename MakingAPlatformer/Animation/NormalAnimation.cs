@@ -5,8 +5,10 @@ using System.Text;
 
 namespace MakingAPlatformer
 {
-    public abstract class NormalAnimation : Animation
+    public class NormalAnimation : Animation
     {
+        public NormalAnimation(string path) : base(path) { }
+
         public override void Update(GameTime gameTime)
         {
             CurrentFrame = frames[counter];

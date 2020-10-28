@@ -8,7 +8,7 @@ using System.Text;
 
 namespace MakingAPlatformer
 {
-    public class HeroAnimation // : NormalAnimation
+    public class HeroAnimation // NIET MEER NODIG
     {
         public AnimationFrame CurrentFrame { get; set; }
         public Texture2D SpriteSheet { get; set; }

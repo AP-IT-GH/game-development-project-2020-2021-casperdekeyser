@@ -17,11 +17,11 @@ namespace MakingAPlatformer
         protected double frameMovement = 0;
         protected int framesPerSecond = 12;
 
-        //public Animation(string path)
-        //{
-        //    frames = new List<AnimationFrame>();
-        //    SpriteSheetPath = path;
-        //}
+        public Animation(string path)
+        {
+            frames = new List<AnimationFrame>();
+            SpriteSheetPath = path;
+        }
 
         public void AddFrame(AnimationFrame animationFrame)
         {

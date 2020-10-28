@@ -36,7 +36,7 @@ namespace MakingAPlatformer
 
             // TODO: use this.Content to load your game content here
 
-            foreach (HeroAnimation animation in hero.Animator.Animations)
+            foreach (Animation animation in hero.Animator.Animations)
             {
                 animation.SpriteSheet = Content.Load<Texture2D>(animation.SpriteSheetPath);
             }
