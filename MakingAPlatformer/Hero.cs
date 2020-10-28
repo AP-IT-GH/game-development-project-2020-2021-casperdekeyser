@@ -8,46 +8,39 @@ using System.Text;
 
 namespace MakingAPlatformer
 {
-    public class Hero : IGameObject
+    public class Hero : IGameObject, ITransform
     {
         public Vector2 Position { get; set; }
 
         public Vector2 Direction;
         public Animator Animator { get; set; }
 
-        private int speed = 2;
+        public IInputReader KeyboardReader;
+        public IGameCommand MoveCommand;
+
+        private int speed = 5;
         private Animation currentAnimation;
 
         public Hero()
         {
+            // TODO: dependency-injection
             Animator = new Animator();
+            KeyboardReader = new KeyboardReader();
+            MoveCommand = new MoveCommand(speed);
+
             currentAnimation = Animator.Animations[0];
         }
 
         public void Update(GameTime gameTime)
         {
-            // Delegate movement & input (MoveController & KeyboardReader : InputReader
-            KeyboardState state = Keyboard.GetState();
-            if (state.IsKeyDown(Keys.Left))
-            {
-                Direction = new Vector2(-speed, 0);
-                currentAnimation = Animator.Animations[1];
+            // Read input
+            Direction = KeyboardReader.ReadInput();
+            // Move character
+            MoveCommand.Execute(this, Direction);
+            // Animate correctly
+            currentAnimation = Animator.Animate(Direction.X);
 
-            }
-            
-            if (state.IsKeyDown(Keys.Right))
-            {
-                Direction = new Vector2(speed, 0);
-                currentAnimation = Animator.Animations[0];
-            }
-
-            Position += Direction;
             Animator.Update(gameTime);
-        }
-
-        public void Move()
-        {
-
         }
 
         public void Draw(SpriteBatch spriteBatch)

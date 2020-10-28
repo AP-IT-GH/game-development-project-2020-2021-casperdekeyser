@@ -24,6 +24,15 @@ namespace MakingAPlatformer
             }
         }
 
+        public Animation Animate(float state)
+        {
+            if (state > 0)
+                return Animations[0];
+            if (state < 0)
+                return Animations[1];
+            return Animations[0];
+        }
+
         public void Update(GameTime gameTime)
         {
             foreach (Animation animation in Animations)
