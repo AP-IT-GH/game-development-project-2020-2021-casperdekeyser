@@ -8,7 +8,7 @@ namespace MakingAPlatformer
     public class NormalAnimation : Animation
     {
 
-        public NormalAnimation(string path, int frames) : base(path, frames) { }
+        public NormalAnimation(string name, string path, int frames) : base(name, path, frames) { }
              
         public override void Update(GameTime gameTime)
         {

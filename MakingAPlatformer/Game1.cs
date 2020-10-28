@@ -12,7 +12,7 @@ namespace MakingAPlatformer
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
-        IGameObject hero;
+        IGameObject hero; // list van alle gameobjects
 
 
         public Game1()

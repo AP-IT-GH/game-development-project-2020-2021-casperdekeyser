@@ -26,6 +26,7 @@ namespace MakingAPlatformer
 
         public void Update(GameTime gameTime)
         {
+            // Delegate movement & input (MoveController & KeyboardReader : InputReader
             KeyboardState state = Keyboard.GetState();
             if (state.IsKeyDown(Keys.Left))
             {

@@ -11,6 +11,7 @@ namespace MakingAPlatformer
         public AnimationFrame CurrentFrame { get; set; }
         public Texture2D SpriteSheet { get; set; }
         public string SpriteSheetPath { get; set; }
+        public string Name { get; set; }
 
         protected List<AnimationFrame> frames;
         protected int counter;
@@ -18,9 +19,10 @@ namespace MakingAPlatformer
         protected double frameMovement = 0;
         protected int framesPerSecond = 12;
 
-        public Animation(string path, int frameamount)
+        public Animation(string name, string path, int frameamount)
         {
             frames = new List<AnimationFrame>();
+            Name = name;
             SpriteSheetPath = path;
             counter = frameamount-1;
         }
@@ -32,7 +34,12 @@ namespace MakingAPlatformer
         }
 
         public abstract void Update(GameTime gameTime);
-        
+
+        public override string ToString() // Debug
+        {
+            return $"{Name} has {frames.Count} frames and uses this spritesheet: {SpriteSheetPath}";
+        }
+
     }
 }
 
