@@ -14,40 +14,29 @@ namespace MakingAPlatformer
 
         public Vector2 Direction;
         public Animator Animator { get; set; }
+        public IInputReader KeyboardReader;
 
         private int speed = 2;
         private Animation currentAnimation;
 
         public Hero()
         {
+            // DIP: injection
             Animator = new Animator();
             currentAnimation = Animator.Animations[0];
+            KeyboardReader = new KeyboardReader();
         }
 
         public void Update(GameTime gameTime)
         {
-            // Delegate movement & input (MoveController & KeyboardReader : InputReader
-            KeyboardState state = Keyboard.GetState();
-            if (state.IsKeyDown(Keys.Left))
-            {
-                Direction = new Vector2(-speed, 0);
-                currentAnimation = Animator.Animations[1];
-
-            }
-            
-            if (state.IsKeyDown(Keys.Right))
-            {
-                Direction = new Vector2(speed, 0);
-                currentAnimation = Animator.Animations[0];
-            }
-
+            // Read input
+            Direction = KeyboardReader.ReadInput();
+            // Move character
+            Direction.X *= speed;
             Position += Direction;
+            // Animate correctly
+            currentAnimation = Animator.Animate(Direction.X);
             Animator.Update(gameTime);
-        }
-
-        public void Move()
-        {
-
         }
 
         public void Draw(SpriteBatch spriteBatch)
