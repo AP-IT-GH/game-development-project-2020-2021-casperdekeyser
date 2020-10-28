@@ -8,23 +8,27 @@ using System.Text;
 
 namespace MakingAPlatformer
 {
-    public class Hero : IGameObject
+    public class Hero : IGameObject, ITransform
     {
         public Vector2 Position { get; set; }
 
         public Vector2 Direction;
         public Animator Animator { get; set; }
-        public IInputReader KeyboardReader;
 
-        private int speed = 2;
+        public IInputReader KeyboardReader;
+        public IGameCommand MoveCommand;
+
+        private int speed = 5;
         private Animation currentAnimation;
 
         public Hero()
         {
-            // DIP: injection
+            // TODO: dependency-injection
             Animator = new Animator();
-            currentAnimation = Animator.Animations[0];
             KeyboardReader = new KeyboardReader();
+            MoveCommand = new MoveCommand(speed);
+
+            currentAnimation = Animator.Animations[0];
         }
 
         public void Update(GameTime gameTime)
@@ -32,10 +36,10 @@ namespace MakingAPlatformer
             // Read input
             Direction = KeyboardReader.ReadInput();
             // Move character
-            Direction.X *= speed;
-            Position += Direction;
+            MoveCommand.Execute(this, Direction);
             // Animate correctly
             currentAnimation = Animator.Animate(Direction.X);
+
             Animator.Update(gameTime);
         }
 
