@@ -10,7 +10,7 @@ namespace MakingAPlatformer
 {
     public class Hero : IGameObject, ITransform
     {
-        public Vector2 Position { get; set; }
+        public Vector2 Position { get; set; } 
 
         public Vector2 Direction;
         public Animator Animator { get; set; }
@@ -18,7 +18,7 @@ namespace MakingAPlatformer
         public IInputReader KeyboardReader;
         public IGameCommand MoveCommand;
 
-        private int speed = 5;
+        private int speed = 3;
         private Animation currentAnimation;
 
         public Hero()
@@ -27,6 +27,7 @@ namespace MakingAPlatformer
             Animator = new Animator();
             KeyboardReader = new KeyboardReader();
             MoveCommand = new MoveCommand(speed);
+            Position = new Vector2(100, 250);
 
             currentAnimation = Animator.Animations[0];
         }
