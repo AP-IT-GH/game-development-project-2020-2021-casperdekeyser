@@ -15,7 +15,6 @@ namespace MakingAPlatformer
         public Vector2 Direction;
         public Animator Animator { get; set; }
 
-        private Texture2D heroTexture;
         private int speed = 2;
         private Animation currentAnimation;
 

@@ -11,33 +11,33 @@ namespace MakingAPlatformer
 
         public override void Update(GameTime gameTime)
         {
+            //CurrentFrame = frames[counter];
+
+            //frameMovement += CurrentFrame.sourceRectangle.Width * gameTime.ElapsedGameTime.TotalSeconds;
+
+            //if (frameMovement >= CurrentFrame.sourceRectangle.Width / framesPerSecond)
+            //{
+            //    counter++;
+            //    frameMovement = 0;
+            //}
+
+            //if (counter >= frames.Count)
+            //    counter = 0;
+
+            // test left animation --> WERKT NOG NIET!
+
             CurrentFrame = frames[counter];
 
             frameMovement += CurrentFrame.sourceRectangle.Width * gameTime.ElapsedGameTime.TotalSeconds;
 
             if (frameMovement >= CurrentFrame.sourceRectangle.Width / framesPerSecond)
             {
-                counter++;
+                counter--;
                 frameMovement = 0;
             }
 
-            if (counter >= frames.Count)
-                counter = 0;
-
-            // test left animation --> WERKT NOG NIET!
-
-            //CurrentFrame = frames[counter];
-
-            //frameMovement += CurrentFrame.sourceRectangle.Width * gameTime.ElapsedGameTime.TotalSeconds;
-
-            //if (frameMovement <= CurrentFrame.sourceRectangle.Width * framesPerSecond)
-            //{
-            //    counter--;
-            //    frameMovement = 0;
-            //}
-
-            //if (counter <= 0)
-            //    counter = frames.Count-1;
+            if (counter <= 0)
+                counter = frames.Count-1;
         }
     }
 }
