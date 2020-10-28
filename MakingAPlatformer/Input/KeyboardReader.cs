@@ -19,13 +19,11 @@ namespace MakingAPlatformer
             if (state.IsKeyDown(Keys.Left))
             {
                 return new Vector2(-1, 0);
-                //currentAnimation = Animator.Animations[1];
             }
 
             if (state.IsKeyDown(Keys.Right))
             {
                 return new Vector2(1, 0);
-                //currentAnimation = Animator.Animations[0];
             }
             return new Vector2(0, 0);
         }
