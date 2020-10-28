@@ -12,6 +12,7 @@ namespace MakingAPlatformer
         public Texture2D SpriteSheet { get; set; }
         public string SpriteSheetPath { get; set; }
         public string Name { get; set; }
+        public int Width { get; set; }
 
         protected List<AnimationFrame> frames;
         protected int counter;
@@ -19,12 +20,13 @@ namespace MakingAPlatformer
         protected double frameMovement = 0;
         protected int framesPerSecond = 12;
 
-        public Animation(string name, string path, int frameamount)
+        public Animation(string name, string path, int frameamount, int width)
         {
             frames = new List<AnimationFrame>();
             Name = name;
             SpriteSheetPath = path;
             counter = frameamount-1;
+            Width = width;
         }
 
         public void AddFrame(AnimationFrame animationFrame)
