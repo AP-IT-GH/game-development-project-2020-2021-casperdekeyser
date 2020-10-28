@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using MakingAPlatformer.Interfaces;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
@@ -11,7 +12,7 @@ namespace MakingAPlatformer
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
-        Hero hero;
+        IGameObject hero;
 
 
         public Game1()

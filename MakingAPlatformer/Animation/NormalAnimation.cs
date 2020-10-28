@@ -9,8 +9,7 @@ namespace MakingAPlatformer
     {
 
         public NormalAnimation(string path, int frames) : base(path, frames) { }
-
-     
+             
         public override void Update(GameTime gameTime)
         {
             CurrentFrame = frames[counter];

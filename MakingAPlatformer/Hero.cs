@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using MakingAPlatformer.Interfaces;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
@@ -7,11 +8,12 @@ using System.Text;
 
 namespace MakingAPlatformer
 {
-    public class Hero
+    public class Hero : IGameObject
     {
         public Vector2 Position { get; set; }
+
         public Vector2 Direction;
-        public Animator Animator;
+        public Animator Animator { get; set; }
 
         private Texture2D heroTexture;
         private int speed = 2;
@@ -21,12 +23,6 @@ namespace MakingAPlatformer
         {
             Animator = new Animator();
             currentAnimation = Animator.Animations[0];
-        }
-
-        public Hero(Texture2D texture)
-        {
-            heroTexture = texture;
-            Animator = new Animator();
         }
 
         public void Update(GameTime gameTime)
