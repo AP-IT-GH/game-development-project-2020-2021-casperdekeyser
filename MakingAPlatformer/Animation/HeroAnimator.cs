@@ -18,7 +18,6 @@ namespace MakingAPlatformer
             {
                 previousState = state;
                 return Animations[3];
-
             }
             if (state == 0)
             {

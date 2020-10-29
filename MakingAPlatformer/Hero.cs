@@ -27,6 +27,7 @@ namespace MakingAPlatformer
             Animator = new HeroAnimator();
             KeyboardReader = new KeyboardReader();
             MoveCommand = new MoveCommand(speed);
+
             Position = new Vector2(100, 250);
 
             // Add animations that need to be used

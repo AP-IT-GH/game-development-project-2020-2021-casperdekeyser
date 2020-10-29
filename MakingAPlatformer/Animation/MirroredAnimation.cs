@@ -9,12 +9,8 @@ namespace MakingAPlatformer
     {
         public MirroredAnimation(string name, string path, int frames, int width) : base(name, path, frames, width) { }
 
-        public override void Update(GameTime gameTime)
+        public override void FrameCountConditions()
         {
-            CurrentFrame = frames[counter];
-
-            frameMovement += CurrentFrame.sourceRectangle.Width * gameTime.ElapsedGameTime.TotalSeconds;
-
             if (frameMovement >= CurrentFrame.sourceRectangle.Width / framesPerSecond)
             {
                 counter--;
@@ -22,7 +18,8 @@ namespace MakingAPlatformer
             }
 
             if (counter <= 0)
-                counter = frames.Count-1;
+                counter = frames.Count - 1;
+
         }
     }
 }

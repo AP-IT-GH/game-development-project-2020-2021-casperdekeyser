@@ -37,7 +37,16 @@ namespace MakingAPlatformer
             CurrentFrame = frames[0];
         }
 
-        public abstract void Update(GameTime gameTime);
+        public void Update(GameTime gameTime)
+        {
+            CurrentFrame = frames[counter];
+
+            frameMovement += CurrentFrame.sourceRectangle.Width * gameTime.ElapsedGameTime.TotalSeconds;
+
+            FrameCountConditions();
+        }
+
+        public abstract void FrameCountConditions();
 
         public override string ToString() // Debug
         {

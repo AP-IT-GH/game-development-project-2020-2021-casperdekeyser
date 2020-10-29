@@ -10,12 +10,8 @@ namespace MakingAPlatformer
 
         public NormalAnimation(string name, string path, int frames, int width) : base(name, path, frames, width) { }
              
-        public override void Update(GameTime gameTime)
+        public override void FrameCountConditions()
         {
-            CurrentFrame = frames[counter];
-
-            frameMovement += CurrentFrame.sourceRectangle.Width * gameTime.ElapsedGameTime.TotalSeconds;
-
             if (frameMovement >= CurrentFrame.sourceRectangle.Width / framesPerSecond)
             {
                 counter++;
