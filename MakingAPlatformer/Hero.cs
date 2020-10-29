@@ -29,7 +29,18 @@ namespace MakingAPlatformer
             MoveCommand = new MoveCommand(speed);
             Position = new Vector2(100, 250);
 
+            // Add animations that need to be used
+            Animator.Animations.Add(new NormalAnimation("HeroIdleRight", "Hero/Normal/Idle", 8, 150));
+            Animator.Animations.Add(new MirroredAnimation("HeroIdleLeft", "Hero/Mirrored/Idle-MIRRORED", 8, 150));
+            Animator.Animations.Add(new NormalAnimation("HeroRunRight", "Hero/Normal/Run", 8, 150));
+            Animator.Animations.Add(new MirroredAnimation("HeroRunLeft", "Hero/Mirrored/Run-MIRRORED", 8, 150));
+
+            // Initialize animations
+            Animator.InitializeAnimations();
+
+            // Set start animation
             currentAnimation = Animator.Animations[0];
+
         }
 
         public void Update(GameTime gameTime)

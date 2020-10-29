@@ -27,7 +27,7 @@ namespace MakingAPlatformer
             Name = name;
             SpriteSheetPath = path;
             FrameAmount = frameamount;
-            counter = frameamount-1;
+            counter = FrameAmount-1;
             Width = width;
         }
 

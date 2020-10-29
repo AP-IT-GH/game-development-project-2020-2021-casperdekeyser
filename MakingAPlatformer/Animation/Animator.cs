@@ -8,19 +8,19 @@ namespace MakingAPlatformer
     public class Animator
     {
         public List<Animation> Animations;
-        private float previousState;
+        protected float previousState;
 
         public Animator()
         {
             Animations = new List<Animation>();
-            Animations.Add(new NormalAnimation("HeroIdleRight", "Hero/Normal/Idle", 8, 150));
-            Animations.Add(new MirroredAnimation("HeroIdleLeft", "Hero/Mirrored/Idle-MIRRORED", 8, 150));
-            Animations.Add(new NormalAnimation("HeroRunRight", "Hero/Normal/Run", 8, 150));
-            Animations.Add(new MirroredAnimation("HeroRunLeft", "Hero/Mirrored/Run-MIRRORED", 8, 150));
 
+        }
+
+        public void InitializeAnimations()
+        {
             foreach (Animation animation in Animations)
             {
-                for (int i = 0; i <= animation.Width*(animation.FrameAmount-1); i = i + animation.Width)
+                for (int i = 0; i <= animation.Width * (animation.FrameAmount - 1); i = i + animation.Width)
                 {
                     animation.AddFrame(new AnimationFrame(new Rectangle(i, 0, 150, 150)));
                 }
