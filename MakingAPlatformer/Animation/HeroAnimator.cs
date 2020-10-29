@@ -7,7 +7,7 @@ namespace MakingAPlatformer
     public class HeroAnimator : Animator
     {
 
-        public Animation Animate(float state)
+        public override Animation Animate(float state)
         {
             if (state > 0)
             {

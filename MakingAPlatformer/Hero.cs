@@ -24,7 +24,7 @@ namespace MakingAPlatformer
         public Hero()
         {
             // TODO: dependency-injection
-            Animator = new Animator();
+            Animator = new HeroAnimator();
             KeyboardReader = new KeyboardReader();
             MoveCommand = new MoveCommand(speed);
             Position = new Vector2(100, 250);
@@ -40,16 +40,17 @@ namespace MakingAPlatformer
 
             // Set start animation
             currentAnimation = Animator.Animations[0];
-
         }
 
         public void Update(GameTime gameTime)
         {
             // Read input
             Direction = KeyboardReader.ReadInput();
+
             // Move character
             MoveCommand.Execute(this, Direction);
-            // Animate correctly
+
+            // Animate accordingly
             currentAnimation = Animator.Animate(Direction.X);
 
             Animator.Update(gameTime);

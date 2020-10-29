@@ -5,7 +5,7 @@ using System.Text;
 
 namespace MakingAPlatformer
 {
-    public class Animator
+    public abstract class Animator
     {
         public List<Animation> Animations;
         protected float previousState;
@@ -13,7 +13,6 @@ namespace MakingAPlatformer
         public Animator()
         {
             Animations = new List<Animation>();
-
         }
 
         public void InitializeAnimations()
@@ -27,30 +26,8 @@ namespace MakingAPlatformer
             }
         }
 
-        public Animation Animate(float state)
-        {
-            if (state > 0)
-            {
-                previousState = state;
-                return Animations[2];
-            }
-            if (state < 0)
-            {
-                previousState = state;
-                return Animations[3];
-
-            }
-            if (state == 0)
-            {
-                if (previousState > 0)
-                    return Animations[0];
-                if (previousState < 0)
-                    return Animations[1];
-            }
-            // default;
-            return Animations[0];
-        }
-
+        public abstract Animation Animate(float state);
+        
         public void Update(GameTime gameTime)
         {
             foreach (Animation animation in Animations)
