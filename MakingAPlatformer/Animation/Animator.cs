@@ -5,52 +5,29 @@ using System.Text;
 
 namespace MakingAPlatformer
 {
-    public class Animator
+    public abstract class Animator
     {
         public List<Animation> Animations;
-        private float previousState;
+        protected float previousState;
 
         public Animator()
         {
             Animations = new List<Animation>();
-            Animations.Add(new NormalAnimation("HeroIdleRight", "Hero/Normal/Idle", 8, 1050));
-            Animations.Add(new MirroredAnimation("HeroIdleLeft", "Hero/Mirrored/Idle-MIRRORED", 8, 1050));
-            Animations.Add(new NormalAnimation("HeroRunRight", "Hero/Normal/Run", 8, 1050));
-            Animations.Add(new MirroredAnimation("HeroRunLeft", "Hero/Mirrored/Run-MIRRORED", 8, 1050));
+        }
 
+        public void InitializeAnimations()
+        {
             foreach (Animation animation in Animations)
             {
-                for (int i = 0; i <= animation.Width; i = i + 150)
+                for (int i = 0; i <= animation.Width * (animation.FrameAmount - 1); i = i + animation.Width)
                 {
                     animation.AddFrame(new AnimationFrame(new Rectangle(i, 0, 150, 150)));
                 }
             }
         }
 
-        public Animation Animate(float state)
-        {
-            if (state > 0)
-            {
-                previousState = state;
-                return Animations[2];
-            }
-            if (state < 0)
-            {
-                previousState = state;
-                return Animations[3];
-
-            }
-            if (state == 0)
-            {
-                if (previousState > 0)
-                    return Animations[0];
-                if (previousState < 0)
-                    return Animations[1];
-            }
-            // default;
-            return Animations[0];
-        }
-
+        public abstract Animation Animate(float state);
+        
         public void Update(GameTime gameTime)
         {
             foreach (Animation animation in Animations)

@@ -24,11 +24,21 @@ namespace MakingAPlatformer
         public Hero()
         {
             // TODO: dependency-injection
-            Animator = new Animator();
+            Animator = new HeroAnimator();
             KeyboardReader = new KeyboardReader();
             MoveCommand = new MoveCommand(speed);
             Position = new Vector2(100, 250);
 
+            // Add animations that need to be used
+            Animator.Animations.Add(new NormalAnimation("HeroIdleRight", "Hero/Normal/Idle", 8, 150));
+            Animator.Animations.Add(new MirroredAnimation("HeroIdleLeft", "Hero/Mirrored/Idle-MIRRORED", 8, 150));
+            Animator.Animations.Add(new NormalAnimation("HeroRunRight", "Hero/Normal/Run", 8, 150));
+            Animator.Animations.Add(new MirroredAnimation("HeroRunLeft", "Hero/Mirrored/Run-MIRRORED", 8, 150));
+
+            // Initialize animations
+            Animator.InitializeAnimations();
+
+            // Set start animation
             currentAnimation = Animator.Animations[0];
         }
 
@@ -36,9 +46,11 @@ namespace MakingAPlatformer
         {
             // Read input
             Direction = KeyboardReader.ReadInput();
+
             // Move character
             MoveCommand.Execute(this, Direction);
-            // Animate correctly
+
+            // Animate accordingly
             currentAnimation = Animator.Animate(Direction.X);
 
             Animator.Update(gameTime);

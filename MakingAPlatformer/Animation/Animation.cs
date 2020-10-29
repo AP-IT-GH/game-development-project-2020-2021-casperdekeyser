@@ -13,6 +13,7 @@ namespace MakingAPlatformer
         public string SpriteSheetPath { get; set; }
         public string Name { get; set; }
         public int Width { get; set; }
+        public int FrameAmount { get; set; }
 
         protected List<AnimationFrame> frames;
         protected int counter;
@@ -25,7 +26,8 @@ namespace MakingAPlatformer
             frames = new List<AnimationFrame>();
             Name = name;
             SpriteSheetPath = path;
-            counter = frameamount-1;
+            FrameAmount = frameamount;
+            counter = FrameAmount-1;
             Width = width;
         }
 
