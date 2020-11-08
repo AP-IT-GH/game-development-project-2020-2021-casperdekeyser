@@ -25,12 +25,13 @@ namespace MakingAPlatformer
         private int jumpSpeed = 5;
         private int jumpHeight = 100;
 
-        private float height = 0;
         private Animation currentAnimation;
 
         float startY;
         bool rising = false;
         bool falling = false;
+        private float height = 0;
+
 
 
         public Hero()
@@ -69,13 +70,12 @@ namespace MakingAPlatformer
             // Move character
             MoveCommand.Execute(this, MoveDirection);
 
-            // jumping test
+            // jumping test -> REFACTOR
             KeyboardState keyState = Keyboard.GetState();
 
             if (keyState.IsKeyDown(Keys.Space))
             {
                 rising = true;
-                //jumpSpeed = (int)Position.Y - 150; // initial jump heigth
             }
 
 
