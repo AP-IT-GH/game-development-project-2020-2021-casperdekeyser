@@ -8,15 +8,17 @@ using System.Text;
 
 namespace MakingAPlatformer
 {
-    public class Hero : IGameObject, ITransform
+    public class Hero : IGameObject, ITransform, IAnimateable
     {
         public Vector2 Position { get; set; } 
 
         public Vector2 Direction;
         public Animator Animator { get; set; }
+        public PossibleAnimations AnimToPlay { get; set; }
 
         public IInputReader KeyboardReader;
         public IGameCommand MoveCommand;
+        public AnimateCommand AnimateCommand;
 
         private int speed = 3;
         private Animation currentAnimation;
@@ -27,6 +29,7 @@ namespace MakingAPlatformer
             Animator = new HeroAnimator();
             KeyboardReader = new KeyboardReader();
             MoveCommand = new MoveCommand(speed);
+            AnimateCommand = new AnimateCommand();
 
             Position = new Vector2(100, 250);
 
@@ -51,8 +54,11 @@ namespace MakingAPlatformer
             // Move character
             MoveCommand.Execute(this, Direction);
 
+            // Choose animation according to direction
+            AnimateCommand.Execute(this, Direction);
+
             // Animate accordingly
-            currentAnimation = Animator.Animate(Direction.X);
+            currentAnimation = Animator.Animate(AnimToPlay);
 
             Animator.Update(gameTime);
         }

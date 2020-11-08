@@ -10,7 +10,7 @@ namespace MakingAPlatformer
     public abstract class Animator
     {
         public List<Animation> Animations;
-        protected float previousState;
+        public PossibleAnimations previousAnimation;
 
         public Animator()
         {
@@ -28,7 +28,7 @@ namespace MakingAPlatformer
             }
         }
 
-        public abstract Animation Animate(float state);
+        public abstract Animation Animate(PossibleAnimations desiredAnimation);
         
         public void Update(GameTime gameTime)
         {
