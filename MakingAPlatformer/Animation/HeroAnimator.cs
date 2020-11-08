@@ -7,25 +7,25 @@ namespace MakingAPlatformer
     public class HeroAnimator : Animator
     {
 
-        public override Animation Animate(float state)
+        public override Animation Animate(PossibleAnimations animToPlay)
         {
-            if (state > 0)
+            if (animToPlay == PossibleAnimations.RunLeft)
             {
-                previousState = state;
+                previousAnimation = animToPlay;
                 return Animations[2];
             }
-            if (state < 0)
+            if (animToPlay == PossibleAnimations.RunRight)
             {
-                previousState = state;
+                previousAnimation = animToPlay;
                 return Animations[3];
-
             }
-            if (state == 0)
+            if (animToPlay == PossibleAnimations.IdleLeft)
             {
-                if (previousState > 0)
-                    return Animations[0];
-                if (previousState < 0)
-                    return Animations[1];
+                 return Animations[0];
+            }
+            if (animToPlay == PossibleAnimations.IdleRight)
+            {
+                return Animations[1];
             }
             // default;
             return Animations[0];
