@@ -20,30 +20,39 @@ namespace MakingAPlatformer
         public IGameCommand MoveCommand;
         public AnimateCommand AnimateCommand;
 
-        private int speed = 3;
+        private int runSpeed = 3;
+        public  int jumpSpeed = 0; // private
         private Animation currentAnimation;
+
+        public bool jumping;
+        public float startY;
 
         public Hero()
         {
             // TODO: dependency-injection
             Animator = new HeroAnimator();
             KeyboardReader = new KeyboardReader();
-            MoveCommand = new MoveCommand(speed);
+            MoveCommand = new MoveCommand(runSpeed);
             AnimateCommand = new AnimateCommand();
 
+            // Startposition
             Position = new Vector2(100, 250);
 
             // Add animations that need to be used
-            Animator.Animations.Add(new NormalAnimation("HeroIdleRight", "Hero/Normal/Idle", 8, 150));
-            Animator.Animations.Add(new MirroredAnimation("HeroIdleLeft", "Hero/Mirrored/Idle-MIRRORED", 8, 150));
-            Animator.Animations.Add(new NormalAnimation("HeroRunRight", "Hero/Normal/Run", 8, 150));
-            Animator.Animations.Add(new MirroredAnimation("HeroRunLeft", "Hero/Mirrored/Run-MIRRORED", 8, 150));
+            Animator.Animations.Add(new NormalAnimation("Hero-Idle-Right", "Hero/Normal/Idle", 8, 150));
+            Animator.Animations.Add(new MirroredAnimation("Hero-Idle-Left", "Hero/Mirrored/Idle-MIRRORED", 8, 150));
+            Animator.Animations.Add(new NormalAnimation("Hero-Run-Right", "Hero/Normal/Run", 8, 150));
+            Animator.Animations.Add(new MirroredAnimation("Hero-Run-Left", "Hero/Mirrored/Run-MIRRORED", 8, 150));
 
             // Initialize animations
             Animator.InitializeAnimations();
 
             // Set start animation
             currentAnimation = Animator.Animations[0];
+
+            // jump
+            jumping = false;
+            startY = Position.Y;
         }
 
         public void Update(GameTime gameTime)
@@ -53,6 +62,27 @@ namespace MakingAPlatformer
 
             // Move character
             MoveCommand.Execute(this, Direction);
+
+            // jumping test
+            KeyboardState keyState = Keyboard.GetState();
+            if (jumping)
+            {
+                Position = new Vector2(Position.X, jumpSpeed);
+                jumpSpeed += 5; // falling speed
+                if (Position.Y >= startY)
+                {
+                    Position = new Vector2(Position.X, startY);
+                    jumping = false;
+                }
+            }
+            else
+            {
+                if (keyState.IsKeyDown(Keys.Space))
+                {
+                    jumping = true;
+                    jumpSpeed = (int)Position.Y - 150; // initial jump heigth
+                }
+            }
 
             // Choose animation according to direction
             AnimateCommand.Execute(this, Direction);

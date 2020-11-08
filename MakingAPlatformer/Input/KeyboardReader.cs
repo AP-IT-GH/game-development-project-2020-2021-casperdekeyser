@@ -25,6 +25,12 @@ namespace MakingAPlatformer
             {
                 return new Vector2(1, 0);
             }
+
+            // jump cooldown
+            //if (state.IsKeyDown(Keys.Space))
+            //{
+            //    return new Vector2(0, -1);
+            //}
             return new Vector2(0, 0);
         }
     }
