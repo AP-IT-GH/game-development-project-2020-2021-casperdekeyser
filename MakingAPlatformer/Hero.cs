@@ -50,6 +50,8 @@ namespace MakingAPlatformer
             Animator.Animations.Add(new MirroredAnimation("Hero-Idle-Left", "Hero/Mirrored/Idle-MIRRORED", 8, 150));
             Animator.Animations.Add(new NormalAnimation("Hero-Run-Right", "Hero/Normal/Run", 8, 150));
             Animator.Animations.Add(new MirroredAnimation("Hero-Run-Left", "Hero/Mirrored/Run-MIRRORED", 8, 150));
+            Animator.Animations.Add(new NormalAnimation("Hero-Jump-Right", "Hero/Normal/Jump", 2, 150));
+            Animator.Animations.Add(new MirroredAnimation("Hero-Jump-Left", "Hero/Mirrored/Jump-MIRRORED", 2, 150));
 
             // Initialize animations
             Animator.InitializeAnimations();

@@ -26,6 +26,11 @@ namespace MakingAPlatformer
             {
                 return Movement.MoveRight;
             }
+
+            if (state.IsKeyDown(Keys.Space))
+            {
+                return Movement.Jump;
+            }
             // default
             return Movement.Idle;
         }

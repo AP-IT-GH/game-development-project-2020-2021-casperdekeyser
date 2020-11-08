@@ -20,6 +20,13 @@ namespace MakingAPlatformer
                 if (transform.Animator.previousAnimation == PossibleAnimations.RunRight)
                     transform.AnimToPlay = PossibleAnimations.IdleRight;
             }
+            if (moveDirection == Movement.Jump)
+            {
+                if (transform.Animator.previousAnimation == PossibleAnimations.RunLeft || transform.Animator.previousAnimation == PossibleAnimations.IdleLeft)
+                    transform.AnimToPlay = PossibleAnimations.JumpLeft;
+                if (transform.Animator.previousAnimation == PossibleAnimations.RunRight || transform.Animator.previousAnimation == PossibleAnimations.IdleRight)
+                    transform.AnimToPlay = PossibleAnimations.JumpRight;
+            }
         }
     }
 }

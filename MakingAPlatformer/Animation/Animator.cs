@@ -5,7 +5,7 @@ using System.Text;
 
 namespace MakingAPlatformer
 {
-    public enum PossibleAnimations { RunRight, RunLeft, IdleRight, IdleLeft, AttackRight, AttackLeft }
+    public enum PossibleAnimations { RunRight, RunLeft, IdleRight, IdleLeft, AttackRight, AttackLeft, JumpLeft, JumpRight }
 
     public abstract class Animator
     {

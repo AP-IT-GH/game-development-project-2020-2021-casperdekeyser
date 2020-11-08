@@ -9,14 +9,13 @@ namespace MakingAPlatformer
 
         public override Animation Animate(PossibleAnimations animToPlay)
         {
+            previousAnimation = animToPlay;
             if (animToPlay == PossibleAnimations.RunLeft)
             {
-                previousAnimation = animToPlay;
                 return Animations[2];
             }
             if (animToPlay == PossibleAnimations.RunRight)
             {
-                previousAnimation = animToPlay;
                 return Animations[3];
             }
             if (animToPlay == PossibleAnimations.IdleLeft)
@@ -26,6 +25,14 @@ namespace MakingAPlatformer
             if (animToPlay == PossibleAnimations.IdleRight)
             {
                 return Animations[1];
+            }
+            if (animToPlay == PossibleAnimations.JumpRight)
+            {
+                return Animations[5];
+            }
+            if (animToPlay == PossibleAnimations.JumpLeft)
+            {
+                return Animations[4];
             }
             // default;
             return Animations[0];
