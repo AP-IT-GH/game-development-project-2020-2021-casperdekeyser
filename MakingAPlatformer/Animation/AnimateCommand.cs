@@ -7,13 +7,13 @@ namespace MakingAPlatformer
 {
     public class AnimateCommand
     {
-        public void Execute(IAnimateable transform, Vector2 direction)
+        public void Execute(IAnimateable transform, Movement moveDirection)
         {
-            if (direction.X > 0)
+            if (moveDirection == Movement.MoveRight)
                 transform.AnimToPlay = PossibleAnimations.RunLeft;
-            if (direction.X < 0)
+            if (moveDirection == Movement.MoveLeft)
                 transform.AnimToPlay = PossibleAnimations.RunRight;
-            if (direction.X == 0)
+            if (moveDirection == Movement.Idle)
             {
                 if (transform.Animator.previousAnimation == PossibleAnimations.RunLeft)
                     transform.AnimToPlay = PossibleAnimations.IdleLeft;

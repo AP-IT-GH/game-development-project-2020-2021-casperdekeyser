@@ -7,6 +7,6 @@ namespace MakingAPlatformer
 {
     public interface IGameCommand
     {
-        void Execute(ITransform transform, Vector2 direction);
+        void Execute(ITransform transform, Movement direction);
     }
 }

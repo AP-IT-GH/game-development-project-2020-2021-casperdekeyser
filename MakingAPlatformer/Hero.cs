@@ -13,6 +13,7 @@ namespace MakingAPlatformer
         public Vector2 Position { get; set; } 
 
         public Vector2 Direction;
+        public Movement MoveDirection;
         public Animator Animator { get; set; }
         public PossibleAnimations AnimToPlay { get; set; }
 
@@ -63,10 +64,10 @@ namespace MakingAPlatformer
         public void Update(GameTime gameTime)
         {
             // Read input
-            Direction = KeyboardReader.ReadInput();
+            MoveDirection = KeyboardReader.ReadInput();
 
             // Move character
-            MoveCommand.Execute(this, Direction);
+            MoveCommand.Execute(this, MoveDirection);
 
             // jumping test
             KeyboardState keyState = Keyboard.GetState();
@@ -101,7 +102,7 @@ namespace MakingAPlatformer
             }
 
             // Choose animation according to direction
-            AnimateCommand.Execute(this, Direction);
+            AnimateCommand.Execute(this, MoveDirection);
 
             // Animate accordingly
             currentAnimation = Animator.Animate(AnimToPlay);

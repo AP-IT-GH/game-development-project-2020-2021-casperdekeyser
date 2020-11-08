@@ -6,6 +6,7 @@ using System.Text;
 
 namespace MakingAPlatformer
 {
+    public enum Movement { MoveRight, MoveLeft, Idle, Jump}
     public class KeyboardReader : IInputReader
     {
         public bool CheckInput()
@@ -13,20 +14,20 @@ namespace MakingAPlatformer
             throw new NotImplementedException();
         }
 
-        public Vector2 ReadInput()
+        public Movement ReadInput()
         {
             KeyboardState state = Keyboard.GetState();
             if (state.IsKeyDown(Keys.Left))
             {
-                return new Vector2(-1, 0);
+                return Movement.MoveLeft;
             }
 
             if (state.IsKeyDown(Keys.Right))
             {
-                return new Vector2(1, 0);
+                return Movement.MoveRight;
             }
-            
-            return new Vector2(0, 0);
+            // default
+            return Movement.Idle;
         }
     }
 }

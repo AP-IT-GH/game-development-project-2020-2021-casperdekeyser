@@ -7,7 +7,7 @@ namespace MakingAPlatformer
 {
     public interface IInputReader
     {
-        Vector2 ReadInput();
+        Movement ReadInput();
 
         bool CheckInput();
     }
