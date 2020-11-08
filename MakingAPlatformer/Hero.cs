@@ -21,11 +21,16 @@ namespace MakingAPlatformer
         public AnimateCommand AnimateCommand;
 
         private int runSpeed = 3;
-        public  int jumpSpeed = 0; // private
+        private int jumpSpeed = 5;
+        private int jumpHeight = 100;
+
+        private float height = 0;
         private Animation currentAnimation;
 
-        public bool jumping;
-        public float startY;
+        float startY;
+        bool rising = false;
+        bool falling = false;
+
 
         public Hero()
         {
@@ -51,8 +56,8 @@ namespace MakingAPlatformer
             currentAnimation = Animator.Animations[0];
 
             // jump
-            jumping = false;
             startY = Position.Y;
+            height = Position.Y;
         }
 
         public void Update(GameTime gameTime)
@@ -65,23 +70,34 @@ namespace MakingAPlatformer
 
             // jumping test
             KeyboardState keyState = Keyboard.GetState();
-            if (jumping)
+
+            if (keyState.IsKeyDown(Keys.Space))
             {
-                Position = new Vector2(Position.X, jumpSpeed);
-                jumpSpeed += 5; // falling speed
+                rising = true;
+                //jumpSpeed = (int)Position.Y - 150; // initial jump heigth
+            }
+
+
+            if (falling)
+            {
+                height += jumpSpeed; // falling speed
+                Position = new Vector2(Position.X, height);
                 if (Position.Y >= startY)
                 {
                     Position = new Vector2(Position.X, startY);
-                    jumping = false;
+                    falling = false;
                 }
             }
-            else
+
+            if (rising)
             {
-                if (keyState.IsKeyDown(Keys.Space))
+                Position = new Vector2(Position.X, height);
+                if (Position.Y <= startY - jumpHeight)
                 {
-                    jumping = true;
-                    jumpSpeed = (int)Position.Y - 150; // initial jump heigth
+                    rising = false;
+                    falling = true;
                 }
+                height -= jumpSpeed; // rising speed
             }
 
             // Choose animation according to direction
