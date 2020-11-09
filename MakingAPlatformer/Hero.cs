@@ -8,6 +8,11 @@ using System.Text;
 
 namespace MakingAPlatformer
 {
+    public enum State { Moving, Jumping, Idiling, Attacking }
+    public enum Movement { MoveRight, MoveLeft, Idle, Jump }
+    public enum PossibleAnimations { RunRight, RunLeft, IdleRight, IdleLeft, AttackRight, AttackLeft, JumpLeft, JumpRight }
+
+
     public class Hero : IGameObject, ITransform, IAnimateable
     {
         public Vector2 Position { get; set; } 
@@ -23,7 +28,7 @@ namespace MakingAPlatformer
 
         private int runSpeed = 3;
         private int jumpSpeed = 5;
-        private int jumpHeight = 100;
+        private int jumpHeight = 150;
 
         private Animation currentAnimation;
 

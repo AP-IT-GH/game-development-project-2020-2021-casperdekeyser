@@ -6,7 +6,6 @@ using System.Text;
 
 namespace MakingAPlatformer
 {
-    public enum Movement { MoveRight, MoveLeft, Idle, Jump}
     public class KeyboardReader : IInputReader
     {
         public bool CheckInput()
