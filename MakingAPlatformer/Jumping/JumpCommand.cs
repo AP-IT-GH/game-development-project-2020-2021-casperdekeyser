@@ -6,14 +6,14 @@ using System.Text;
 
 namespace MakingAPlatformer
 {
-    public class JumpCommand : IGameCommand
+    public class JumpCommand
     {
-        bool rising = false;
-        bool falling = false;
+        private bool rising = false;
+        private bool falling = false;
         private int jumpSpeed = 5;
         private int jumpHeight = 150;
-        float startY;
-        float currentHeight = 0;
+        private float startY;
+        private float currentHeight = 0;
 
         public JumpCommand(int speed, int height, float ground)
         {
@@ -33,7 +33,7 @@ namespace MakingAPlatformer
 
         }
 
-        public void Execute(ITransform Hero, Movement MoveDirection)
+        public void Execute(ITransform Hero)
         {
 
             if (falling)

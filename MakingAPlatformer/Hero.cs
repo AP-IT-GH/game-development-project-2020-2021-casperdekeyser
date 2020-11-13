@@ -16,7 +16,6 @@ namespace MakingAPlatformer
     public class Hero : IGameObject, ITransform, IAnimateable
     {
         public Vector2 Position { get; set; } 
-
         public Vector2 Direction;
         public Movement MoveDirection;
         public Animator Animator { get; set; }
@@ -28,9 +27,7 @@ namespace MakingAPlatformer
         public AnimateCommand AnimateCommand;
 
         private int runSpeed = 3;
-
         private Animation currentAnimation;
-
         private int jumpSpeed = 5;
         private int jumpHeight = 150;
 
@@ -61,9 +58,6 @@ namespace MakingAPlatformer
 
             // Set start animation
             currentAnimation = Animator.Animations[0];
-
-            // jump
-            // constructor jumpcmmand
         }
 
         public void Update(GameTime gameTime)
@@ -76,7 +70,7 @@ namespace MakingAPlatformer
 
             // jumping test -> REFACTOR
             JumpCommand.CheckJumping();
-            JumpCommand.Execute(this, MoveDirection);
+            JumpCommand.Execute(this);
 
 
             // Jump command
