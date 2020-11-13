@@ -24,31 +24,29 @@ namespace MakingAPlatformer
 
         public IInputReader KeyboardReader;
         public IGameCommand MoveCommand;
+        public JumpCommand JumpCommand;
         public AnimateCommand AnimateCommand;
 
         private int runSpeed = 3;
-        private int jumpSpeed = 5;
-        private int jumpHeight = 150;
 
         private Animation currentAnimation;
 
-        float startY;
-        bool rising = false;
-        bool falling = false;
-        private float height = 0;
+        private int jumpSpeed = 5;
+        private int jumpHeight = 150;
 
 
 
         public Hero()
         {
+            // Startposition
+            Position = new Vector2(100, 250);
+
             // TODO: dependency-injection
             Animator = new HeroAnimator();
             KeyboardReader = new KeyboardReader();
             MoveCommand = new MoveCommand(runSpeed);
+            JumpCommand = new JumpCommand(jumpSpeed, jumpHeight, Position.Y);
             AnimateCommand = new AnimateCommand();
-
-            // Startposition
-            Position = new Vector2(100, 250);
 
             // Add animations that need to be used
             Animator.Animations.Add(new NormalAnimation("Hero-Idle-Right", "Hero/Normal/Idle", 8, 150));
@@ -65,8 +63,7 @@ namespace MakingAPlatformer
             currentAnimation = Animator.Animations[0];
 
             // jump
-            startY = Position.Y;
-            height = Position.Y;
+            // constructor jumpcmmand
         }
 
         public void Update(GameTime gameTime)
@@ -78,35 +75,11 @@ namespace MakingAPlatformer
             MoveCommand.Execute(this, MoveDirection);
 
             // jumping test -> REFACTOR
-            KeyboardState keyState = Keyboard.GetState();
-
-            if (keyState.IsKeyDown(Keys.Space))
-            {
-                rising = true;
-            }
+            JumpCommand.CheckJumping();
+            JumpCommand.Execute(this, MoveDirection);
 
 
-            if (falling)
-            {
-                height += jumpSpeed; // falling speed
-                Position = new Vector2(Position.X, height);
-                if (Position.Y >= startY)
-                {
-                    Position = new Vector2(Position.X, startY);
-                    falling = false;
-                }
-            }
-
-            if (rising)
-            {
-                Position = new Vector2(Position.X, height);
-                if (Position.Y <= startY - jumpHeight)
-                {
-                    rising = false;
-                    falling = true;
-                }
-                height -= jumpSpeed; // rising speed
-            }
+            // Jump command
 
             // Choose animation according to direction
             AnimateCommand.Execute(this, MoveDirection);
