@@ -28,6 +28,7 @@ namespace MakingAPlatformer
             KeyboardState keyState = Keyboard.GetState();
             if (keyState.IsKeyDown(Keys.Space))
             {
+                Hero.Jumping = true;
                 rising = true;
             }
 
@@ -35,7 +36,6 @@ namespace MakingAPlatformer
 
         public void Execute(ITransform Hero)
         {
-
             if (falling)
             {
                 currentHeight += jumpSpeed; // falling speed
@@ -44,6 +44,7 @@ namespace MakingAPlatformer
                 {
                     Hero.Position = new Vector2(Hero.Position.X, startY);
                     falling = false;
+                    MakingAPlatformer.Hero.Jumping = false;
                 }
             }
 

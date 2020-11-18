@@ -8,13 +8,13 @@ using System.Text;
 
 namespace MakingAPlatformer
 {
-    public enum State { Moving, Jumping, Idiling, Attacking }
     public enum Movement { MoveRight, MoveLeft, Idle, Jump }
     public enum PossibleAnimations { RunRight, RunLeft, IdleRight, IdleLeft, AttackRight, AttackLeft, JumpLeft, JumpRight }
 
 
     public class Hero : IGameObject, ITransform, IAnimateable
     {
+        public static bool Jumping = false;
         public Vector2 Position { get; set; } 
         public Vector2 Direction;
         public Movement MoveDirection;
@@ -30,7 +30,6 @@ namespace MakingAPlatformer
         private Animation currentAnimation;
         private int jumpSpeed = 5;
         private int jumpHeight = 150;
-
 
 
         public Hero()
@@ -65,15 +64,12 @@ namespace MakingAPlatformer
             // Read input
             MoveDirection = KeyboardReader.ReadInput();
 
-            // Move character
-            MoveCommand.Execute(this, MoveDirection);
-
-            // jumping test -> REFACTOR
+            // Jumping
             JumpCommand.CheckJumping();
             JumpCommand.Execute(this);
 
-
-            // Jump command
+            // Move character
+            MoveCommand.Execute(this, MoveDirection);
 
             // Choose animation according to direction
             AnimateCommand.Execute(this, MoveDirection);
