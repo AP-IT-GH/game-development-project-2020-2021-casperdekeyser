@@ -10,11 +10,11 @@ namespace MakingAPlatformer
 {
     public enum Movement { MoveRight, MoveLeft, Idle, Jump }
     public enum PossibleAnimations { RunRight, RunLeft, IdleRight, IdleLeft, AttackRight, AttackLeft, JumpLeft, JumpRight }
-
+    public enum States { Jumping, Idling }
 
     public class Hero : IGameObject, ITransform, IAnimateable
     {
-        public static bool Jumping = false;
+        public static States State = States.Idling;
         public Vector2 Position { get; set; } 
         public Vector2 Direction;
         public Movement MoveDirection;

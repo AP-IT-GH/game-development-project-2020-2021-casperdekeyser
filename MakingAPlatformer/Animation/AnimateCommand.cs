@@ -9,7 +9,7 @@ namespace MakingAPlatformer
     {
         public void Execute(IAnimateable transform, Movement moveDirection)
         {
-            if (Hero.Jumping)
+            if (Hero.State == States.Jumping)
             {
                 if (transform.Animator.previousAnimation == PossibleAnimations.RunLeft || transform.Animator.previousAnimation == PossibleAnimations.IdleLeft)
                     transform.AnimToPlay = PossibleAnimations.JumpLeft;

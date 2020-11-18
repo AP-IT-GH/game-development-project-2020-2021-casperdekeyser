@@ -28,7 +28,7 @@ namespace MakingAPlatformer
             KeyboardState keyState = Keyboard.GetState();
             if (keyState.IsKeyDown(Keys.Space))
             {
-                Hero.Jumping = true;
+                Hero.State = States.Jumping;
                 rising = true;
             }
 
@@ -44,7 +44,7 @@ namespace MakingAPlatformer
                 {
                     Hero.Position = new Vector2(Hero.Position.X, startY);
                     falling = false;
-                    MakingAPlatformer.Hero.Jumping = false;
+                    MakingAPlatformer.Hero.State = States.Idling;
                 }
             }
 
