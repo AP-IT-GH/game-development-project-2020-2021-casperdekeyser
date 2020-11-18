@@ -8,36 +8,49 @@ using System.Text;
 
 namespace MakingAPlatformer
 {
+    public enum Movement { MoveRight, MoveLeft, Idle, Jump }
+    public enum PossibleAnimations { RunRight, RunLeft, IdleRight, IdleLeft, AttackRight, AttackLeft, JumpLeft, JumpRight }
+    public enum States { Jumping, Idling }
+
     public class Hero : IGameObject, ITransform, IAnimateable
     {
+        public static States State = States.Idling;
         public Vector2 Position { get; set; } 
-
         public Vector2 Direction;
+        public Movement MoveDirection;
         public Animator Animator { get; set; }
         public PossibleAnimations AnimToPlay { get; set; }
 
         public IInputReader KeyboardReader;
         public IGameCommand MoveCommand;
+        public JumpCommand JumpCommand;
         public AnimateCommand AnimateCommand;
 
-        private int speed = 3;
+        private int runSpeed = 3;
         private Animation currentAnimation;
+        private int jumpSpeed = 5;
+        private int jumpHeight = 150;
+
 
         public Hero()
         {
+            // Startposition
+            Position = new Vector2(100, 250);
+
             // TODO: dependency-injection
             Animator = new HeroAnimator();
             KeyboardReader = new KeyboardReader();
-            MoveCommand = new MoveCommand(speed);
+            MoveCommand = new MoveCommand(runSpeed);
+            JumpCommand = new JumpCommand(jumpSpeed, jumpHeight, Position.Y);
             AnimateCommand = new AnimateCommand();
 
-            Position = new Vector2(100, 250);
-
             // Add animations that need to be used
-            Animator.Animations.Add(new NormalAnimation("HeroIdleRight", "Hero/Normal/Idle", 8, 150));
-            Animator.Animations.Add(new MirroredAnimation("HeroIdleLeft", "Hero/Mirrored/Idle-MIRRORED", 8, 150));
-            Animator.Animations.Add(new NormalAnimation("HeroRunRight", "Hero/Normal/Run", 8, 150));
-            Animator.Animations.Add(new MirroredAnimation("HeroRunLeft", "Hero/Mirrored/Run-MIRRORED", 8, 150));
+            Animator.Animations.Add(new NormalAnimation("Hero-Idle-Right", "Hero/Normal/Idle", 8, 150));
+            Animator.Animations.Add(new MirroredAnimation("Hero-Idle-Left", "Hero/Mirrored/Idle-MIRRORED", 8, 150));
+            Animator.Animations.Add(new NormalAnimation("Hero-Run-Right", "Hero/Normal/Run", 8, 150));
+            Animator.Animations.Add(new MirroredAnimation("Hero-Run-Left", "Hero/Mirrored/Run-MIRRORED", 8, 150));
+            Animator.Animations.Add(new NormalAnimation("Hero-Jump-Right", "Hero/Normal/Jump", 2, 150));
+            Animator.Animations.Add(new MirroredAnimation("Hero-Jump-Left", "Hero/Mirrored/Jump-MIRRORED", 2, 150));
 
             // Initialize animations
             Animator.InitializeAnimations();
@@ -49,13 +62,17 @@ namespace MakingAPlatformer
         public void Update(GameTime gameTime)
         {
             // Read input
-            Direction = KeyboardReader.ReadInput();
+            MoveDirection = KeyboardReader.ReadInput();
+
+            // Jumping
+            JumpCommand.CheckJumping();
+            JumpCommand.Execute(this);
 
             // Move character
-            MoveCommand.Execute(this, Direction);
+            MoveCommand.Execute(this, MoveDirection);
 
             // Choose animation according to direction
-            AnimateCommand.Execute(this, Direction);
+            AnimateCommand.Execute(this, MoveDirection);
 
             // Animate accordingly
             currentAnimation = Animator.Animate(AnimToPlay);

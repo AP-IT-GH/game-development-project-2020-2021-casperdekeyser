@@ -13,19 +13,25 @@ namespace MakingAPlatformer
             throw new NotImplementedException();
         }
 
-        public Vector2 ReadInput()
+        public Movement ReadInput()
         {
             KeyboardState state = Keyboard.GetState();
             if (state.IsKeyDown(Keys.Left))
             {
-                return new Vector2(-1, 0);
+                return Movement.MoveLeft;
             }
 
             if (state.IsKeyDown(Keys.Right))
             {
-                return new Vector2(1, 0);
+                return Movement.MoveRight;
             }
-            return new Vector2(0, 0);
+
+            if (state.IsKeyDown(Keys.Space))
+            {
+                return Movement.Jump;
+            }
+            // default
+            return Movement.Idle;
         }
     }
 }

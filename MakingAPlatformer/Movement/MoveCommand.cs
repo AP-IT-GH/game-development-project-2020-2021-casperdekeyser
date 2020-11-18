@@ -9,14 +9,23 @@ namespace MakingAPlatformer
     {
         public Vector2 Speed;
 
-        public MoveCommand(int speed)
+        public MoveCommand(int runSpeed)
         {
-            Speed = new Vector2(speed, 0);
+            Speed = new Vector2(runSpeed);
         }
 
-        public void Execute(ITransform transform, Vector2 direction)
+        public void Execute(ITransform transform, Movement moveDirection)
         {
-            direction *= Speed;
+            Vector2 direction = new Vector2(0,0);
+            if (moveDirection == Movement.MoveLeft)
+            {
+                direction = new Vector2(-1, 0);
+            }
+            if (moveDirection == Movement.MoveRight)
+            {
+                direction = new Vector2(1, 0);
+            }
+            direction.X *= Speed.X;
             transform.Position += direction;
         }
     }
