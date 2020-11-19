@@ -11,7 +11,7 @@ namespace MakingAPlatformer
         public Vector2 Position { get; set; }
         public Texture2D Spritesheet { get; set; }
         public string SpritesheetPath { get; set; }
-
+        public Rectangle CollisionRectangle { get; set; }
         void Draw(SpriteBatch spriteBatch);
     }
 }

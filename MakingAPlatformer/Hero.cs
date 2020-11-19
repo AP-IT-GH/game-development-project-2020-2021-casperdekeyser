@@ -1,5 +1,4 @@
-﻿using MakingAPlatformer.Interfaces;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
@@ -15,11 +14,13 @@ namespace MakingAPlatformer
     public class Hero : IGameObject, ITransform, IAnimateable
     {
         public static States State = States.Idling;
-        public Vector2 Position { get; set; } 
+        public static bool Colliding = false;
+        public Vector2 Position { get; set; }
         public Vector2 Direction;
         public Movement MoveDirection;
         public Animator Animator { get; set; }
         public PossibleAnimations AnimToPlay { get; set; }
+        public Rectangle CollisionRectangle { get; set; }
 
         public IInputReader KeyboardReader;
         public IGameCommand MoveCommand;
@@ -57,6 +58,9 @@ namespace MakingAPlatformer
 
             // Set start animation
             currentAnimation = Animator.Animations[0];
+
+            // Collision
+            CollisionRectangle = CollisionManager.GenerateCollider(Position, 150, 150);
         }
 
         public void Update(GameTime gameTime)
@@ -69,7 +73,11 @@ namespace MakingAPlatformer
             JumpCommand.Execute(this);
 
             // Move character
-            MoveCommand.Execute(this, MoveDirection);
+            if(!Colliding)
+                MoveCommand.Execute(this, MoveDirection);
+
+            // Update collider
+            CollisionRectangle = CollisionManager.UpdateCollider(Position, CollisionRectangle);
 
             // Choose animation according to direction
             AnimateCommand.Execute(this, MoveDirection);

@@ -6,17 +6,19 @@ using System.Text;
 
 namespace MakingAPlatformer
 {
-    class Block : IMapObject
+    public class Block : IMapObject
     {
         public Vector2 Position { get; set; }
         public int Size = 62;
         public Texture2D Spritesheet{ get; set; }
         public string SpritesheetPath { get; set; }
+        public Rectangle CollisionRectangle { get; set; }
 
         public Block(Vector2 position)
         {
             Position = position;
             SpritesheetPath = "Map/master-tileset";
+            CollisionRectangle = CollisionManager.GenerateCollider(Position, Size, Size);
         }
 
         public void Draw(SpriteBatch spriteBatch)

@@ -1,16 +1,12 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace MakingAPlatformer
 {
-    public interface IGameObject
+    public interface ICollision
     {
-        Animator Animator { get; set; }
-        void Update(GameTime gameTime);
-        void Draw(SpriteBatch spriteBatch);
         public Rectangle CollisionRectangle { get; set; }
     }
 }
