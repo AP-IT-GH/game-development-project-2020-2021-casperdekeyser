@@ -9,7 +9,9 @@ namespace MakingAPlatformer
     public interface IMapObject
     {
         public Vector2 Position { get; set; }
-        void Update(GameTime gameTime);
+        public Texture2D Spritesheet { get; set; }
+        public string SpritesheetPath { get; set; }
+
         void Draw(SpriteBatch spriteBatch);
     }
 }

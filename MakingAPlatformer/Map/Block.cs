@@ -6,23 +6,22 @@ using System.Text;
 
 namespace MakingAPlatformer
 {
-    class Block
+    class Block : IMapObject
     {
         public Vector2 Position { get; set; }
-        public int Width = 100;
-        public int Height = 100;
-        public Texture2D Spritesheet;
+        public int Size = 62;
+        public Texture2D Spritesheet{ get; set; }
         public string SpritesheetPath { get; set; }
 
-        public Block()
+        public Block(Vector2 position)
         {
-            Position = new Vector2(300, 250);
+            Position = position;
             SpritesheetPath = "Map/master-tileset";
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(Spritesheet, Position, new Rectangle(0, 0, Width, Height), Color.Black);
+            spriteBatch.Draw(Spritesheet, Position, new Rectangle(0, 0, Size, Size), Color.White);
         }
     }
 }
