@@ -13,6 +13,7 @@ namespace MakingAPlatformer
         private SpriteBatch _spriteBatch;
 
         IGameObject hero; // list van alle gameobjects
+        Block block;
 
 
         public Game1()
@@ -27,6 +28,7 @@ namespace MakingAPlatformer
             // TODO: Add your initialization logic here
 
             hero = new Hero();
+            block = new Block();
 
             base.Initialize();
         }
@@ -41,6 +43,8 @@ namespace MakingAPlatformer
             {
                 animation.SpriteSheet = Content.Load<Texture2D>(animation.SpriteSheetPath);
             }
+
+            block.Spritesheet = Content.Load<Texture2D>(block.SpritesheetPath);
         }
 
 
@@ -63,6 +67,7 @@ namespace MakingAPlatformer
             _spriteBatch.Begin();
 
             hero.Draw(_spriteBatch);
+            block.Draw(_spriteBatch);
 
             _spriteBatch.End();
 
