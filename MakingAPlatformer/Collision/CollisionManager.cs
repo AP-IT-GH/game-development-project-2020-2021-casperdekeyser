@@ -27,7 +27,7 @@ namespace MakingAPlatformer
                 if (CheckCollision(Colliders[0].Rectangle, Colliders[i].Rectangle))
                 {
                     amountOfCollisions++;
-                    Debug.WriteLine($"COLLISION {amountOfCollisions} {DateTime.Now}");
+                    Debug.WriteLine($"COLLISION {amountOfCollisions} with {Colliders[i].Name} on {DateTime.Now}");
 
                 }
             }
