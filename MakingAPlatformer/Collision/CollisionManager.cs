@@ -12,6 +12,7 @@ namespace MakingAPlatformer
         public List<BoxCollider> Colliders;
         
         private GraphicsDevice graphicsDevice;
+        private int amountOfCollisions;
 
         public CollisionManager(List<BoxCollider> collliders, GraphicsDevice graphicsDevice)
         {
@@ -19,10 +20,17 @@ namespace MakingAPlatformer
             this.graphicsDevice = graphicsDevice;
         }
 
-        public void Execute(BoxCollider coll1, BoxCollider coll2)
+        public void Execute()
         {
-            if (CheckCollision(coll1.Rectangle, coll2.Rectangle))
-                Debug.WriteLine("COLLISION at " + DateTime.Now);
+            for (int i = 1; i < Colliders.Count; i++)
+            {
+                if (CheckCollision(Colliders[0].Rectangle, Colliders[i].Rectangle))
+                {
+                    amountOfCollisions++;
+                    Debug.WriteLine($"COLLISION {amountOfCollisions} {DateTime.Now}");
+
+                }
+            }
         }
 
         private bool CheckCollision(Rectangle r1, Rectangle r2)
@@ -41,6 +49,7 @@ namespace MakingAPlatformer
         public static BoxCollider UpdateCollider(Vector2 Position, BoxCollider Collider)
         {
             Collider.Rectangle.X = (int)Position.X;
+            Collider.Rectangle.Y = (int)Position.Y;
             return Collider;
         }
 
