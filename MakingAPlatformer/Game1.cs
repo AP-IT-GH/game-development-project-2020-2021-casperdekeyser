@@ -68,7 +68,8 @@ namespace MakingAPlatformer
 
             // TODO: Add your update logic here
             hero.Update(gameTime);
-            collisionManager.Execute(hero.Collider, block.Collider);
+            collisionManager.Execute();
+
             base.Update(gameTime);
         }
 
