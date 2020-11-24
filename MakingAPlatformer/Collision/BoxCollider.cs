@@ -31,5 +31,6 @@ namespace MakingAPlatformer
 
             spriteBatch.Draw(pixel, Rectangle, Color.Green);
         }
+
     }
 }

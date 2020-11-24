@@ -44,6 +44,11 @@ namespace MakingAPlatformer
             return Collider;
         }
 
+        public static Vector2 OffsetCollider(Vector2 currentPos, int horizontalOffset, int verticalOffset)
+        {
+            return new Vector2(currentPos.X+horizontalOffset, currentPos.Y+verticalOffset);
+        }
+
         public void DrawColliders(SpriteBatch spriteBatch, GraphicsDevice graphicsDevice)
         {
             foreach (var collider in Colliders)

@@ -34,8 +34,8 @@ namespace MakingAPlatformer
 
         // Colliders
         public BoxCollider Collider { get; set; }
-        int ColliderHorizontalOffset = 60;
-        int ColliderVerticalOffset = 45;
+        int Xoffset = 60;
+        int Yoffset = 45;
 
 
         public Hero()
@@ -65,8 +65,7 @@ namespace MakingAPlatformer
             currentAnimation = Animator.Animations[0];
 
             // Collision
-            Vector2 colliderPosition = new Vector2(Position.X+ColliderHorizontalOffset, Position.Y+ColliderVerticalOffset);
-            Collider = new BoxCollider(colliderPosition, "Hero-Collider", 30, 50);
+            Collider = new BoxCollider(CollisionManager.OffsetCollider(Position, Xoffset, Yoffset), "Hero-Collider", 30, 50);
         }
 
         public void Update(GameTime gameTime)
@@ -83,7 +82,7 @@ namespace MakingAPlatformer
                 MoveCommand.Execute(this, MoveDirection);
 
             // Update collider
-            Collider = CollisionManager.UpdateCollider(new Vector2(Position.X+ColliderHorizontalOffset, Position.Y+ ColliderVerticalOffset), Collider);
+            Collider = CollisionManager.UpdateCollider(CollisionManager.OffsetCollider(Position, Xoffset, Yoffset), Collider);
 
             // Choose animation according to direction
             AnimateCommand.Execute(this, MoveDirection);
