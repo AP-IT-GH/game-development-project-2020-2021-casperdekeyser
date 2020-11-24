@@ -28,6 +28,7 @@ namespace MakingAPlatformer
         {
             Texture2D pixel = new Texture2D(graphicsDevice, 1, 1, true, SurfaceFormat.Color);
             pixel.SetData(new[] { Color.White });
+
             spriteBatch.Draw(pixel, Rectangle, Color.Green);
         }
     }

@@ -84,7 +84,7 @@ namespace MakingAPlatformer
             //anotherBlock.Draw(_spriteBatch);
 
             // DRAW COLLIDERS
-            //collisionManager.DrawColliders(_spriteBatch, GraphicsDevice);
+            collisionManager.DrawColliders(_spriteBatch, GraphicsDevice);
 
             _spriteBatch.End();
 
