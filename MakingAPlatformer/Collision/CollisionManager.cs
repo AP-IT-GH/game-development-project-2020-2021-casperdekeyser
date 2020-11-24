@@ -9,26 +9,20 @@ namespace MakingAPlatformer
 {
     public class CollisionManager
     {
-        IGameObject hero;
-        IMapObject block;
-        GraphicsDevice graphicsDevice;
+        public List<BoxCollider> Colliders;
+        
+        private GraphicsDevice graphicsDevice;
 
-        Texture2D pixel;
-
-        public CollisionManager(IGameObject hero, IMapObject block, GraphicsDevice graphicsDevice)
+        public CollisionManager(List<BoxCollider> collliders, GraphicsDevice graphicsDevice)
         {
-            this.hero = hero;
-            this.block = block;
+            Colliders = collliders;
             this.graphicsDevice = graphicsDevice;
-            pixel = new Texture2D(graphicsDevice, 1, 1, true, SurfaceFormat.Color);
-            pixel.SetData(new[] { Color.White });
         }
 
-        public void Execute()
+        public void Execute(BoxCollider coll1, BoxCollider coll2)
         {
-            if (CheckCollision(hero.CollisionRectangle, block.CollisionRectangle))
+            if (CheckCollision(coll1.Rectangle, coll2.Rectangle))
                 Debug.WriteLine("COLLISION at " + DateTime.Now);
-            
         }
 
         private bool CheckCollision(Rectangle r1, Rectangle r2)
@@ -38,20 +32,24 @@ namespace MakingAPlatformer
             return false;
         }
 
-        public void DrawColliders(SpriteBatch spriteBatch)
-        {
-            spriteBatch.Draw(pixel, new Rectangle(hero.CollisionRectangle.X, hero.CollisionRectangle.Y, 150, 5), Color.DarkGreen);
-        }
 
         public static Rectangle GenerateCollider(Vector2 Position, int Height, int Width)
         {
             return new Rectangle((int)Position.X, (int)Position.Y, Width, Height);
         }
 
-        public static Rectangle UpdateCollider(Vector2 Position, Rectangle CollisionRect)
+        public static BoxCollider UpdateCollider(Vector2 Position, BoxCollider Collider)
         {
-            CollisionRect.X = (int)Position.X;
-            return CollisionRect;
+            Collider.Rectangle.X = (int)Position.X;
+            return Collider;
+        }
+
+        public void DrawColliders(SpriteBatch spriteBatch, GraphicsDevice graphicsDevice)
+        {
+            foreach (var collider in Colliders)
+            {
+                collider.Draw(spriteBatch, graphicsDevice);
+            }
         }
     }
 }

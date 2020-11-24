@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
+using System.Collections.Generic;
 using System.Xml.Serialization;
 
 namespace MakingAPlatformer
@@ -15,6 +16,7 @@ namespace MakingAPlatformer
         IMapObject block;
         //IMapObject anotherBlock;
         CollisionManager collisionManager;
+        List<BoxCollider> colliders;
 
 
         public Game1()
@@ -30,7 +32,13 @@ namespace MakingAPlatformer
 
             hero = new Hero();
             block = new Block(new Vector2(300, 280));
-            collisionManager = new CollisionManager(hero, block, GraphicsDevice);
+
+            // Collision
+            colliders = new List<BoxCollider>();
+            colliders.Add(hero.Collider);
+            colliders.Add(block.Collider);
+            collisionManager = new CollisionManager(colliders, GraphicsDevice);
+
             //anotherBlock = new Block(new Vector2(370, 280));
 
             base.Initialize();
@@ -60,7 +68,7 @@ namespace MakingAPlatformer
 
             // TODO: Add your update logic here
             hero.Update(gameTime);
-            collisionManager.Execute();
+            collisionManager.Execute(hero.Collider, block.Collider);
             base.Update(gameTime);
         }
 
@@ -75,7 +83,8 @@ namespace MakingAPlatformer
             block.Draw(_spriteBatch);
             //anotherBlock.Draw(_spriteBatch);
 
-            //collisionManager.DrawColliders(_spriteBatch);
+            // DRAW COLLIDERS
+            //collisionManager.DrawColliders(_spriteBatch, GraphicsDevice);
 
             _spriteBatch.End();
 

@@ -11,6 +11,6 @@ namespace MakingAPlatformer
         Animator Animator { get; set; }
         void Update(GameTime gameTime);
         void Draw(SpriteBatch spriteBatch);
-        public Rectangle CollisionRectangle { get; set; }
+        public BoxCollider Collider { get; set; }
     }
 }

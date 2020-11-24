@@ -20,7 +20,8 @@ namespace MakingAPlatformer
         public Movement MoveDirection;
         public Animator Animator { get; set; }
         public PossibleAnimations AnimToPlay { get; set; }
-        public Rectangle CollisionRectangle { get; set; }
+
+        public BoxCollider Collider { get; set; }
 
         public IInputReader KeyboardReader;
         public IGameCommand MoveCommand;
@@ -60,7 +61,7 @@ namespace MakingAPlatformer
             currentAnimation = Animator.Animations[0];
 
             // Collision
-            CollisionRectangle = CollisionManager.GenerateCollider(Position, 150, 150);
+            Collider = new BoxCollider(Position, "Hero-Collider", 100, 100);
         }
 
         public void Update(GameTime gameTime)
@@ -77,7 +78,7 @@ namespace MakingAPlatformer
                 MoveCommand.Execute(this, MoveDirection);
 
             // Update collider
-            CollisionRectangle = CollisionManager.UpdateCollider(Position, CollisionRectangle);
+            Collider = CollisionManager.UpdateCollider(Position, Collider);
 
             // Choose animation according to direction
             AnimateCommand.Execute(this, MoveDirection);

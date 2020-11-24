@@ -12,13 +12,13 @@ namespace MakingAPlatformer
         public int Size = 62;
         public Texture2D Spritesheet{ get; set; }
         public string SpritesheetPath { get; set; }
-        public Rectangle CollisionRectangle { get; set; }
+        public BoxCollider Collider { get; set; }
 
         public Block(Vector2 position)
         {
             Position = position;
             SpritesheetPath = "Map/master-tileset";
-            CollisionRectangle = CollisionManager.GenerateCollider(Position, Size, Size);
+            Collider = new BoxCollider(Position, "Block-Collider", Size, Size);
         }
 
         public void Draw(SpriteBatch spriteBatch)
