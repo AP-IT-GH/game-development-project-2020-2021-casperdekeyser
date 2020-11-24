@@ -9,12 +9,11 @@ namespace MakingAPlatformer
 {
     public enum Movement { MoveRight, MoveLeft, Idle, Jump }
     public enum PossibleAnimations { RunRight, RunLeft, IdleRight, IdleLeft, AttackRight, AttackLeft, JumpLeft, JumpRight }
-    public enum States { Jumping, Idling }
+    public enum States { Jumping, Idling}
 
     public class Hero : IGameObject, ITransform, IAnimateable
     {
         public static States State = States.Idling;
-        public static bool Colliding = false;
         public Vector2 Position { get; set; }
         public Vector2 Direction;
         public Movement MoveDirection;
@@ -65,7 +64,7 @@ namespace MakingAPlatformer
             currentAnimation = Animator.Animations[0];
 
             // Collision
-            Collider = new BoxCollider(CollisionManager.OffsetCollider(Position, Xoffset, Yoffset), "Hero-Collider", 30, 50);
+            Collider = new BoxCollider(Position, "Hero-Collider", 30, 50, Xoffset, Yoffset);
         }
 
         public void Update(GameTime gameTime)
@@ -78,11 +77,10 @@ namespace MakingAPlatformer
             JumpCommand.Execute(this);
 
             // Move character
-            if(!Colliding)
-                MoveCommand.Execute(this, MoveDirection);
+            MoveCommand.Execute(this, MoveDirection);
 
             // Update collider
-            Collider = CollisionManager.UpdateCollider(CollisionManager.OffsetCollider(Position, Xoffset, Yoffset), Collider);
+            Collider = CollisionManager.UpdateCollider(Position, Collider, Xoffset, Yoffset);
 
             // Choose animation according to direction
             AnimateCommand.Execute(this, MoveDirection);

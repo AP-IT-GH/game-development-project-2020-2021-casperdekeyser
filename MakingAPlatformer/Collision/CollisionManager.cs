@@ -56,6 +56,13 @@ namespace MakingAPlatformer
             return Collider;
         }
 
+        public static BoxCollider UpdateCollider(Vector2 Position, BoxCollider Collider, int Xoffset, int Yoffset)
+        {
+            Collider.Rectangle.X = (int)Position.X + Xoffset;
+            Collider.Rectangle.Y = (int)Position.Y + Yoffset;
+            return Collider;
+        }
+
         public static Vector2 OffsetCollider(Vector2 currentPos, int horizontalOffset, int verticalOffset)
         {
             return new Vector2(currentPos.X+horizontalOffset, currentPos.Y+verticalOffset);
