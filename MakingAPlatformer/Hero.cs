@@ -15,14 +15,14 @@ namespace MakingAPlatformer
     {
         public static States State = States.Idling;
         public Vector2 Position { get; set; }
-        public Vector2 Direction;
+        public Vector2 Direction { get; set; }
         public Movement MoveDirection;
         public Animator Animator { get; set; }
         public PossibleAnimations AnimToPlay { get; set; }
 
 
         public IInputReader KeyboardReader;
-        public IGameCommand MoveCommand;
+        public MoveCommand MoveCommand;
         public JumpCommand JumpCommand;
         public AnimateCommand AnimateCommand;
 
@@ -77,7 +77,7 @@ namespace MakingAPlatformer
             JumpCommand.Execute(this);
 
             // Move character
-            MoveCommand.Execute(this, MoveDirection);
+            Direction = MoveCommand.Execute(this, MoveDirection);
 
             // Update collider
             Collider = CollisionManager.UpdateCollider(Position, Collider, Xoffset, Yoffset);

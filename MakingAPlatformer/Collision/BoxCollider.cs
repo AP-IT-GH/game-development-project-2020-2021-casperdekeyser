@@ -41,5 +41,10 @@ namespace MakingAPlatformer
             spriteBatch.Draw(pixel, Rectangle, Color.Green);
         }
 
+        public void Update()
+        {
+            Position = new Vector2(Rectangle.X, Rectangle.Y);
+        }
+
     }
 }

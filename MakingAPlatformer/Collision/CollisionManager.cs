@@ -9,26 +9,49 @@ namespace MakingAPlatformer
 {
     public class CollisionManager
     {
+        public static bool Colliding;
+
         public List<BoxCollider> Colliders;
+        public IGameObject Hero;
         
-        private GraphicsDevice graphicsDevice;
         private int amountOfCollisions;
 
-        public CollisionManager(List<BoxCollider> collliders, GraphicsDevice graphicsDevice)
+        public CollisionManager(List<BoxCollider> collliders, IGameObject hero)
         {
             Colliders = collliders;
-            this.graphicsDevice = graphicsDevice;
+            Hero = hero;
         }
 
         public void Execute()
         {
-            for (int i = 1; i < Colliders.Count; i++)
+            SyncColliders();
+            BasicCollision();
+            Debug.WriteLine($"Position HeroCollider: {Hero.Collider.Position.X} / {Hero.Collider.Position.Y} ");
+        }
+
+        private void BasicCollision()
+        {
+            foreach (var collider in Colliders)
             {
-                if (CheckCollision(Colliders[0].Rectangle, Colliders[i].Rectangle))
+                if (CheckCollision(Hero.Collider.Rectangle, collider.Rectangle))
                 {
                     amountOfCollisions++;
-                    Debug.WriteLine($"COLLISION {amountOfCollisions} with {Colliders[i].Name} on {DateTime.Now}");
+                    Debug.WriteLine($"COLLISION {amountOfCollisions} with {collider.Name} on {DateTime.Now}");
+                }
+            }
+        }
 
+        private void FutureCollision()
+        {
+            Vector2 futurePosition = new Vector2(Hero.Position.X + Hero.Direction.X, Hero.Position.Y + Hero.Direction.Y);
+            Rectangle futureRectangle = new Rectangle((int)futurePosition.X, (int)futurePosition.Y, Hero.Collider.Width, Hero.Collider.Height);
+
+            foreach (var collider in Colliders)
+            {
+                if (CheckCollision(futureRectangle, collider.Rectangle))
+                {
+                    amountOfCollisions++;
+                    Debug.WriteLine($"COLLISION {amountOfCollisions} with {collider.Name} on {DateTime.Now}");
                 }
             }
         }
@@ -42,9 +65,20 @@ namespace MakingAPlatformer
 
         public void DrawColliders(SpriteBatch spriteBatch, GraphicsDevice graphicsDevice)
         {
+            Hero.Collider.Draw(spriteBatch, graphicsDevice);
+
             foreach (var collider in Colliders)
             {
                 collider.Draw(spriteBatch, graphicsDevice);
+            }
+        }
+
+        public void SyncColliders()
+        {
+            Hero.Collider.Update();
+            foreach (var collider in Colliders)
+            {
+                collider.Update();
             }
         }
 

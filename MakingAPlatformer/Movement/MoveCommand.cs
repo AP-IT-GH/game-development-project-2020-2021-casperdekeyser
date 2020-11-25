@@ -5,7 +5,7 @@ using System.Text;
 
 namespace MakingAPlatformer
 {
-    public class MoveCommand : IGameCommand
+    public class MoveCommand
     {
         public Vector2 Speed;
 
@@ -14,7 +14,7 @@ namespace MakingAPlatformer
             Speed = new Vector2(runSpeed);
         }
 
-        public void Execute(ITransform transform, Movement moveDirection)
+        public Vector2 Execute(ITransform transform, Movement moveDirection)
         {
             Vector2 direction = new Vector2(0,0);
             if (moveDirection == Movement.MoveLeft)
@@ -25,8 +25,12 @@ namespace MakingAPlatformer
             {
                 direction = new Vector2(1, 0);
             }
+            
+            // Enkel doen wanneer toekomstige positie niet zal colliden
             direction.X *= Speed.X;
             transform.Position += direction;
+
+            return direction;
         }
     }
 }

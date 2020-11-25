@@ -35,9 +35,9 @@ namespace MakingAPlatformer
 
             // Collision
             colliders = new List<BoxCollider>();
-            colliders.Add(hero.Collider);
+            //colliders.Add(hero.Collider);
             colliders.Add(block.Collider);
-            collisionManager = new CollisionManager(colliders, GraphicsDevice);
+            collisionManager = new CollisionManager(colliders, hero);
 
             //anotherBlock = new Block(new Vector2(370, 280));
 

@@ -12,5 +12,8 @@ namespace MakingAPlatformer
         void Update(GameTime gameTime);
         void Draw(SpriteBatch spriteBatch);
         public BoxCollider Collider { get; set; }
+
+        public Vector2 Position { get; set; }
+        public Vector2 Direction { get; set; }
     }
 }
