@@ -48,23 +48,26 @@ namespace MakingAPlatformer
         {
            
             Vector2 futurePosition = new Vector2(Hero.Collider.Position.X + Hero.Direction.X, Hero.Collider.Position.Y + Hero.Direction.Y);
-            if (MakingAPlatformer.Hero.State == States.Falling)
-            {
-                futurePosition = new Vector2(Hero.Collider.Position.X + Hero.Direction.X, Hero.Collider.Position.Y + 10);
-            }
-
-            Rectangle futureRectangle = new Rectangle((int)futurePosition.X, (int)futurePosition.Y, Hero.Collider.Width, Hero.Collider.Height);
+            Rectangle futureRectangle1 = new Rectangle((int)futurePosition.X, (int)futurePosition.Y, Hero.Collider.Width, Hero.Collider.Height);
+            Rectangle futureRectangle2 = new Rectangle((int)futurePosition.X, (int)futurePosition.Y + 1, Hero.Collider.Width, Hero.Collider.Height);
 
 
             foreach (var collider in Colliders)
             {
-                if (CheckCollision(futureRectangle, collider.Rectangle))
+                if (CheckCollision(futureRectangle1, collider.Rectangle))
                 {
                     amountOfCollisions++;
                     Debug.WriteLine($"COLLISION {amountOfCollisions} with {collider.Name} on {DateTime.Now}");
-                    //HorizontalColliding = true;
+                    HorizontalColliding = true;
+                    //VerticalColliding = true;
+                }
+
+                
+                else if(CheckCollision(futureRectangle2, collider.Rectangle))
+                {
                     VerticalColliding = true;
                 }
+
                 else
                 {
                     HorizontalColliding = false;
