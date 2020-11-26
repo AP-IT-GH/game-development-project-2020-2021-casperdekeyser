@@ -26,9 +26,11 @@ namespace MakingAPlatformer
                 direction = new Vector2(1, 0);
             }
             
-            // Enkel doen wanneer toekomstige positie niet zal colliden
-            direction.X *= Speed.X;
-            transform.Position += direction;
+            if (!CollisionManager.Colliding)
+            {
+                direction.X *= Speed.X;
+                transform.Position += direction;
+            }
 
             return direction;
         }

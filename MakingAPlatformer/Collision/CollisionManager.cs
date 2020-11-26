@@ -25,8 +25,10 @@ namespace MakingAPlatformer
         public void Execute()
         {
             SyncColliders();
-            BasicCollision();
+            FutureCollision();
             Debug.WriteLine($"Position HeroCollider: {Hero.Collider.Position.X} / {Hero.Collider.Position.Y} ");
+            Debug.WriteLine($"Position Hero: {Hero.Position.X} / {Hero.Position.Y} ");
+
         }
 
         private void BasicCollision()
@@ -43,7 +45,7 @@ namespace MakingAPlatformer
 
         private void FutureCollision()
         {
-            Vector2 futurePosition = new Vector2(Hero.Position.X + Hero.Direction.X, Hero.Position.Y + Hero.Direction.Y);
+            Vector2 futurePosition = new Vector2(Hero.Collider.Position.X + Hero.Direction.X, Hero.Collider.Position.Y + Hero.Direction.Y);
             Rectangle futureRectangle = new Rectangle((int)futurePosition.X, (int)futurePosition.Y, Hero.Collider.Width, Hero.Collider.Height);
 
             foreach (var collider in Colliders)
@@ -52,6 +54,11 @@ namespace MakingAPlatformer
                 {
                     amountOfCollisions++;
                     Debug.WriteLine($"COLLISION {amountOfCollisions} with {collider.Name} on {DateTime.Now}");
+                    Colliding = true;
+                }
+                else
+                {
+                    Colliding = false;
                 }
             }
         }
@@ -73,7 +80,7 @@ namespace MakingAPlatformer
             }
         }
 
-        public void SyncColliders()
+        private void SyncColliders()
         {
             Hero.Collider.Update();
             foreach (var collider in Colliders)
@@ -100,6 +107,11 @@ namespace MakingAPlatformer
         public static Vector2 OffsetCollider(Vector2 currentPos, int horizontalOffset, int verticalOffset)
         {
             return new Vector2(currentPos.X+horizontalOffset, currentPos.Y+verticalOffset);
+        }
+
+        public bool ExternalCheck(Rectangle r1, Rectangle r2)
+        {
+            return true;
         }
 
     }
