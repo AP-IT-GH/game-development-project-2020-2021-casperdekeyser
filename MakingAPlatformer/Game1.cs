@@ -1,8 +1,8 @@
-﻿using MakingAPlatformer.Interfaces;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
+using System.Collections.Generic;
 using System.Xml.Serialization;
 
 namespace MakingAPlatformer
@@ -13,6 +13,10 @@ namespace MakingAPlatformer
         private SpriteBatch _spriteBatch;
 
         IGameObject hero; // list van alle gameobjects
+        IMapObject block;
+        //IMapObject anotherBlock;
+        CollisionManager collisionManager;
+        List<BoxCollider> colliders;
 
 
         public Game1()
@@ -27,6 +31,15 @@ namespace MakingAPlatformer
             // TODO: Add your initialization logic here
 
             hero = new Hero();
+            block = new Block(new Vector2(300, 280));
+
+            // Collision
+            colliders = new List<BoxCollider>();
+            //colliders.Add(hero.Collider);
+            colliders.Add(block.Collider);
+            collisionManager = new CollisionManager(colliders, hero);
+
+            //anotherBlock = new Block(new Vector2(370, 280));
 
             base.Initialize();
         }
@@ -41,6 +54,9 @@ namespace MakingAPlatformer
             {
                 animation.SpriteSheet = Content.Load<Texture2D>(animation.SpriteSheetPath);
             }
+
+            block.Spritesheet = Content.Load<Texture2D>(block.SpritesheetPath);
+            //anotherBlock.Spritesheet = Content.Load<Texture2D>(block.SpritesheetPath);
         }
 
 
@@ -52,6 +68,8 @@ namespace MakingAPlatformer
 
             // TODO: Add your update logic here
             hero.Update(gameTime);
+            collisionManager.Execute();
+
             base.Update(gameTime);
         }
 
@@ -63,6 +81,11 @@ namespace MakingAPlatformer
             _spriteBatch.Begin();
 
             hero.Draw(_spriteBatch);
+            block.Draw(_spriteBatch);
+            //anotherBlock.Draw(_spriteBatch);
+
+            // DRAW COLLIDERS
+            collisionManager.DrawColliders(_spriteBatch, GraphicsDevice);
 
             _spriteBatch.End();
 

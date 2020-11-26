@@ -1,5 +1,4 @@
-﻿using MakingAPlatformer.Interfaces;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
@@ -10,19 +9,20 @@ namespace MakingAPlatformer
 {
     public enum Movement { MoveRight, MoveLeft, Idle, Jump }
     public enum PossibleAnimations { RunRight, RunLeft, IdleRight, IdleLeft, AttackRight, AttackLeft, JumpLeft, JumpRight }
-    public enum States { Jumping, Idling }
+    public enum States { Jumping, Idling}
 
     public class Hero : IGameObject, ITransform, IAnimateable
     {
         public static States State = States.Idling;
-        public Vector2 Position { get; set; } 
-        public Vector2 Direction;
+        public Vector2 Position { get; set; }
+        public Vector2 Direction { get; set; }
         public Movement MoveDirection;
         public Animator Animator { get; set; }
         public PossibleAnimations AnimToPlay { get; set; }
 
+
         public IInputReader KeyboardReader;
-        public IGameCommand MoveCommand;
+        public MoveCommand MoveCommand;
         public JumpCommand JumpCommand;
         public AnimateCommand AnimateCommand;
 
@@ -30,6 +30,11 @@ namespace MakingAPlatformer
         private Animation currentAnimation;
         private int jumpSpeed = 5;
         private int jumpHeight = 150;
+
+        // Colliders
+        public BoxCollider Collider { get; set; }
+        int Xoffset = 60;
+        int Yoffset = 45;
 
 
         public Hero()
@@ -57,6 +62,9 @@ namespace MakingAPlatformer
 
             // Set start animation
             currentAnimation = Animator.Animations[0];
+
+            // Collision
+            Collider = new BoxCollider(Position, "Hero-Collider", 30, 50, Xoffset, Yoffset);
         }
 
         public void Update(GameTime gameTime)
@@ -69,7 +77,10 @@ namespace MakingAPlatformer
             JumpCommand.Execute(this);
 
             // Move character
-            MoveCommand.Execute(this, MoveDirection);
+            Direction = MoveCommand.Execute(this, MoveDirection);
+
+            // Update collider
+            Collider = CollisionManager.UpdateCollider(Position, Collider, Xoffset, Yoffset);
 
             // Choose animation according to direction
             AnimateCommand.Execute(this, MoveDirection);
