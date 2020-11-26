@@ -42,9 +42,6 @@ namespace MakingAPlatformer
                 {
                     currentHeight += jumpSpeed; // falling speed
                     Hero.Position = new Vector2(Hero.Position.X, currentHeight);
-                    Hero.Direction = new Vector2(Hero.Position.X, currentHeight+jumpSpeed);
-                    MakingAPlatformer.Hero.State = States.Falling;
-
                     if (Hero.Position.Y >= startY)
                     {
                         Hero.Position = new Vector2(Hero.Position.X, startY);
@@ -52,18 +49,17 @@ namespace MakingAPlatformer
                         MakingAPlatformer.Hero.State = States.Idling;
                     }
                 }
+            }
 
-                if (rising)
+            if (rising)
+            {
+                Hero.Position = new Vector2(Hero.Position.X, currentHeight);
+                if (Hero.Position.Y <= startY - jumpHeight)
                 {
-                    Hero.Position = new Vector2(Hero.Position.X, currentHeight);
-                    if (Hero.Position.Y <= startY - jumpHeight)
-                    {
-                        rising = false;
-                        falling = true;
-                    }
-                    currentHeight -= jumpSpeed; // rising speed
+                    rising = false;
+                    falling = true;
                 }
-
+                currentHeight -= jumpSpeed; // rising speed
             }
         }
     }

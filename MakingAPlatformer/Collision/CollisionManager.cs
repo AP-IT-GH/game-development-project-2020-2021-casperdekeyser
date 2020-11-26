@@ -48,6 +48,7 @@ namespace MakingAPlatformer
         {
            
             Vector2 futurePosition = new Vector2(Hero.Collider.Position.X + Hero.Direction.X, Hero.Collider.Position.Y + Hero.Direction.Y);
+
             Rectangle futureRectangle1 = new Rectangle((int)futurePosition.X, (int)futurePosition.Y, Hero.Collider.Width, Hero.Collider.Height);
             Rectangle futureRectangle2 = new Rectangle((int)futurePosition.X, (int)futurePosition.Y + 1, Hero.Collider.Width, Hero.Collider.Height);
 
@@ -59,12 +60,12 @@ namespace MakingAPlatformer
                     amountOfCollisions++;
                     Debug.WriteLine($"COLLISION {amountOfCollisions} with {collider.Name} on {DateTime.Now}");
                     HorizontalColliding = true;
-                    //VerticalColliding = true;
                 }
 
-                
-                else if(CheckCollision(futureRectangle2, collider.Rectangle))
+                else if (CheckCollision(futureRectangle2, collider.Rectangle))
                 {
+                    amountOfCollisions++;
+                    Debug.WriteLine($"COLLISION {amountOfCollisions} with {collider.Name} on {DateTime.Now}");
                     VerticalColliding = true;
                 }
 
