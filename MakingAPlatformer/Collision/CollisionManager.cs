@@ -62,7 +62,7 @@ namespace MakingAPlatformer
                     HorizontalColliding = true;
                 }
 
-                else if (CheckCollision(futureRectangle2, collider.Rectangle))
+                if (CheckCollision(futureRectangle2, collider.Rectangle))
                 {
                     amountOfCollisions++;
                     Debug.WriteLine($"COLLISION {amountOfCollisions} with {collider.Name} on {DateTime.Now}");

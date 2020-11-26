@@ -10,6 +10,7 @@ namespace MakingAPlatformer
     {
         private bool rising = false;
         private bool falling = false;
+        private bool jumping = false;
         private int jumpSpeed = 5;
         private int jumpHeight = 150;
         private float startY;
@@ -26,7 +27,7 @@ namespace MakingAPlatformer
         public void CheckJumping()
         {
             KeyboardState keyState = Keyboard.GetState();
-            if (keyState.IsKeyDown(Keys.Space))
+            if (keyState.IsKeyDown(Keys.Space) && (!jumping))
             {
                 Hero.State = States.Jumping;
                 rising = true;
@@ -42,17 +43,20 @@ namespace MakingAPlatformer
                 {
                     currentHeight += jumpSpeed; // falling speed
                     Hero.Position = new Vector2(Hero.Position.X, currentHeight);
+                    Hero.Direction = new Vector2(Hero.Position.X, currentHeight);
                     if (Hero.Position.Y >= startY)
                     {
                         Hero.Position = new Vector2(Hero.Position.X, startY);
                         falling = false;
                         MakingAPlatformer.Hero.State = States.Idling;
+                        jumping = false;
                     }
                 }
             }
 
             if (rising)
             {
+                jumping = true;
                 Hero.Position = new Vector2(Hero.Position.X, currentHeight);
                 if (Hero.Position.Y <= startY - jumpHeight)
                 {
@@ -60,6 +64,11 @@ namespace MakingAPlatformer
                     falling = true;
                 }
                 currentHeight -= jumpSpeed; // rising speed
+            }
+
+            if (CollisionManager.VerticalColliding)
+            {
+                startY = Hero.Position.Y;
             }
         }
     }
