@@ -9,7 +9,8 @@ namespace MakingAPlatformer
 {
     public class CollisionManager
     {
-        public static bool Colliding;
+        public static bool HorizontalColliding;
+        public static bool VerticalColliding;
 
         public List<BoxCollider> Colliders;
         public IGameObject Hero;
@@ -45,8 +46,15 @@ namespace MakingAPlatformer
 
         private void FutureCollision()
         {
+           
             Vector2 futurePosition = new Vector2(Hero.Collider.Position.X + Hero.Direction.X, Hero.Collider.Position.Y + Hero.Direction.Y);
+            if (MakingAPlatformer.Hero.State == States.Falling)
+            {
+                futurePosition = new Vector2(Hero.Collider.Position.X + Hero.Direction.X, Hero.Collider.Position.Y + 10);
+            }
+
             Rectangle futureRectangle = new Rectangle((int)futurePosition.X, (int)futurePosition.Y, Hero.Collider.Width, Hero.Collider.Height);
+
 
             foreach (var collider in Colliders)
             {
@@ -54,11 +62,13 @@ namespace MakingAPlatformer
                 {
                     amountOfCollisions++;
                     Debug.WriteLine($"COLLISION {amountOfCollisions} with {collider.Name} on {DateTime.Now}");
-                    Colliding = true;
+                    //HorizontalColliding = true;
+                    VerticalColliding = true;
                 }
                 else
                 {
-                    Colliding = false;
+                    HorizontalColliding = false;
+                    VerticalColliding = false;
                 }
             }
         }

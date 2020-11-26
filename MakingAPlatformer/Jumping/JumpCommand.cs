@@ -34,29 +34,36 @@ namespace MakingAPlatformer
 
         }
 
-        public void Execute(ITransform Hero)
+        public void Execute(IGameObject Hero)
         {
-            if (falling)
+            if (!CollisionManager.VerticalColliding)
             {
-                currentHeight += jumpSpeed; // falling speed
-                Hero.Position = new Vector2(Hero.Position.X, currentHeight);
-                if (Hero.Position.Y >= startY)
+                if (falling)
                 {
-                    Hero.Position = new Vector2(Hero.Position.X, startY);
-                    falling = false;
-                    MakingAPlatformer.Hero.State = States.Idling;
-                }
-            }
+                    currentHeight += jumpSpeed; // falling speed
+                    Hero.Position = new Vector2(Hero.Position.X, currentHeight);
+                    Hero.Direction = new Vector2(Hero.Position.X, currentHeight+jumpSpeed);
+                    MakingAPlatformer.Hero.State = States.Falling;
 
-            if (rising)
-            {
-                Hero.Position = new Vector2(Hero.Position.X, currentHeight);
-                if (Hero.Position.Y <= startY - jumpHeight)
-                {
-                    rising = false;
-                    falling = true;
+                    if (Hero.Position.Y >= startY)
+                    {
+                        Hero.Position = new Vector2(Hero.Position.X, startY);
+                        falling = false;
+                        MakingAPlatformer.Hero.State = States.Idling;
+                    }
                 }
-                currentHeight -= jumpSpeed; // rising speed
+
+                if (rising)
+                {
+                    Hero.Position = new Vector2(Hero.Position.X, currentHeight);
+                    if (Hero.Position.Y <= startY - jumpHeight)
+                    {
+                        rising = false;
+                        falling = true;
+                    }
+                    currentHeight -= jumpSpeed; // rising speed
+                }
+
             }
         }
     }
