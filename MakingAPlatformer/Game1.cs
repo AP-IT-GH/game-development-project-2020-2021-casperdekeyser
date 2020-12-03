@@ -32,14 +32,14 @@ namespace MakingAPlatformer
 
             hero = new Hero();
             block = new Block(new Vector2(300, 280));
+            //anotherBlock = new Block(new Vector2(370, 280));
 
             // Collision
             colliders = new List<BoxCollider>();
-            //colliders.Add(hero.Collider);
             colliders.Add(block.Collider);
+            //colliders.Add(anotherBlock.Collider);
             collisionManager = new CollisionManager(colliders, hero);
 
-            //anotherBlock = new Block(new Vector2(370, 280));
 
             base.Initialize();
         }
@@ -85,7 +85,7 @@ namespace MakingAPlatformer
             //anotherBlock.Draw(_spriteBatch);
 
             // DRAW COLLIDERS
-            collisionManager.DrawColliders(_spriteBatch, GraphicsDevice);
+            //collisionManager.DrawColliders(_spriteBatch, GraphicsDevice);
 
             _spriteBatch.End();
 
