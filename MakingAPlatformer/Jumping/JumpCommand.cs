@@ -39,27 +39,19 @@ namespace MakingAPlatformer
 
         public void Execute(IGameObject Hero)
         {
-            if (!CollisionManager.VerticalColliding)
+            if (falling && !CollisionManager.VerticalColliding)
             {
-                //if (falling && startY < ground)
-                //{
-                //    startY = ground;
-                //}
-                
-                if (falling)
-                {
-                    currentHeight += jumpSpeed; // falling speed
-                    Hero.Position = new Vector2(Hero.Position.X, currentHeight);
-                    Hero.Direction = new Vector2(Hero.Position.X, currentHeight);                  
+                currentHeight += jumpSpeed; // falling speed
+                Hero.Position = new Vector2(Hero.Position.X, currentHeight);
+                Hero.Direction = new Vector2(Hero.Position.X, currentHeight);
 
-                    if (Hero.Position.Y >= startY)
-                    {
-                        Hero.Position = new Vector2(Hero.Position.X, startY);
-                        falling = false;
-                        MakingAPlatformer.Hero.State = States.Idling;
-                        jumping = false;
-                        startY = Hero.Position.Y;
-                    }
+                if (Hero.Position.Y >= startY)
+                {
+                    Hero.Position = new Vector2(Hero.Position.X, startY);
+                    falling = false;
+                    MakingAPlatformer.Hero.State = States.Idling;
+                    jumping = false;
+                    startY = Hero.Position.Y;
                 }
             }
 
@@ -83,7 +75,12 @@ namespace MakingAPlatformer
             }
             else
             {
-                startY = ground;
+                startY = ground; // FIX
+            }
+
+            if (!CollisionManager.VerticalColliding && (!jumping) && (Hero.Position.Y < ground))
+            {
+                falling = true;
             }
         }
     }
