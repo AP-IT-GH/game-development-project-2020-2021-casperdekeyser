@@ -27,8 +27,8 @@ namespace MakingAPlatformer
         {
             SyncColliders();
             FutureCollision();
-            Debug.WriteLine($"Position HeroCollider: {Hero.Collider.Position.X} / {Hero.Collider.Position.Y} ");
-            Debug.WriteLine($"Position Hero: {Hero.Position.X} / {Hero.Position.Y} ");
+            //Debug.WriteLine($"Position HeroCollider: {Hero.Collider.Position.X} / {Hero.Collider.Position.Y} ");
+            //Debug.WriteLine($"Position Hero: {Hero.Position.X} / {Hero.Position.Y} ");
 
         }
 
@@ -58,14 +58,14 @@ namespace MakingAPlatformer
                 if (CheckCollision(futureRectangle1, collider.Rectangle))
                 {
                     amountOfCollisions++;
-                    Debug.WriteLine($"COLLISION {amountOfCollisions} with {collider.Name} on {DateTime.Now}");
+                    //Debug.WriteLine($"COLLISION {amountOfCollisions} with {collider.Name} on {DateTime.Now}");
                     HorizontalColliding = true;
                 }
 
                 if (CheckCollision(futureRectangle2, collider.Rectangle))
                 {
                     amountOfCollisions++;
-                    Debug.WriteLine($"COLLISION {amountOfCollisions} with {collider.Name} on {DateTime.Now}");
+                    //Debug.WriteLine($"COLLISION {amountOfCollisions} with {collider.Name} on {DateTime.Now}");
                     VerticalColliding = true;
                 }
 

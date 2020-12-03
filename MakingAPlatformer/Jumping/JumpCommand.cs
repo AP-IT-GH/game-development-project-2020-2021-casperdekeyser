@@ -1,7 +1,8 @@
-﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 
 namespace MakingAPlatformer
@@ -15,6 +16,7 @@ namespace MakingAPlatformer
         private int jumpHeight = 150;
         private float startY;
         private float currentHeight = 0;
+        private float ground;
 
         public JumpCommand(int speed, int height, float ground)
         {
@@ -22,6 +24,7 @@ namespace MakingAPlatformer
             jumpHeight = height;
             startY = ground;
             currentHeight = ground;
+            this.ground = ground;
         }
 
         public void CheckJumping()
@@ -32,24 +35,30 @@ namespace MakingAPlatformer
                 Hero.State = States.Jumping;
                 rising = true;
             }
-
         }
 
         public void Execute(IGameObject Hero)
         {
             if (!CollisionManager.VerticalColliding)
             {
+                //if (falling && startY < ground)
+                //{
+                //    startY = ground;
+                //}
+                
                 if (falling)
                 {
                     currentHeight += jumpSpeed; // falling speed
                     Hero.Position = new Vector2(Hero.Position.X, currentHeight);
-                    Hero.Direction = new Vector2(Hero.Position.X, currentHeight);
+                    Hero.Direction = new Vector2(Hero.Position.X, currentHeight);                  
+
                     if (Hero.Position.Y >= startY)
                     {
                         Hero.Position = new Vector2(Hero.Position.X, startY);
                         falling = false;
                         MakingAPlatformer.Hero.State = States.Idling;
                         jumping = false;
+                        startY = Hero.Position.Y;
                     }
                 }
             }
@@ -68,7 +77,13 @@ namespace MakingAPlatformer
 
             if (CollisionManager.VerticalColliding)
             {
+                MakingAPlatformer.Hero.State = States.Idling;
+                jumping = false;
                 startY = Hero.Position.Y;
+            }
+            else
+            {
+                startY = ground;
             }
         }
     }
