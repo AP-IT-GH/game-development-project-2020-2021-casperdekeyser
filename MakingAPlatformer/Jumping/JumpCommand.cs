@@ -73,6 +73,7 @@ namespace MakingAPlatformer
                 jumping = false;
                 startY = Hero.Position.Y;
             }
+
             else
             {
                 startY = ground; // FIX

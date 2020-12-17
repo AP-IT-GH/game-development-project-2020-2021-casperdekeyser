@@ -26,7 +26,8 @@ namespace MakingAPlatformer
         public void Execute()
         {
             SyncColliders();
-            FutureCollision();
+            HorizontalColliding = FutureCollisionX();
+            VerticalColliding = FutureCollisionY();
             //Debug.WriteLine($"Position HeroCollider: {Hero.Collider.Position.X} / {Hero.Collider.Position.Y} ");
             //Debug.WriteLine($"Position Hero: {Hero.Position.X} / {Hero.Position.Y} ");
 
@@ -44,37 +45,38 @@ namespace MakingAPlatformer
             }
         }
 
-        private void FutureCollision()
+        private bool FutureCollisionX()
         {
-           
             Vector2 futurePosition = new Vector2(Hero.Collider.Position.X + Hero.Direction.X, Hero.Collider.Position.Y + Hero.Direction.Y);
-
-            Rectangle futureRectangle1 = new Rectangle((int)futurePosition.X, (int)futurePosition.Y, Hero.Collider.Width, Hero.Collider.Height);
-            Rectangle futureRectangle2 = new Rectangle((int)futurePosition.X, (int)futurePosition.Y + 1, Hero.Collider.Width, Hero.Collider.Height);
-
+            Rectangle futureRectangle = new Rectangle((int)futurePosition.X, (int)futurePosition.Y, Hero.Collider.Width, Hero.Collider.Height);
 
             foreach (var collider in Colliders)
             {
-                if (CheckCollision(futureRectangle1, collider.Rectangle))
+                if (CheckCollision(futureRectangle, collider.Rectangle))
                 {
                     amountOfCollisions++;
                     //Debug.WriteLine($"COLLISION {amountOfCollisions} with {collider.Name} on {DateTime.Now}");
-                    HorizontalColliding = true;
-                }
-
-                if (CheckCollision(futureRectangle2, collider.Rectangle))
-                {
-                    amountOfCollisions++;
-                    //Debug.WriteLine($"COLLISION {amountOfCollisions} with {collider.Name} on {DateTime.Now}");
-                    VerticalColliding = true;
-                }
-
-                else
-                {
-                    HorizontalColliding = false;
-                    VerticalColliding = false;
+                    return true;
                 }
             }
+            return false;
+        }
+
+        private bool FutureCollisionY()
+        {
+            Vector2 futurePosition = new Vector2(Hero.Collider.Position.X + Hero.Direction.X, Hero.Collider.Position.Y + Hero.Direction.Y);
+            Rectangle futureRectangle = new Rectangle((int)futurePosition.X, (int)futurePosition.Y + 1, Hero.Collider.Width, Hero.Collider.Height);
+
+            foreach (var collider in Colliders)
+            {
+                if (CheckCollision(futureRectangle, collider.Rectangle))
+                {
+                    amountOfCollisions++;
+                    //Debug.WriteLine($"COLLISION {amountOfCollisions} with {collider.Name} on {DateTime.Now}");
+                    return true;
+                }
+            }
+            return false;
         }
 
         private bool CheckCollision(Rectangle r1, Rectangle r2)
