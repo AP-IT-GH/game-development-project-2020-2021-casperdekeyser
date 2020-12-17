@@ -76,7 +76,8 @@ namespace MakingAPlatformer
 
             else
             {
-                startY = ground; // FIX
+                if(!jumping)
+                    startY = ground; // FIX
             }
 
             if (!CollisionManager.VerticalColliding && (!jumping) && (Hero.Position.Y < ground))
