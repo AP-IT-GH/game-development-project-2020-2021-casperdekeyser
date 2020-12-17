@@ -30,7 +30,7 @@ namespace MakingAPlatformer
         public void CheckJumping()
         {
             KeyboardState keyState = Keyboard.GetState();
-            if (keyState.IsKeyDown(Keys.Space) && (!jumping))
+            if (keyState.IsKeyDown(Keys.Space) && (!jumping) && (!falling))
             {
                 Hero.State = States.Jumping;
                 rising = true;
@@ -71,6 +71,7 @@ namespace MakingAPlatformer
             {
                 MakingAPlatformer.Hero.State = States.Idling;
                 jumping = false;
+                falling = false;
                 startY = Hero.Position.Y;
             }
 
