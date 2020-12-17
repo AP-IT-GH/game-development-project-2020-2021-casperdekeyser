@@ -9,7 +9,7 @@ namespace MakingAPlatformer
 {
     public enum Movement { MoveRight, MoveLeft, Idle, Jump }
     public enum PossibleAnimations { RunRight, RunLeft, IdleRight, IdleLeft, AttackRight, AttackLeft, JumpLeft, JumpRight }
-    public enum States { Jumping, Idling}
+    public enum States { Jumping, Idling, Falling}
 
     public class Hero : IGameObject, ITransform, IAnimateable
     {
@@ -79,6 +79,7 @@ namespace MakingAPlatformer
             // Move character
             Direction = MoveCommand.Execute(this, MoveDirection);
 
+
             // Update collider
             Collider = CollisionManager.UpdateCollider(Position, Collider, Xoffset, Yoffset);
 
@@ -94,6 +95,7 @@ namespace MakingAPlatformer
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(currentAnimation.SpriteSheet, Position, currentAnimation.CurrentFrame.sourceRectangle, Color.White);
+
         }
     }
 }

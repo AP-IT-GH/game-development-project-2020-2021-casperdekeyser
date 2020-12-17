@@ -13,8 +13,7 @@ namespace MakingAPlatformer
         private SpriteBatch _spriteBatch;
 
         IGameObject hero; // list van alle gameobjects
-        IMapObject block;
-        //IMapObject anotherBlock;
+        List<IMapObject> blocks;
         CollisionManager collisionManager;
         List<BoxCollider> colliders;
 
@@ -30,16 +29,22 @@ namespace MakingAPlatformer
         {
             // TODO: Add your initialization logic here
 
+            // Objects
             hero = new Hero();
-            block = new Block(new Vector2(300, 280));
+            blocks = new List<IMapObject>();
+            blocks.Add(new Block(new Vector2(300, 280)));
+            blocks.Add(new Block(new Vector2(400, 280)));
+            blocks.Add(new Block(new Vector2(500, 280)));
+            blocks.Add(new Block(new Vector2(500, 220)));
 
             // Collision
             colliders = new List<BoxCollider>();
-            //colliders.Add(hero.Collider);
-            colliders.Add(block.Collider);
+            foreach (IMapObject block in blocks)
+            {
+                colliders.Add(block.Collider);
+            }
             collisionManager = new CollisionManager(colliders, hero);
 
-            //anotherBlock = new Block(new Vector2(370, 280));
 
             base.Initialize();
         }
@@ -55,8 +60,10 @@ namespace MakingAPlatformer
                 animation.SpriteSheet = Content.Load<Texture2D>(animation.SpriteSheetPath);
             }
 
-            block.Spritesheet = Content.Load<Texture2D>(block.SpritesheetPath);
-            //anotherBlock.Spritesheet = Content.Load<Texture2D>(block.SpritesheetPath);
+            foreach (IMapObject block in blocks)
+            {
+                block.Spritesheet = Content.Load<Texture2D>(block.SpritesheetPath);
+            }
         }
 
 
@@ -67,8 +74,8 @@ namespace MakingAPlatformer
                 Exit();
 
             // TODO: Add your update logic here
-            hero.Update(gameTime);
             collisionManager.Execute();
+            hero.Update(gameTime);
 
             base.Update(gameTime);
         }
@@ -81,11 +88,14 @@ namespace MakingAPlatformer
             _spriteBatch.Begin();
 
             hero.Draw(_spriteBatch);
-            block.Draw(_spriteBatch);
-            //anotherBlock.Draw(_spriteBatch);
+
+            foreach (IMapObject block in blocks)
+            {
+                block.Draw(_spriteBatch);
+            }
 
             // DRAW COLLIDERS
-            collisionManager.DrawColliders(_spriteBatch, GraphicsDevice);
+            //collisionManager.DrawColliders(_spriteBatch, GraphicsDevice);
 
             _spriteBatch.End();
 

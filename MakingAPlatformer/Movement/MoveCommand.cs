@@ -8,6 +8,7 @@ namespace MakingAPlatformer
     public class MoveCommand
     {
         public Vector2 Speed;
+        public CollisionManager cm;
 
         public MoveCommand(int runSpeed)
         {
@@ -26,7 +27,7 @@ namespace MakingAPlatformer
                 direction = new Vector2(1, 0);
             }
             
-            if (!CollisionManager.Colliding)
+            if (!CollisionManager.HorizontalColliding)
             {
                 direction.X *= Speed.X;
                 transform.Position += direction;
