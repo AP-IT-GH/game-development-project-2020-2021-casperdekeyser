@@ -37,17 +37,16 @@ namespace MakingAPlatformer
         int Yoffset = 45;
 
 
-        public Hero()
+        public Hero(Vector2 pos, HeroAnimator anim, IInputReader input, AnimateCommand animcom)
         {
             // Startposition
-            Position = new Vector2(100, 250);
+            Position = pos;
 
-            // TODO: dependency-injection
-            Animator = new HeroAnimator();
-            KeyboardReader = new KeyboardReader();
+            Animator = anim;
+            KeyboardReader = input;
+            AnimateCommand = animcom;
             MoveCommand = new MoveCommand(runSpeed);
             JumpCommand = new JumpCommand(jumpSpeed, jumpHeight, Position.Y);
-            AnimateCommand = new AnimateCommand();
 
             // Add animations that need to be used
             Animator.Animations.Add(new NormalAnimation("Hero-Idle-Right", "Hero/Normal/Idle", 8, 150));

@@ -12,8 +12,16 @@ namespace MakingAPlatformer
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
-        IGameObject hero; // list van alle gameobjects
+        // Hero
+        IGameObject hero;
+        Vector2 heroPosition;
+        HeroAnimator heroAnimator;
+        IInputReader inputReader;
+        AnimateCommand animateCommand;
+
         List<IMapObject> blocks;
+
+
         CollisionManager collisionManager;
         List<BoxCollider> colliders;
 
@@ -29,8 +37,15 @@ namespace MakingAPlatformer
         {
             // TODO: Add your initialization logic here
 
-            // Objects
-            hero = new Hero();
+                // Objects
+            // Hero
+            heroPosition = new Vector2(100, 250);
+            heroAnimator = new HeroAnimator();
+            inputReader = new KeyboardReader();
+            animateCommand = new AnimateCommand();
+            hero = new Hero(heroPosition, heroAnimator, inputReader, animateCommand);
+
+            // Map
             blocks = new List<IMapObject>
             {
                 new Block(new Vector2(300, 280)),
