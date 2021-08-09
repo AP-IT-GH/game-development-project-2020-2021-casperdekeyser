@@ -7321,26 +7321,24 @@
   },
   "packageFolders": {
     "C:\\Users\\caspe\\.nuget\\packages\\": {},
-    "C:\\Microsoft\\Xamarin\\NuGet\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\GitHub\\game-development-project-2020-2021-casperdekeyser\\MakingAPlatformer\\MakingAPlatformer.csproj",
+      "projectUniqueName": "C:\\GitHub\\game-development-project-2020-2021-casperdekeyser\\MakingAPlatformer\\MakingAPlatformer.csproj",
       "projectName": "MakingAPlatformer",
-      "projectPath": "D:\\GitHub\\game-development-project-2020-2021-casperdekeyser\\MakingAPlatformer\\MakingAPlatformer.csproj",
+      "projectPath": "C:\\GitHub\\game-development-project-2020-2021-casperdekeyser\\MakingAPlatformer\\MakingAPlatformer.csproj",
       "packagesPath": "C:\\Users\\caspe\\.nuget\\packages\\",
-      "outputPath": "D:\\GitHub\\game-development-project-2020-2021-casperdekeyser\\MakingAPlatformer\\obj\\",
+      "outputPath": "C:\\GitHub\\game-development-project-2020-2021-casperdekeyser\\MakingAPlatformer\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Microsoft\\Xamarin\\NuGet\\",
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
         "C:\\Users\\caspe\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.1"
@@ -7392,7 +7390,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.101\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.302\\RuntimeIdentifierGraph.json"
       }
     }
   }

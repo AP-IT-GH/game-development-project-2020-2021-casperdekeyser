@@ -31,11 +31,13 @@ namespace MakingAPlatformer
 
             // Objects
             hero = new Hero();
-            blocks = new List<IMapObject>();
-            blocks.Add(new Block(new Vector2(300, 280)));
-            blocks.Add(new Block(new Vector2(400, 280)));
-            blocks.Add(new Block(new Vector2(500, 280)));
-            blocks.Add(new Block(new Vector2(500, 220)));
+            blocks = new List<IMapObject>
+            {
+                new Block(new Vector2(300, 280)),
+                new Block(new Vector2(400, 280)),
+                new Block(new Vector2(500, 280)),
+                new Block(new Vector2(500, 220))
+            };
 
             // Collision
             colliders = new List<BoxCollider>();
