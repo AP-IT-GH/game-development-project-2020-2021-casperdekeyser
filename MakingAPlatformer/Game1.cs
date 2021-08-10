@@ -19,9 +19,10 @@ namespace MakingAPlatformer
         IInputReader inputReader;
         AnimateCommand animateCommand;
 
+        // Map
         List<IMapObject> blocks;
 
-
+        // Collision
         CollisionManager collisionManager;
         List<BoxCollider> colliders;
 
