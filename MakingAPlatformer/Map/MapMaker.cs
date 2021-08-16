@@ -50,7 +50,8 @@ namespace MakingAPlatformer.Map
                 {
                     if (TileArray[x, y] == 1)
                     {
-                        BlockArray[x, y] = new DirtBlock(new Vector2(y * blockSize, x * blockSize));
+                        if (x == 14) BlockArray[x, y] = new GrassBlock(new Vector2(y * blockSize, x * blockSize)); // ground
+                        else BlockArray[x, y] = new StoneBlock(new Vector2(y * blockSize, x * blockSize)); // walls
                         Blocks.Add(BlockArray[x, y]);
                     }
                 }
