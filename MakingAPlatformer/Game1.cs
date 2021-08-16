@@ -20,21 +20,35 @@ namespace MakingAPlatformer
         AnimateCommand animateCommand;
 
         // Map
+        int xMap = 15;
+        int yMap = 25;
+
         List<IMapObject> blocks = new List<IMapObject>();
-        public Block[,] blockArray = new Block[4,6];
+        public Block[,] blockArray = new Block[15, 25];
         public byte[,] tileArray = new byte[,]
         {
-            {0,0,0,0,0,0 },
-            {0,0,0,0,0,0 },
-            {1,0,1,0,1,0 },
-            {0,1,0,1,0,1 },
+            {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1 },
+            {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1 },
+            {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1 },
+            {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1 },
+            {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1 },
+            {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1 },
+            {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1 },
+            {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1 },
+            {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1 },
+            {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1 },
+            {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1 },
+            {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1 },
+            {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,1 },
+            {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,1 },
+            {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1 },
         };
 
         public void CreateWorld()
         {
-            for (int x = 0; x < 4; x++)
+            for (int x = 0; x < xMap; x++)
             {
-                for (int y = 0; y < 6; y++)
+                for (int y = 0; y < yMap; y++)
                 {
                     if (tileArray[x, y] == 1)
                     {
@@ -62,14 +76,14 @@ namespace MakingAPlatformer
             // TODO: Add your initialization logic here
             // Screen
 
-            _graphics.PreferredBackBufferWidth = 1600;
-            _graphics.PreferredBackBufferHeight = 960;
+            _graphics.PreferredBackBufferWidth = 1550;
+            _graphics.PreferredBackBufferHeight = 930;
             _graphics.ApplyChanges();
 
 
             // Objects
             // Hero
-            heroPosition = new Vector2(100, 250);
+            heroPosition = new Vector2(100, 868-96); //y 250
             heroAnimator = new HeroAnimator();
             inputReader = new KeyboardReader();
             animateCommand = new AnimateCommand();
@@ -144,9 +158,9 @@ namespace MakingAPlatformer
             //    block.Draw(_spriteBatch);
             //}
 
-            for (int x = 0; x < 4; x++)
+            for (int x = 0; x < xMap; x++)
             {
-                for (int y = 0; y < 6; y++)
+                for (int y = 0; y < yMap; y++)
                 {
                     if (blockArray[x, y] != null)
                     {
