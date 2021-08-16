@@ -20,7 +20,30 @@ namespace MakingAPlatformer
         AnimateCommand animateCommand;
 
         // Map
-        List<IMapObject> blocks;
+        List<IMapObject> blocks = new List<IMapObject>();
+        public Block[,] blockArray = new Block[4,6];
+        public byte[,] tileArray = new byte[,]
+        {
+            {0,0,0,0,0,0 },
+            {0,0,0,0,0,0 },
+            {1,0,1,0,1,0 },
+            {0,1,0,1,0,1 },
+        };
+
+        public void CreateWorld()
+        {
+            for (int x = 0; x < 4; x++)
+            {
+                for (int y = 0; y < 6; y++)
+                {
+                    if (tileArray[x, y] == 1)
+                    {
+                        blockArray[x, y] = new Block(new Vector2(y * 62, x * 62));
+                        blocks.Add(blockArray[x, y]);
+                    }
+                }
+            }
+        }
 
         // Collision
         CollisionManager collisionManager;
@@ -37,8 +60,14 @@ namespace MakingAPlatformer
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
+            // Screen
 
-                // Objects
+            _graphics.PreferredBackBufferWidth = 1600;
+            _graphics.PreferredBackBufferHeight = 960;
+            _graphics.ApplyChanges();
+
+
+            // Objects
             // Hero
             heroPosition = new Vector2(100, 250);
             heroAnimator = new HeroAnimator();
@@ -47,13 +76,16 @@ namespace MakingAPlatformer
             hero = new Hero(heroPosition, heroAnimator, inputReader, animateCommand);
 
             // Map
-            blocks = new List<IMapObject>
-            {
-                new Block(new Vector2(300, 280)),
-                new Block(new Vector2(400, 280)),
-                new Block(new Vector2(500, 280)),
-                new Block(new Vector2(500, 220))
-            };
+            //blocks = new List<IMapObject>
+            //{
+            //    new Block(new Vector2(300, 280)),
+            //    new Block(new Vector2(400, 280)),
+            //    new Block(new Vector2(500, 280)),
+            //    new Block(new Vector2(500, 220)),
+            //    new Block(new Vector2(500, 500))
+            //};
+
+            CreateWorld();
 
             // Collision
             colliders = new List<BoxCollider>();
@@ -87,7 +119,7 @@ namespace MakingAPlatformer
 
         protected override void Update(GameTime gameTime)
         {
-            
+
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
@@ -107,9 +139,20 @@ namespace MakingAPlatformer
 
             hero.Draw(_spriteBatch);
 
-            foreach (IMapObject block in blocks)
+            //foreach (IMapObject block in blocks)
+            //{
+            //    block.Draw(_spriteBatch);
+            //}
+
+            for (int x = 0; x < 4; x++)
             {
-                block.Draw(_spriteBatch);
+                for (int y = 0; y < 6; y++)
+                {
+                    if (blockArray[x, y] != null)
+                    {
+                        blockArray[x, y].Draw(_spriteBatch);
+                    }
+                }
             }
 
             // DRAW COLLIDERS
