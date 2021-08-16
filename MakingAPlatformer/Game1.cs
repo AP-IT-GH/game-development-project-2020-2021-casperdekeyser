@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using MakingAPlatformer.Map;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
@@ -52,7 +53,7 @@ namespace MakingAPlatformer
                 {
                     if (tileArray[x, y] == 1)
                     {
-                        blockArray[x, y] = new Block(new Vector2(y * 62, x * 62));
+                        blockArray[x, y] = new DirtBlock(new Vector2(y * 62, x * 62));
                         blocks.Add(blockArray[x, y]);
                     }
                 }

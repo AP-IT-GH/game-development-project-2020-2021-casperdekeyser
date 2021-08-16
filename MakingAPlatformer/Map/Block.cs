@@ -6,7 +6,7 @@ using System.Text;
 
 namespace MakingAPlatformer
 {
-    public class Block : IMapObject
+    public abstract class Block : IMapObject
     {
         public Vector2 Position { get; set; }
         public int Size = 62;
@@ -21,7 +21,7 @@ namespace MakingAPlatformer
             Collider = new BoxCollider(Position, "Block-Collider", Size, Size);
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public virtual void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(Spritesheet, Position, new Rectangle(0, 0, Size, Size), Color.White);
         }
