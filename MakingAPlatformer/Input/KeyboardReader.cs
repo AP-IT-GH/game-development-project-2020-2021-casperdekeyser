@@ -8,11 +8,6 @@ namespace MakingAPlatformer
 {
     public class KeyboardReader : IInputReader
     {
-        public bool CheckInput()
-        {
-            throw new NotImplementedException();
-        }
-
         public Movement ReadInput()
         {
             KeyboardState state = Keyboard.GetState();
