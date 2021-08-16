@@ -11,7 +11,7 @@ namespace MakingAPlatformer.Map
     {
         public byte[,] TileArray { get; set; }
         public IMapObject[,] BlockArray { get; set; }
-        public List<IMapObject> Blocks { get ; set; }
+        public List<IMapObject> Blocks { get; set; }
 
         private int mapLength = 15;
         private int mapHeight = 25;
@@ -21,7 +21,7 @@ namespace MakingAPlatformer.Map
         public MapMaker()
         {
             Blocks = new List<IMapObject>();
-            BlockArray = new Block[15, 25];
+            BlockArray = new Block[mapLength, mapHeight];
             TileArray = new byte[,]
             {
                 {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1 },

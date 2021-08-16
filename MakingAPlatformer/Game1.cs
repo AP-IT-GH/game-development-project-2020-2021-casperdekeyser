@@ -1,4 +1,5 @@
-﻿using MakingAPlatformer.Map;
+﻿using MakingAPlatformer.Management;
+using MakingAPlatformer.Map;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -22,6 +23,7 @@ namespace MakingAPlatformer
 
         // Map
         MapMaker mapMaker;
+        EndingZone endzone;
 
         // Collision
         CollisionManager collisionManager;
@@ -55,6 +57,8 @@ namespace MakingAPlatformer
             // Map
             mapMaker = new MapMaker();
             mapMaker.CreateWorld();
+
+            endzone = new EndingZone(new Vector2(500, 868 - 96), "testendingzone", 100, 100);
 
             // Collision
             colliders = new List<BoxCollider>();
@@ -96,6 +100,8 @@ namespace MakingAPlatformer
             collisionManager.Execute();
             hero.Update(gameTime);
 
+            endzone.CheckEnding(hero);
+
             base.Update(gameTime);
         }
 
@@ -112,7 +118,7 @@ namespace MakingAPlatformer
 
             // DRAW COLLIDERS
             //collisionManager.DrawColliders(_spriteBatch, GraphicsDevice);
-
+            endzone.Draw(_spriteBatch, GraphicsDevice);
             _spriteBatch.End();
 
             base.Draw(gameTime);
