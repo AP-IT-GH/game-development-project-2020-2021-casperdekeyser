@@ -48,7 +48,7 @@ namespace MakingAPlatformer
 
             // Objects
             // Hero
-            heroPosition = new Vector2(100, 868-96);
+            heroPosition = new Vector2(50, 868-96);
             heroAnimator = new HeroAnimator();
             inputReader = new KeyboardReader();
             animateCommand = new AnimateCommand();
@@ -58,7 +58,7 @@ namespace MakingAPlatformer
             mapMaker = new MapMaker();
             mapMaker.CreateWorld();
 
-            endzone = new EndingZone(new Vector2(500, 868 - 96), "testendingzone", 100, 100);
+            endzone = new EndingZone(new Vector2(1500, 0), "testendingzone", 62, 62);
 
             // Collision
             colliders = new List<BoxCollider>();
@@ -119,6 +119,7 @@ namespace MakingAPlatformer
             // DRAW COLLIDERS
             //collisionManager.DrawColliders(_spriteBatch, GraphicsDevice);
             endzone.Draw(_spriteBatch, GraphicsDevice);
+
             _spriteBatch.End();
 
             base.Draw(gameTime);

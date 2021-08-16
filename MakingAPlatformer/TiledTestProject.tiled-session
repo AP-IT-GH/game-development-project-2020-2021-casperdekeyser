@@ -20,15 +20,16 @@
             "scaleInEditor": 1
         },
         "Map/Tiled/Level1.tmx": {
-            "scale": 0.9663440860215052,
+            "scale": 0.5,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 775.0862356737512,
-                "y": 465.1552242127519
+                "x": 1205,
+                "y": 565
             }
         },
         "Map/Tiled/master-tileset.tsx": {
-            "scaleInDock": 1
+            "scaleInDock": 1,
+            "scaleInEditor": 1
         }
     },
     "last.imagePath": "C:/GitHub/game-development-project-2020-2021-casperdekeyser/MakingAPlatformer/Content/Map",
@@ -38,10 +39,12 @@
     "map.tileWidth": 62,
     "map.width": 25,
     "openFiles": [
-        "Map/Tiled/Level1.tmx"
+        "Map/Tiled/Level1.tmx",
+        "Map/Tiled/master-tileset.tsx"
     ],
     "project": "",
     "recentFiles": [
+        "Map/Tiled/master-tileset.tsx",
         "Map/Tiled/Level1.tmx",
         "C:/Users/caspe/OneDrive - AP Hogeschool Antwerpen/Bureaublad/master-tileset.tsx",
         "C:/Users/caspe/OneDrive - AP Hogeschool Antwerpen/Bureaublad/Level1.tmx"

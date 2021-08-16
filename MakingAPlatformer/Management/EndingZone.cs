@@ -28,7 +28,7 @@ namespace MakingAPlatformer.Management
         {
             if (Rectangle.Intersects(hero.Collider.Rectangle))
             {
-                Debug.WriteLine($"COLLISION with endzone on {DateTime.Now}");
+                Debug.WriteLine($"COLLISION with {this.Name} on {DateTime.Now}");
             }
         }
 
