@@ -4,7 +4,11 @@ using System.Text;
 
 namespace MakingAPlatformer.LevelManagement.Screens
 {
-    public class DeathScreen
+    public class DeathScreen : Screen
     {
+        public override int ScreenId { get; set; } = 4;
+
+        public DeathScreen(Game1 game) : base(game) { }
+
     }
 }

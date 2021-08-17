@@ -68,7 +68,7 @@ namespace MakingAPlatformer.LevelManagement.Screens
 
         public virtual void Update(GameTime gameTime)
         {
-
+            // wait untill exit
         }
 
         public virtual void Draw(GameTime gameTime, SpriteBatch spriteBatch)
@@ -77,9 +77,8 @@ namespace MakingAPlatformer.LevelManagement.Screens
 
             mapMaker.DrawLevel(ScreenId, _spriteBatch);
 
-            // DRAW COLLIDERS
-            collisionManager.DrawBlockColliders(_spriteBatch, _game.GraphicsDevice, Color.Green);
-            //endzone.Draw(_spriteBatch, _graphics);
+            if (ScreenId == 3) collisionManager.DrawBlockColliders(_spriteBatch, _game.GraphicsDevice, Color.Green);
+            if (ScreenId == 4) collisionManager.DrawBlockColliders(_spriteBatch, _game.GraphicsDevice, Color.Red);
 
             _spriteBatch.End();
         }
