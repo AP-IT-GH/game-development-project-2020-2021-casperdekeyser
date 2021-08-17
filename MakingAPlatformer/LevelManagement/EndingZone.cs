@@ -24,13 +24,10 @@ namespace MakingAPlatformer.Management
             Rectangle = new Rectangle((int)Position.X, (int)Position.Y, Width, Height);
         }
 
-        public void CheckEnding(IGameObject hero)
+        public bool CheckEnding(IGameObject hero)
         {
-            if (Rectangle.Intersects(hero.Collider.Rectangle))
-            {
-                Debug.WriteLine($"COLLISION with {this.Name} on {DateTime.Now}");
-                
-            }
+            if (Rectangle.Intersects(hero.Collider.Rectangle)) return true;
+            return false;
         }
 
         public void Draw(SpriteBatch spriteBatch, GraphicsDevice graphicsDevice)

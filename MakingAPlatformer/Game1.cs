@@ -41,6 +41,11 @@ namespace MakingAPlatformer
             IsMouseVisible = true;
         }
 
+        public void ChangeLevel(Level nextLevel)
+        {
+            _nextLevel = nextLevel;
+        }
+
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
@@ -73,14 +78,13 @@ namespace MakingAPlatformer
             //}
             //collisionManager = new CollisionManager(colliders, hero);
 
-
             base.Initialize();
         }
 
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
-            _currentLevel = new FirstLevel(GraphicsDevice, Content);
+            _currentLevel = new FirstLevel(GraphicsDevice, Content, this);
 
             // TODO: use this.Content to load your game content here
 
@@ -101,6 +105,12 @@ namespace MakingAPlatformer
 
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
+
+            if (_nextLevel != null)
+            {
+                _currentLevel = _nextLevel;
+                _nextLevel = null;
+            }
 
             // TODO: Add your update logic here
             _currentLevel.Update(gameTime);
