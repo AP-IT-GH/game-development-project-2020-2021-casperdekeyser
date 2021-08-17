@@ -1,14 +1,10 @@
 ﻿using MakingAPlatformer.Interfaces;
-using MakingAPlatformer.LevelManagement.Levels;
-using MakingAPlatformer.LevelManagement.Screens;
 using MakingAPlatformer.Management;
 using MakingAPlatformer.Map;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace MakingAPlatformer.LevelManagement
 {
@@ -87,8 +83,9 @@ namespace MakingAPlatformer.LevelManagement
         }
         public void Update(GameTime gameTime)
         {
-            if (LevelId == 1) if (endzone.CheckEnding(hero)) _game.ChangeLevel(new SecondLevel(_game));
-            if (LevelId == 2) if (endzone.CheckEnding(hero)) _game.ChangeLevel(new VictoryScreen(_game));
+            if (endzone.CheckEnding(hero)) _game.ScreenManager.ManageTransitions(LevelId);
+            //if (LevelId == 1) if (endzone.CheckEnding(hero)) _game.ScreenManager.ChangeScreen(new SecondLevel(_game));
+            //if (LevelId == 2) if (endzone.CheckEnding(hero)) _game.ScreenManager.ChangeScreen(new VictoryScreen(_game));
 
             collisionManager.Execute();
             hero.Update(gameTime);
