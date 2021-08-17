@@ -8,10 +8,12 @@ using System.Text;
 
 namespace MakingAPlatformer.Map
 {
-    public class MapMaker : ILevelCreator
+    public class MapMaker
     {
-        public byte[,] TileArray { get; set; }
-        public IMapObject[,] BlockArray { get; set; }
+        public byte[,] Level1TileArray { get; set; }
+        public byte[,] Level2TileArray { get; set; }
+        public IMapObject[,] Level1BlockArray { get; set; }
+        public IMapObject[,] Level2BlockArray { get; set; }
         public List<IMapObject> Blocks { get; set; }
 
         private int mapLength = 15;
@@ -22,8 +24,8 @@ namespace MakingAPlatformer.Map
         public MapMaker()
         {
             Blocks = new List<IMapObject>();
-            BlockArray = new Block[mapLength, mapHeight];
-            TileArray = new byte[,]
+            Level1BlockArray = new Block[mapLength, mapHeight];
+            Level1TileArray = new byte[,]
             {
                 {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
                 {0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1 },
@@ -41,38 +43,83 @@ namespace MakingAPlatformer.Map
                 {0,0,0,0,1,1,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0 },
                 {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1 },
             };
+            Level2BlockArray = new Block[mapLength, mapHeight];
+            Level2TileArray = new byte[,]
+            {
+                {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
+                {0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1 },
+                {0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,1,1,1 },
+                {0,0,0,0,1,0,0,0,0,0,0,1,1,0,0,0,0,1,1,0,0,0,0,0,1 },
+                {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
+                {0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0 },
+                {1,1,1,1,1,1,0,0,1,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0 },
+                {0,1,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
+                {0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
+                {0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
+                {1,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0 },
+                {1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0 },
+                {1,0,0,0,1,1,0,0,0,0,0,0,0,0,1,1,0,1,0,0,0,0,0,0,0 },
+                {1,0,0,0,1,1,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0 },
+                {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1 },
+            };
         }
 
-        public void CreateWorld()
+        public void CreateLevel(int level)
         {
-            for (int x = 0; x < mapLength; x++)
+            if (level == 1)
             {
-                for (int y = 0; y < mapHeight; y++)
+                for (int x = 0; x < mapLength; x++)
                 {
-                    if (TileArray[x, y] == 1)
+                    for (int y = 0; y < mapHeight; y++)
                     {
-                        if (x == 1 && y == 24) BlockArray[x, y] = new StoneStairsBlock(new Vector2(y * blockSize, x * blockSize)); // stairs
-                        else
+                        if (Level1TileArray[x, y] == 1)
                         {
-                            if (x == 14) BlockArray[x, y] = new GrassBlock(new Vector2(y * blockSize, x * blockSize)); // ground
-                            else BlockArray[x, y] = new StoneBlock(new Vector2(y * blockSize, x * blockSize)); // walls
+                            if (x == 1 && y == 24) Level1BlockArray[x, y] = new StoneStairsBlock(new Vector2(y * blockSize, x * blockSize)); // stairs
+                            else
+                            {
+                                if (x == 14) Level1BlockArray[x, y] = new GrassBlock(new Vector2(y * blockSize, x * blockSize)); // ground
+                                else Level1BlockArray[x, y] = new StoneBlock(new Vector2(y * blockSize, x * blockSize)); // walls
 
+                            }
+                            Blocks.Add(Level1BlockArray[x, y]);
                         }
-                        Blocks.Add(BlockArray[x, y]);
+                    }
+                }
+            }
+            if (level == 2)
+            {
+                for (int x = 0; x < mapLength; x++)
+                {
+                    for (int y = 0; y < mapHeight; y++)
+                    {
+                        if (Level2TileArray[x, y] == 1)
+                        {
+                            if (x == 1 && y == 24) Level2BlockArray[x, y] = new StoneStairsBlock(new Vector2(y * blockSize, x * blockSize)); // stairs
+                            else
+                            {
+                                if (x == 14) Level2BlockArray[x, y] = new DirtBlock(new Vector2(y * blockSize, x * blockSize)); // ground
+                                else Level2BlockArray[x, y] = new SandBlock(new Vector2(y * blockSize, x * blockSize)); // walls
+
+                            }
+                            Blocks.Add(Level2BlockArray[x, y]);
+                        }
                     }
                 }
             }
         }
 
-        public void DrawWorld(SpriteBatch spriteBatch)
+        public void DrawLevel(int level, SpriteBatch spriteBatch)
         {
+            IMapObject[,] mapObjects = Level1BlockArray;
+            if (level == 2) mapObjects = Level2BlockArray;
+
             for (int x = 0; x < mapLength; x++)
             {
                 for (int y = 0; y < mapHeight; y++)
                 {
-                    if (BlockArray[x, y] != null)
+                    if (mapObjects[x, y] != null)
                     {
-                        BlockArray[x, y].Draw(spriteBatch);
+                        mapObjects[x, y].Draw(spriteBatch);
                     }
                 }
             }

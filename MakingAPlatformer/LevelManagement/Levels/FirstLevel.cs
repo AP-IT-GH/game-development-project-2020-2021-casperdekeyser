@@ -12,6 +12,8 @@ namespace MakingAPlatformer.LevelManagement.Levels
 
     public class FirstLevel : Level
     {
+        int levelId = 1;
+
         // Hero
         IGameObject hero;
         Vector2 heroPosition;
@@ -29,6 +31,8 @@ namespace MakingAPlatformer.LevelManagement.Levels
 
         public FirstLevel(GraphicsDevice graphicsDevice, ContentManager content) : base(graphicsDevice, content)
         {
+            Initialize();
+            LoadContent();
         }
 
         protected override void Initialize()
@@ -42,9 +46,9 @@ namespace MakingAPlatformer.LevelManagement.Levels
 
             // Map
             mapMaker = new MapMaker();
-            mapMaker.CreateWorld();
+            mapMaker.CreateLevel(levelId);
 
-            endzone = new EndingZone(new Vector2(1500, 0), "testendingzone", 62, 62);
+            endzone = new EndingZone(new Vector2(1500, 0), "Transition zone to level 2", 62, 62);
 
             // Collision
             colliders = new List<BoxCollider>();
@@ -87,7 +91,7 @@ namespace MakingAPlatformer.LevelManagement.Levels
 
             hero.Draw(_spriteBatch);
 
-            mapMaker.DrawWorld(_spriteBatch);
+            mapMaker.DrawLevel(levelId, _spriteBatch);
 
             // DRAW COLLIDERS
             //collisionManager.DrawColliders(_spriteBatch, GraphicsDevice);
