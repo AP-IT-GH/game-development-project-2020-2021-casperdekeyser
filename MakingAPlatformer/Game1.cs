@@ -1,5 +1,7 @@
-﻿using MakingAPlatformer.LevelManagement;
+﻿using MakingAPlatformer.Interfaces;
+using MakingAPlatformer.LevelManagement;
 using MakingAPlatformer.LevelManagement.Levels;
+using MakingAPlatformer.LevelManagement.Screens;
 using MakingAPlatformer.Management;
 using MakingAPlatformer.Map;
 using Microsoft.Xna.Framework;
@@ -16,8 +18,9 @@ namespace MakingAPlatformer
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
-        private Level _currentLevel;
-        private Level _nextLevel;
+        //private Screen _currentLevel;
+        private IGameScreen _currentLevel;
+        private IGameScreen _nextLevel;
 
         //// Hero
         //IGameObject hero;
@@ -41,7 +44,7 @@ namespace MakingAPlatformer
             IsMouseVisible = true;
         }
 
-        public void ChangeLevel(Level nextLevel)
+        public void ChangeLevel(IGameScreen nextLevel)
         {
             _nextLevel = nextLevel;
         }
@@ -84,7 +87,8 @@ namespace MakingAPlatformer
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
-            _currentLevel = new FirstLevel(GraphicsDevice, Content, this);
+            //_currentLevel = new VictoryScreen(this);            
+            _currentLevel = new FirstLevel(this);
 
             // TODO: use this.Content to load your game content here
 

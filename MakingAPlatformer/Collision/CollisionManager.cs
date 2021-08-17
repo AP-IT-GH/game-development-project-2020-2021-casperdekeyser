@@ -23,6 +23,11 @@ namespace MakingAPlatformer
             Hero = hero;
         }
 
+        public CollisionManager(List<BoxCollider> collliders)
+        {
+            Colliders = collliders;
+        }
+
         public void Execute()
         {
             SyncColliders();
@@ -86,14 +91,23 @@ namespace MakingAPlatformer
             return false;
         }
 
-        public void DrawColliders(SpriteBatch spriteBatch, GraphicsDevice graphicsDevice)
+        public void DrawAllColliders(SpriteBatch spriteBatch, GraphicsDevice graphicsDevice, Color heroColor, Color blockColor)
         {
-            Hero.Collider.Draw(spriteBatch, graphicsDevice);
+            DrawHeroCollider(spriteBatch, graphicsDevice, heroColor);
+            DrawBlockColliders(spriteBatch, graphicsDevice, blockColor);
+        }
 
+        public void DrawBlockColliders(SpriteBatch spriteBatch, GraphicsDevice graphicsDevice, Color blockColor)
+        {
             foreach (var collider in Colliders)
             {
-                collider.Draw(spriteBatch, graphicsDevice);
+                collider.Draw(spriteBatch, graphicsDevice, blockColor);
             }
+        }
+
+        public void DrawHeroCollider(SpriteBatch spriteBatch, GraphicsDevice graphicsDevice, Color heroColor)
+        {
+            Hero.Collider.Draw(spriteBatch, graphicsDevice, heroColor);
         }
 
         private void SyncColliders()

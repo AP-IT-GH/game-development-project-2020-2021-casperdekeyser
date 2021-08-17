@@ -1,4 +1,7 @@
-﻿using MakingAPlatformer.Management;
+﻿using MakingAPlatformer.Interfaces;
+using MakingAPlatformer.LevelManagement.Levels;
+using MakingAPlatformer.LevelManagement.Screens;
+using MakingAPlatformer.Management;
 using MakingAPlatformer.Map;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
@@ -9,10 +12,11 @@ using System.Text;
 
 namespace MakingAPlatformer.LevelManagement
 {
-    public abstract class Level
+    public abstract class Level : IGameScreen
     {
         public abstract int LevelId { get; set; }
 
+        // Game
         protected ContentManager _content;
         protected GraphicsDevice _graphics;
         protected SpriteBatch _spriteBatch;
@@ -33,10 +37,10 @@ namespace MakingAPlatformer.LevelManagement
         protected CollisionManager collisionManager;
         protected List<BoxCollider> colliders;
 
-        public Level(GraphicsDevice graphicsDevice, ContentManager content, Game1 game)
+        public Level(Game1 game)
         {
-            _graphics = graphicsDevice;
-            _content = content;
+            _graphics = game.GraphicsDevice;
+            _content = game.Content;
             _game = game;
 
             Initialize();
@@ -81,14 +85,16 @@ namespace MakingAPlatformer.LevelManagement
                 block.Spritesheet = _content.Load<Texture2D>(block.SpritesheetPath);
             }
         }
-        public virtual void Update(GameTime gameTime)
+        public void Update(GameTime gameTime)
         {
+            if (LevelId == 1) if (endzone.CheckEnding(hero)) _game.ChangeLevel(new SecondLevel(_game));
+            if (LevelId == 2) if (endzone.CheckEnding(hero)) _game.ChangeLevel(new VictoryScreen(_game));
+
             collisionManager.Execute();
             hero.Update(gameTime);
-
         }
 
-        public virtual void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             _spriteBatch.Begin();
 
@@ -97,7 +103,7 @@ namespace MakingAPlatformer.LevelManagement
             mapMaker.DrawLevel(LevelId, _spriteBatch);
 
             // DRAW COLLIDERS
-            //collisionManager.DrawColliders(_spriteBatch, GraphicsDevice);
+            //collisionManager.DrawAllColliders(_spriteBatch, _game.GraphicsDevice, Color.Red, Color.Green);
             //endzone.Draw(_spriteBatch, _graphics);
 
             _spriteBatch.End();

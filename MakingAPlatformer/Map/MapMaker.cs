@@ -12,8 +12,12 @@ namespace MakingAPlatformer.Map
     {
         public byte[,] Level1TileArray { get; set; }
         public byte[,] Level2TileArray { get; set; }
+        public byte[,] VictoryTileArray { get; set; }
+        public byte[,] DeathTileArray { get; set; }
         public IMapObject[,] Level1BlockArray { get; set; }
         public IMapObject[,] Level2BlockArray { get; set; }
+        public IMapObject[,] VictoryBlockArray { get; set; }
+        public IMapObject[,] DeathBlockArray { get; set; }
         public List<IMapObject> Blocks { get; set; }
 
         private int mapLength = 15;
@@ -62,6 +66,27 @@ namespace MakingAPlatformer.Map
                 {1,0,0,0,1,1,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0 },
                 {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1 },
             };
+            VictoryBlockArray = new Block[mapLength, mapHeight];
+            VictoryTileArray = new byte[,]
+            {
+                {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
+                {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
+                {0,1,0,0,0,1,0,1,1,1,1,0,1,0,0,1,0,0,0,0,0,0,0,0,0 },
+                {0,1,1,0,1,1,0,1,0,0,1,0,1,0,0,1,0,0,0,0,0,0,0,0,0 },
+                {0,0,1,1,1,0,0,1,0,0,1,0,1,0,0,1,0,0,0,0,0,0,0,0,0 },
+                {0,0,0,1,0,0,0,1,0,0,1,0,1,0,0,1,0,0,0,0,0,0,0,0,0 },
+                {0,0,0,1,0,0,0,1,1,1,1,0,1,1,1,1,0,0,0,0,0,0,0,0,0 },
+                {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
+                {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0 },
+                {0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,1,0,1,0,0,1,0,1,0,0 },
+                {0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,1,0,1,1,0,1,0,1,0,0 },
+                {0,0,0,0,0,0,0,0,0,1,0,1,0,1,0,1,0,1,0,1,1,0,0,0,0 },
+                {0,0,0,0,0,0,0,0,0,1,1,1,1,1,0,1,0,1,0,0,1,0,1,0,0 },
+                {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
+                {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
+                
+            };
+
         }
 
         public void CreateLevel(int level)
@@ -106,12 +131,29 @@ namespace MakingAPlatformer.Map
                     }
                 }
             }
+            if (level == 3)
+            {
+                {
+                    for (int x = 0; x < mapLength; x++)
+                    {
+                        for (int y = 0; y < mapHeight; y++)
+                        {
+                            if (VictoryTileArray[x, y] == 1)
+                            {
+                                VictoryBlockArray[x, y] = new StoneBlock(new Vector2(y * blockSize, x * blockSize));
+                                Blocks.Add(VictoryBlockArray[x, y]);
+                            }
+                        }
+                    }
+                }
+            }
         }
 
         public void DrawLevel(int level, SpriteBatch spriteBatch)
         {
             IMapObject[,] mapObjects = Level1BlockArray;
             if (level == 2) mapObjects = Level2BlockArray;
+            if (level == 3) mapObjects = VictoryBlockArray;
 
             for (int x = 0; x < mapLength; x++)
             {

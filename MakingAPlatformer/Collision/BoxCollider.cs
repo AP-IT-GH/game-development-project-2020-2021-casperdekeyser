@@ -33,12 +33,12 @@ namespace MakingAPlatformer
             Rectangle = new Rectangle((int)Position.X, (int)Position.Y, Width, Height);
         }
 
-        public void Draw(SpriteBatch spriteBatch, GraphicsDevice graphicsDevice)
+        public void Draw(SpriteBatch spriteBatch, GraphicsDevice graphicsDevice, Color color)
         {
             Texture2D pixel = new Texture2D(graphicsDevice, 1, 1, true, SurfaceFormat.Color);
             pixel.SetData(new[] { Color.White });
 
-            spriteBatch.Draw(pixel, Rectangle, Color.Green);
+            spriteBatch.Draw(pixel, Rectangle, color);
         }
 
         public void Update()
