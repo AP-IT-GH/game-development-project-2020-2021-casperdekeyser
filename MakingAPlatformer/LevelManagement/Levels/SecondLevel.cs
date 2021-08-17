@@ -12,22 +12,31 @@ namespace MakingAPlatformer.LevelManagement.Levels
     public class SecondLevel : Level
     {
         public override int LevelId { get; set; } = 2;
-        public Transition deathZone { get; set; }
+        public List<Transition> DeathZone { get; set; }
+        
         public SecondLevel(Game1 game) : base(game) { }
 
         protected override void Initialize()
         {
             transitionZone = new Transition(new Vector2(1500, 0), "Victory zone", 62, 62);
-            deathZone = new Transition(new Vector2(1116, 847), "Victory zone", 62*4, 62+20);
+
+            DeathZone = new List<Transition>
+            {
+                new Transition(new Vector2(1550 - (62 * 7), 930 - (62 * 1) - 10), "Lower right death zone", (62 * 4), (62 * 1) + 10), //screen with - (amount of blocks), screen height - (amount of blocks) - block height
+                new Transition(new Vector2(1550 - (62 * 1), 930 - (62 * 5) - 10), "Right wall death zone", (62 * 1), (62 * 5) + 10),
+            };
+
             base.Initialize();
         }
 
         public override void Update(GameTime gameTime)
         {
-            if (deathZone.CheckCollision(hero)) _game.ScreenManager.ManageTransitions(3); // deathscreen
+            foreach (Transition zone in DeathZone) if (zone.CheckCollision(hero)) _game.ScreenManager.ManageTransitions(3); // deathscreen
+            
             base.Update(gameTime);
         }
 
+        // DEBUG: remove method
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             _spriteBatch.Begin();
@@ -38,7 +47,7 @@ namespace MakingAPlatformer.LevelManagement.Levels
 
             // DRAW COLLIDERS
             //collisionManager.DrawAllColliders(_spriteBatch, _game.GraphicsDevice, Color.Red, Color.Green);
-            deathZone.Draw(_spriteBatch, _graphics, Color.Fuchsia);
+            foreach (Transition zone in DeathZone) zone.Draw(_spriteBatch, _graphics, Color.Fuchsia);
 
             _spriteBatch.End();
 
