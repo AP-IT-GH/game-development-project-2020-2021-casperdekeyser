@@ -23,8 +23,8 @@
             "scale": 0.5,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 1205,
-                "y": 565
+                "x": 1213,
+                "y": 205
             }
         },
         "Map/Tiled/master-tileset.tsx": {
