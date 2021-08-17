@@ -13,78 +13,18 @@ namespace MakingAPlatformer.LevelManagement.Levels
     {
         public override int LevelId { get; set; } = 2;
 
-        public SecondLevel(GraphicsDevice graphicsDevice, ContentManager content, Game1 game) : base(graphicsDevice, content, game)
-        {
-            Initialize();
-            LoadContent();
-        }
+        public SecondLevel(GraphicsDevice graphicsDevice, ContentManager content, Game1 game) : base(graphicsDevice, content, game) { }
 
         protected override void Initialize()
         {
-            // Hero
-            heroPosition = new Vector2(50, 868 - 96);
-            heroAnimator = new HeroAnimator();
-            inputReader = new KeyboardReader();
-            animateCommand = new AnimateCommand();
-            hero = new Hero(heroPosition, heroAnimator, inputReader, animateCommand);
-
-            // Map
-            mapMaker = new MapMaker();
-            mapMaker.CreateLevel(LevelId);
-
             endzone = new EndingZone(new Vector2(1500, 0), "Ending zone", 62, 62);
-
-            // Collision
-            colliders = new List<BoxCollider>();
-            foreach (IMapObject block in mapMaker.Blocks)
-            {
-                colliders.Add(block.Collider);
-            }
-            collisionManager = new CollisionManager(colliders, hero);
-
-        }
-
-        protected override void LoadContent()
-        {
-            _spriteBatch = new SpriteBatch(_graphics);
-
-            // TODO: use this.Content to load your game content here
-
-            foreach (Animation animation in hero.Animator.Animations)
-            {
-                animation.SpriteSheet = _content.Load<Texture2D>(animation.SpriteSheetPath);
-            }
-
-            foreach (IMapObject block in mapMaker.Blocks)
-            {
-                block.Spritesheet = _content.Load<Texture2D>(block.SpritesheetPath);
-            }
+            base.Initialize();
         }
 
         public override void Update(GameTime gameTime)
         {
-            collisionManager.Execute();
-            hero.Update(gameTime);
-
-            endzone.CheckEnding(hero);
-
+            if (endzone.CheckEnding(hero)) _game.ChangeLevel(new FirstLevel(_graphics, _content, _game));
+            base.Update(gameTime);
         }
-
-        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
-        {
-
-            _spriteBatch.Begin();
-
-            hero.Draw(_spriteBatch);
-
-            mapMaker.DrawLevel(LevelId, _spriteBatch);
-
-            // DRAW COLLIDERS
-            //collisionManager.DrawColliders(_spriteBatch, GraphicsDevice);
-            //endzone.Draw(_spriteBatch, _graphics);
-
-            _spriteBatch.End();
-        }
-
     }
 }

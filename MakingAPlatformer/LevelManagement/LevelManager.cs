@@ -4,7 +4,7 @@ using System.Text;
 
 namespace MakingAPlatformer
 {
-    public class GameManager
+    public class LevelManager
     {
 
     }
