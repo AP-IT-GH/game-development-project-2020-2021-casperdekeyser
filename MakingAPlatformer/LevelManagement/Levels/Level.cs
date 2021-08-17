@@ -27,7 +27,7 @@ namespace MakingAPlatformer.LevelManagement
 
         // Map
         protected MapMaker mapMaker;
-        protected EndingZone endzone;
+        protected Transition transitionZone;
 
         // Collision
         protected CollisionManager collisionManager;
@@ -81,9 +81,9 @@ namespace MakingAPlatformer.LevelManagement
                 block.Spritesheet = _content.Load<Texture2D>(block.SpritesheetPath);
             }
         }
-        public void Update(GameTime gameTime)
+        public virtual void Update(GameTime gameTime)
         {
-            if (endzone.CheckEnding(hero)) _game.ScreenManager.ManageTransitions(LevelId);
+            if (transitionZone.CheckCollision(hero)) _game.ScreenManager.ManageTransitions(LevelId);
             //if (LevelId == 1) if (endzone.CheckEnding(hero)) _game.ScreenManager.ChangeScreen(new SecondLevel(_game));
             //if (LevelId == 2) if (endzone.CheckEnding(hero)) _game.ScreenManager.ChangeScreen(new VictoryScreen(_game));
 
@@ -91,7 +91,7 @@ namespace MakingAPlatformer.LevelManagement
             hero.Update(gameTime);
         }
 
-        public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        public virtual void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             _spriteBatch.Begin();
 
@@ -101,7 +101,7 @@ namespace MakingAPlatformer.LevelManagement
 
             // DRAW COLLIDERS
             //collisionManager.DrawAllColliders(_spriteBatch, _game.GraphicsDevice, Color.Red, Color.Green);
-            //endzone.Draw(_spriteBatch, _graphics);
+            //transitionZone.Draw(_spriteBatch, _graphics, Color.Fuchsia);
 
             _spriteBatch.End();
         }

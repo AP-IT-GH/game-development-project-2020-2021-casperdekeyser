@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace MakingAPlatformer.Management
 {
-    public class EndingZone
+    public class Transition
     {
         public Rectangle Rectangle;
         public Vector2 Position;
@@ -11,7 +11,7 @@ namespace MakingAPlatformer.Management
         public int Width;
         public int Height;
 
-        public EndingZone(Vector2 position, string name, int width, int height)
+        public Transition(Vector2 position, string name, int width, int height)
         {
             Position = position;
             Name = name;
@@ -20,18 +20,19 @@ namespace MakingAPlatformer.Management
             Rectangle = new Rectangle((int)Position.X, (int)Position.Y, Width, Height);
         }
 
-        public bool CheckEnding(IGameObject hero)
+        public bool CheckCollision(IGameObject hero)
         {
-            if (Rectangle.Intersects(hero.Collider.Rectangle)) return true;
+            if (Rectangle.Intersects(hero.Collider.Rectangle)) 
+                return true;
             return false;
         }
 
-        public void Draw(SpriteBatch spriteBatch, GraphicsDevice graphicsDevice)
+        public void Draw(SpriteBatch spriteBatch, GraphicsDevice graphicsDevice, Color color)
         {
             Texture2D pixel = new Texture2D(graphicsDevice, 1, 1, true, SurfaceFormat.Color);
             pixel.SetData(new[] { Color.White });
 
-            spriteBatch.Draw(pixel, Rectangle, Color.Green);
+            spriteBatch.Draw(pixel, Rectangle, color);
         }
     }
 

@@ -30,6 +30,7 @@ namespace MakingAPlatformer
         {
             if (levelId == 1) ChangeScreen(new SecondLevel(_game));
             if (levelId == 2) ChangeScreen(new VictoryScreen(_game));
+            if (levelId == 3) ChangeScreen(new DeathScreen(_game));
         }
 
     }

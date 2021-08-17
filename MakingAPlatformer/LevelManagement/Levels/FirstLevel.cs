@@ -12,7 +12,7 @@ namespace MakingAPlatformer.LevelManagement.Levels
 
         protected override void Initialize()
         {
-            endzone = new EndingZone(new Vector2(1500, 0), "Transition zone to level 2", 62, 62);
+            transitionZone = new Transition(new Vector2(1500, 0), "Transition zone to level 2", 62, 62);
             base.Initialize();
         }
     }
