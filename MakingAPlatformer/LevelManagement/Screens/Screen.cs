@@ -14,6 +14,7 @@ namespace MakingAPlatformer.LevelManagement.Screens
     {
         public abstract int ScreenId { get; set; }
         public abstract Color DrawingColor { get; set; }
+        public int Duration { get; set; } = 5;
 
         // Game
         protected ContentManager _content;
@@ -30,9 +31,6 @@ namespace MakingAPlatformer.LevelManagement.Screens
 
         // Timer
         private Timing.Timer _timer;
-        private TimeSpan timeToWait = TimeSpan.FromMilliseconds(5000); // time before exit
-        private TimeSpan timeStamp;
-
 
         public Screen(Game1 game)
         {
@@ -76,14 +74,7 @@ namespace MakingAPlatformer.LevelManagement.Screens
 
         public virtual void Update(GameTime gameTime)
         {
-            if (timeStamp == TimeSpan.Zero) timeStamp = gameTime.TotalGameTime;
-
-            // wait untill exit
-            if (timeStamp + timeToWait < gameTime.TotalGameTime) _game.Exit();
-
-            // doesn't work
-            //_timer.WaitForSeconds(5, gameTime);
-            //_game.Exit();
+            if (_timer.SecondsElapsed(Duration, gameTime)) _game.Exit();
         }
 
         public virtual void Draw(GameTime gameTime, SpriteBatch spriteBatch)

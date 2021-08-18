@@ -9,18 +9,23 @@ namespace MakingAPlatformer.Timing
     {
         private TimeSpan timeToWait;
         private TimeSpan timeStamp;
+        private bool timeIsSet = false;
 
-        public void WaitForSeconds(int seconds, GameTime gameTime)
+        public bool SecondsElapsed(int seconds, GameTime gameTime)
         {
-            bool finished = false;
             timeToWait = TimeSpan.FromMilliseconds(seconds * 1000);
-            while (!finished)
-            {
-                if (timeStamp == TimeSpan.Zero) 
-                    timeStamp = gameTime.TotalGameTime;
+            setReferenceTimeStamp(timeIsSet, gameTime);
 
-                if (timeStamp + timeToWait < gameTime.TotalGameTime) 
-                    finished = true;
+            if (timeStamp + timeToWait < gameTime.TotalGameTime) return true;
+            return false;
+        }
+
+        private void setReferenceTimeStamp(bool isSet, GameTime gameTime)
+        {
+            if (!isSet)
+            {
+                timeStamp = gameTime.TotalGameTime;
+                timeIsSet = true;
             }
         }
     }
