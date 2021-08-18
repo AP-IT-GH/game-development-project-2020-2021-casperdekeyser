@@ -10,6 +10,6 @@ namespace MakingAPlatformer.Map
     {
         public override int RowOnMasterTileset { get; set; } = 4;
 
-        public SandBlock(Vector2 position) : base(position) { }
+        public SandBlock(Vector2 position, int variation = 0) : base(position, variation) { }
     }
 }

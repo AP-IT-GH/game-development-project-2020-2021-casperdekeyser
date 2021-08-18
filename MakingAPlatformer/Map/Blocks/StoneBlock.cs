@@ -9,6 +9,6 @@ namespace MakingAPlatformer.Map
     {
         public override int RowOnMasterTileset { get; set; } = 0;
 
-        public StoneBlock(Vector2 position) : base(position) { }
+        public StoneBlock(Vector2 position, int variation = 0) : base(position, variation) { }
     }
 }
