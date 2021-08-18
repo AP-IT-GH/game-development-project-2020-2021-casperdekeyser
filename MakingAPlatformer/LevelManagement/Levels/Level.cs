@@ -97,7 +97,7 @@ namespace MakingAPlatformer.LevelManagement
 
             hero.Draw(_spriteBatch);
 
-            mapMaker.DrawLevel(LevelId, _spriteBatch);
+            mapMaker.DrawLevel(_spriteBatch);
 
             // DRAW COLLIDERS
             //collisionManager.DrawAllColliders(_spriteBatch, _game.GraphicsDevice, Color.Red, Color.Green);

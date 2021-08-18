@@ -11,7 +11,7 @@ namespace MakingAPlatformer.LevelManagement.Levels
 {
     public class SecondLevel : Level
     {
-        public override int LevelId { get; set; } = 2;
+        public override int LevelId { get; set; } = 1;
         public List<Transition> DeathZone { get; set; }
         
         public SecondLevel(Game1 game) : base(game) { }
@@ -43,7 +43,7 @@ namespace MakingAPlatformer.LevelManagement.Levels
 
             hero.Draw(_spriteBatch);
 
-            mapMaker.DrawLevel(LevelId, _spriteBatch);
+            mapMaker.DrawLevel(_spriteBatch);
 
             // DRAW COLLIDERS
             //collisionManager.DrawAllColliders(_spriteBatch, _game.GraphicsDevice, Color.Red, Color.Green);

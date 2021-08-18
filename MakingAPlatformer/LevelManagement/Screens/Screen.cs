@@ -75,7 +75,7 @@ namespace MakingAPlatformer.LevelManagement.Screens
         {
             _spriteBatch.Begin();
 
-            mapMaker.DrawLevel(ScreenId, _spriteBatch);
+            mapMaker.DrawLevel(_spriteBatch);
 
             if (ScreenId == 3) collisionManager.DrawBlockColliders(_spriteBatch, _game.GraphicsDevice, Color.Green);
             if (ScreenId == 4) collisionManager.DrawBlockColliders(_spriteBatch, _game.GraphicsDevice, Color.Red);

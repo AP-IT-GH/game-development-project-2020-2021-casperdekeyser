@@ -6,7 +6,7 @@ namespace MakingAPlatformer.LevelManagement.Levels
 
     public class FirstLevel : Level
     {
-        public override int LevelId { get; set; } = 1;
+        public override int LevelId { get; set; } = 0;
 
         public FirstLevel(Game1 game) : base(game) { }
 
