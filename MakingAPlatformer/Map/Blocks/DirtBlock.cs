@@ -8,11 +8,8 @@ namespace MakingAPlatformer.Map
 {
     public class DirtBlock : Block
     {
-        public DirtBlock(Vector2 position) : base(position) { }
+        public override int RowOnMasterTileset { get; set; } = 3;
 
-        public override void Draw(SpriteBatch spriteBatch)
-        {
-            spriteBatch.Draw(Spritesheet, Position, new Rectangle(0, 186, Size, Size), Color.White);
-        }
+        public DirtBlock(Vector2 position, int variation = 0) : base(position, variation) { }
     }
 }

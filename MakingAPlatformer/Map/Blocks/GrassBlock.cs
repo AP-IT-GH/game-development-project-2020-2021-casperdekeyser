@@ -6,10 +6,10 @@ using System.Text;
 
 namespace MakingAPlatformer.Map
 {
-    public class SandBlock : Block
+    public class GrassBlock : Block
     {
-        public override int RowOnMasterTileset { get; set; } = 4;
+        public override int RowOnMasterTileset { get; set; } = 2;
 
-        public SandBlock(Vector2 position) : base(position) { }
+        public GrassBlock(Vector2 position, int variation = 0) : base(position, variation) { }
     }
 }

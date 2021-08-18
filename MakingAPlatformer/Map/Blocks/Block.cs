@@ -13,18 +13,23 @@ namespace MakingAPlatformer
         public string SpritesheetPath { get; set; }
         public BoxCollider Collider { get; set; }
 
-        public int Size = 62;
+        public virtual int RowOnMasterTileset { get; set; }
 
-        public Block(Vector2 position)
+        protected int _size = 62;
+        protected int _variation = 0;
+
+        public Block(Vector2 position, int variation = 0)
         {
             Position = position;
             SpritesheetPath = "Map/master-tileset";
-            Collider = new BoxCollider(Position, "Block-Collider", Size, Size);
+            Collider = new BoxCollider(Position, "Block-Collider", _size, _size);
+
+            _variation = variation;
         }
 
         public virtual void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(Spritesheet, Position, new Rectangle(0, 0, Size, Size), Color.White);
+            spriteBatch.Draw(Spritesheet, Position, new Rectangle(_size * (_variation * 2), _size * RowOnMasterTileset, _size, _size), Color.White);
         }
     }
 }
