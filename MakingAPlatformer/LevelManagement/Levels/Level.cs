@@ -41,8 +41,8 @@ namespace MakingAPlatformer.LevelManagement
 
             Initialize();
             LoadContent();
-
         }
+
         protected virtual void Initialize()
         {
             // Hero
@@ -81,6 +81,7 @@ namespace MakingAPlatformer.LevelManagement
                 block.Spritesheet = _content.Load<Texture2D>(block.SpritesheetPath);
             }
         }
+
         public virtual void Update(GameTime gameTime)
         {
             if (transitionZone.CheckCollision(hero)) _game.ScreenManager.ManageTransitions(LevelId);
@@ -103,6 +104,5 @@ namespace MakingAPlatformer.LevelManagement
 
             _spriteBatch.End();
         }
-
     }
 }

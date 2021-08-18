@@ -12,6 +12,7 @@ namespace MakingAPlatformer
         {
             _game = game;
         }
+
         public void ChangeScreen(IGameScreen nextScreen)
         {
             _game.NextLevel = nextScreen;

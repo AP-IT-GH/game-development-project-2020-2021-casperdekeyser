@@ -36,7 +36,6 @@ namespace MakingAPlatformer.LevelManagement.Screens
 
             Initialize();
             LoadContent();
-
         }
 
         protected virtual void Initialize()
@@ -82,7 +81,5 @@ namespace MakingAPlatformer.LevelManagement.Screens
 
             _spriteBatch.End();
         }
-
-
     }
 }
