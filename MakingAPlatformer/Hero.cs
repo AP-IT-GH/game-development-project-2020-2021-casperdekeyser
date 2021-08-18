@@ -16,7 +16,6 @@ namespace MakingAPlatformer
         public Animator Animator { get; set; }
         public PossibleAnimations AnimToPlay { get; set; }
 
-
         public IInputReader KeyboardReader;
         public MoveCommand MoveCommand;
         public JumpCommand JumpCommand;
@@ -31,7 +30,6 @@ namespace MakingAPlatformer
         public BoxCollider Collider { get; set; }
         int Xoffset = 60;
         int Yoffset = 45;
-
 
         public Hero(Vector2 pos, HeroAnimator anim, IInputReader input, AnimateCommand animcom)
         {
@@ -89,7 +87,6 @@ namespace MakingAPlatformer
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(currentAnimation.SpriteSheet, Position, currentAnimation.CurrentFrame.sourceRectangle, Color.White);
-
         }
     }
 }
