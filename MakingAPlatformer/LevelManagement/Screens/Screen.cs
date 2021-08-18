@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 
 namespace MakingAPlatformer.LevelManagement.Screens
@@ -27,12 +28,19 @@ namespace MakingAPlatformer.LevelManagement.Screens
         protected CollisionManager collisionManager;
         protected List<BoxCollider> colliders;
 
+        // Timer
+        private Timing.Timer _timer;
+        private TimeSpan timeToWait = TimeSpan.FromMilliseconds(5000); // time before exit
+        private TimeSpan timeStamp;
+
 
         public Screen(Game1 game)
         {
             _game = game;
             _content = game.Content;
             _graphics = game.GraphicsDevice;
+
+            _timer = new Timing.Timer();
 
             Initialize();
             LoadContent();
@@ -68,7 +76,14 @@ namespace MakingAPlatformer.LevelManagement.Screens
 
         public virtual void Update(GameTime gameTime)
         {
+            if (timeStamp == TimeSpan.Zero) timeStamp = gameTime.TotalGameTime;
+
             // wait untill exit
+            if (timeStamp + timeToWait < gameTime.TotalGameTime) _game.Exit();
+
+            // doesn't work
+            //_timer.WaitForSeconds(5, gameTime);
+            //_game.Exit();
         }
 
         public virtual void Draw(GameTime gameTime, SpriteBatch spriteBatch)
