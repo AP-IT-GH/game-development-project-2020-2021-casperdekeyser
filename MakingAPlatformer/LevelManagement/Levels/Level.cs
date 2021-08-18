@@ -84,8 +84,6 @@ namespace MakingAPlatformer.LevelManagement
         public virtual void Update(GameTime gameTime)
         {
             if (transitionZone.CheckCollision(hero)) _game.ScreenManager.ManageTransitions(LevelId);
-            //if (LevelId == 1) if (endzone.CheckEnding(hero)) _game.ScreenManager.ChangeScreen(new SecondLevel(_game));
-            //if (LevelId == 2) if (endzone.CheckEnding(hero)) _game.ScreenManager.ChangeScreen(new VictoryScreen(_game));
 
             collisionManager.Execute();
             hero.Update(gameTime);

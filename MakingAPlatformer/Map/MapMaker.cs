@@ -1,10 +1,7 @@
-﻿using MakingAPlatformer.Interfaces;
-using MakingAPlatformer.Map.Blocks;
+﻿using MakingAPlatformer.Map.Blocks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace MakingAPlatformer.Map
 {
@@ -102,7 +99,7 @@ namespace MakingAPlatformer.Map
 
         public void CreateLevel(int level)
         {
-            /*
+            /* TYPES OF BLOCKS
              * 0 -> empty
              * 1 -> stone
              * 2 -> grass
@@ -110,6 +107,14 @@ namespace MakingAPlatformer.Map
              * 4 -> dirt
              * 5 -> stone stairs
              */
+
+            /* LEVEL IDs
+             * 0 -> level1
+             * 1 -> level2
+             * 2 -> victory
+             * 3 -> death
+             */
+
             for (int x = 0; x < mapLength; x++)
             {
                 for (int y = 0; y < mapHeight; y++)
