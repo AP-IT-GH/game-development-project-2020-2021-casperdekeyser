@@ -28,9 +28,9 @@ namespace MakingAPlatformer
 
         public void ManageTransitions(int levelId)
         {
-            if (levelId == 1) ChangeScreen(new SecondLevel(_game));
-            if (levelId == 2) ChangeScreen(new VictoryScreen(_game));
-            if (levelId == 3) ChangeScreen(new DeathScreen(_game));
+            if (levelId == 0) ChangeScreen(new SecondLevel(_game));
+            if (levelId == 1) ChangeScreen(new VictoryScreen(_game));
+            if (levelId == 2) ChangeScreen(new DeathScreen(_game));
         }
 
     }

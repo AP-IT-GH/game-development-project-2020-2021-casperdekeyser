@@ -31,7 +31,7 @@ namespace MakingAPlatformer.LevelManagement.Levels
 
         public override void Update(GameTime gameTime)
         {
-            foreach (Transition zone in DeathZone) if (zone.CheckCollision(hero)) _game.ScreenManager.ManageTransitions(3); // deathscreen
+            foreach (Transition zone in DeathZone) if (zone.CheckCollision(hero)) _game.ScreenManager.ManageTransitions(2); // deathscreen
             
             base.Update(gameTime);
         }
@@ -48,6 +48,7 @@ namespace MakingAPlatformer.LevelManagement.Levels
             // DRAW COLLIDERS
             //collisionManager.DrawAllColliders(_spriteBatch, _game.GraphicsDevice, Color.Red, Color.Green);
             foreach (Transition zone in DeathZone) zone.Draw(_spriteBatch, _graphics, Color.Fuchsia);
+            transitionZone.Draw(_spriteBatch, _graphics, Color.Fuchsia);
 
             _spriteBatch.End();
 
