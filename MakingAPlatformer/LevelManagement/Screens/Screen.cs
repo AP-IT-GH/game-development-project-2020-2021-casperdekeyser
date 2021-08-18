@@ -12,6 +12,7 @@ namespace MakingAPlatformer.LevelManagement.Screens
     public abstract class Screen : IGameScreen
     {
         public abstract int ScreenId { get; set; }
+        public abstract Color DrawingColor { get; set; }
 
         // Game
         protected ContentManager _content;
@@ -77,8 +78,7 @@ namespace MakingAPlatformer.LevelManagement.Screens
 
             mapMaker.DrawLevel(_spriteBatch);
 
-            if (ScreenId == 2) collisionManager.DrawBlockColliders(_spriteBatch, _game.GraphicsDevice, Color.Green);
-            if (ScreenId == 3) collisionManager.DrawBlockColliders(_spriteBatch, _game.GraphicsDevice, Color.Red);
+            collisionManager.DrawBlockColliders(_spriteBatch, _game.GraphicsDevice, DrawingColor);
 
             _spriteBatch.End();
         }
