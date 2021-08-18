@@ -3,9 +3,10 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "Map/Tiled/Titles.tmx",
+    "activeFile": "Map/Tiled/master-tileset.tsx",
     "expandedProjectPaths": [
     ],
+    "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
         "C:/Users/caspe/OneDrive - AP Hogeschool Antwerpen/Bureaublad/Level1.tmx": {
             "scale": 0.75,
@@ -23,8 +24,8 @@
             "scale": 0.6270471464019851,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 621.1654135338346,
-                "y": 411.45231499802134
+                "x": 774.2639493470517,
+                "y": 465.6747130985358
             }
         },
         "Map/Tiled/Level1.tmx": {
@@ -32,7 +33,23 @@
             "selectedLayer": 0,
             "viewCenter": {
                 "x": 775,
-                "y": 465
+                "y": 694
+            }
+        },
+        "Map/Tiled/Level2.tmx": {
+            "scale": 0.5351116625310174,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 776.4734523533504,
+                "y": 465.32344076049145
+            }
+        },
+        "Map/Tiled/Title.tmx": {
+            "scale": 0.556516129032258,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 775.3593786227685,
+                "y": 465.3953164850453
             }
         },
         "Map/Tiled/Titles.tmx": {
@@ -48,7 +65,7 @@
             "selectedLayer": 0,
             "viewCenter": {
                 "x": 774.2639493470517,
-                "y": 466.4721013058962
+                "y": 465.6747130985358
             }
         },
         "Map/Tiled/master-tileset.tsx": {
@@ -67,14 +84,17 @@
         "Map/Tiled/master-tileset.tsx",
         "Map/Tiled/Victory.tmx",
         "Map/Tiled/Death.tmx",
-        "Map/Tiled/Titles.tmx"
+        "Map/Tiled/Title.tmx",
+        "Map/Tiled/Level2.tmx"
     ],
     "project": "",
     "recentFiles": [
         "Map/Tiled/Level1.tmx",
-        "Map/Tiled/master-tileset.tsx",
-        "Map/Tiled/Victory.tmx",
+        "Map/Tiled/Level2.tmx",
+        "Map/Tiled/Title.tmx",
         "Map/Tiled/Death.tmx",
+        "Map/Tiled/Victory.tmx",
+        "Map/Tiled/master-tileset.tsx",
         "Map/Tiled/Titles.tmx",
         "C:/Users/caspe/OneDrive - AP Hogeschool Antwerpen/Bureaublad/master-tileset.tsx",
         "C:/Users/caspe/OneDrive - AP Hogeschool Antwerpen/Bureaublad/Level1.tmx"

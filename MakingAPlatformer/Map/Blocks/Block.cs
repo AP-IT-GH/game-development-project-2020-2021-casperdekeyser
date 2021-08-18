@@ -9,10 +9,11 @@ namespace MakingAPlatformer
     public abstract class Block : IMapObject
     {
         public Vector2 Position { get; set; }
-        public int Size = 62;
         public Texture2D Spritesheet{ get; set; }
         public string SpritesheetPath { get; set; }
         public BoxCollider Collider { get; set; }
+
+        public int Size = 62;
 
         public Block(Vector2 position)
         {
