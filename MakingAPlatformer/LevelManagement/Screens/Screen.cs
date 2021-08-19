@@ -3,10 +3,7 @@ using MakingAPlatformer.Map;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Text;
 
 namespace MakingAPlatformer.LevelManagement.Screens
 {
@@ -52,12 +49,7 @@ namespace MakingAPlatformer.LevelManagement.Screens
             mapMaker.CreateLevel(ScreenId);
 
             // Collision
-            colliders = new List<BoxCollider>();
-            foreach (IMapObject block in mapMaker.Blocks)
-            {
-                colliders.Add(block.Collider);
-            }
-            collisionManager = new CollisionManager(colliders);
+            collisionManager = new CollisionManager(mapMaker.Blocks);
 
         }
 
@@ -66,11 +58,7 @@ namespace MakingAPlatformer.LevelManagement.Screens
             _spriteBatch = new SpriteBatch(_graphics);
 
             // TODO: use this.Content to load your game content here
-
-            foreach (IMapObject block in mapMaker.Blocks)
-            {
-                block.Spritesheet = _content.Load<Texture2D>(block.SpritesheetPath);
-            }
+            _game.ContentLoader.LoadContent(_content, mapMaker);
         }
 
         public virtual void Update(GameTime gameTime)

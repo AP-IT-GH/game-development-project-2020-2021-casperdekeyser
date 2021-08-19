@@ -11,21 +11,27 @@ namespace MakingAPlatformer.Content
 {
     public class ContentLoader
     {
-        public void LoadContent(ContentManager content, IGameObject hero, MapMaker mapMaker, HealthManager healthManager)
+        public void LoadContent(ContentManager content, MapMaker mapMaker, IGameObject hero = null, HealthManager healthManager = null)
         {
-            foreach (Animation animation in hero.Animator.Animations)
-            {
-                animation.SpriteSheet = content.Load<Texture2D>(animation.SpriteSheetPath);
-            }
-
             foreach (IMapObject block in mapMaker.Blocks)
             {
                 block.Spritesheet = content.Load<Texture2D>(block.SpritesheetPath);
             }
 
-            foreach (Heart heart in healthManager.HealthBar)
+            if (hero != null)
             {
-                heart.Spritesheet = content.Load<Texture2D>(heart.SpritesheetPath);
+                foreach (Animation animation in hero.Animator.Animations)
+                {
+                    animation.SpriteSheet = content.Load<Texture2D>(animation.SpriteSheetPath);
+                }
+            }
+
+            if (healthManager != null)
+            {
+                foreach (Heart heart in healthManager.HealthBar)
+                {
+                    heart.Spritesheet = content.Load<Texture2D>(heart.SpritesheetPath);
+                }
             }
         }
     }

@@ -22,8 +22,6 @@ namespace MakingAPlatformer.LevelManagement
         protected SpriteBatch _spriteBatch;
         protected Game1 _game;
 
-        protected ContentLoader _contentLoader;
-
         // Hero
         protected IGameObject hero;
         protected Vector2 heroPosition;
@@ -41,14 +39,13 @@ namespace MakingAPlatformer.LevelManagement
 
         // UI
         protected HealthManager _healthManager;
+        private int amountOfLives = 3;
 
         public Level(Game1 game)
         {
             _graphics = game.GraphicsDevice;
             _content = game.Content;
             _game = game;
-
-            _contentLoader = game.ContentLoader;
 
             Initialize();
             LoadContent();
@@ -71,8 +68,7 @@ namespace MakingAPlatformer.LevelManagement
             collisionManager = new CollisionManager(mapMaker.Blocks, hero);
 
             // UI
-            _healthManager = new HealthManager(3, hero, _game.ScreenManager);
-
+            _healthManager = new HealthManager(amountOfLives, hero, _game.ScreenManager);
         }
 
         protected virtual void LoadContent()
@@ -80,7 +76,7 @@ namespace MakingAPlatformer.LevelManagement
             _spriteBatch = new SpriteBatch(_graphics);
 
             // TODO: use this.Content to load your game content here
-            _contentLoader.LoadContent(_content, hero, mapMaker, _healthManager);
+            _game.ContentLoader.LoadContent(_content, mapMaker, hero, _healthManager);
         }
 
         public virtual void Update(GameTime gameTime)

@@ -12,16 +12,21 @@ namespace MakingAPlatformer
         public static bool HorizontalColliding;
         public static bool VerticalColliding;
 
-        public List<BoxCollider> Colliders;
+        public List<BoxCollider> Colliders = new List<BoxCollider>();
+
         public IGameObject Hero;
         
         private int amountOfCollisions;
 
         public CollisionManager(List<IMapObject> blocks, IGameObject hero)
         {
-            Colliders = new List<BoxCollider>();
             Hero = hero;
 
+            AddColliders(blocks);
+        }
+
+        public CollisionManager(List<IMapObject> blocks)
+        {
             AddColliders(blocks);
         }
 
@@ -33,10 +38,6 @@ namespace MakingAPlatformer
             }
         }
 
-        public CollisionManager(List<BoxCollider> collliders)
-        {
-            Colliders = collliders;
-        }
 
         public void Execute()
         {
@@ -129,7 +130,6 @@ namespace MakingAPlatformer
             }
         }
 
-
         public static BoxCollider UpdateCollider(Vector2 Position, BoxCollider Collider)
         {
             Collider.Rectangle.X = (int)Position.X;
@@ -148,11 +148,5 @@ namespace MakingAPlatformer
         {
             return new Vector2(currentPos.X+horizontalOffset, currentPos.Y+verticalOffset);
         }
-
-        public bool ExternalCheck(Rectangle r1, Rectangle r2)
-        {
-            return true;
-        }
-
     }
 }
