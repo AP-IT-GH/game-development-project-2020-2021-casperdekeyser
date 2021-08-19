@@ -40,7 +40,7 @@ namespace MakingAPlatformer.LevelManagement
         protected List<BoxCollider> colliders;
 
         // UI
-        protected HealthManager healthManager;
+        protected HealthManager _healthManager;
 
         public Level(Game1 game)
         {
@@ -71,7 +71,7 @@ namespace MakingAPlatformer.LevelManagement
             collisionManager = new CollisionManager(mapMaker.Blocks, hero);
 
             // UI
-            healthManager = new HealthManager(3);
+            _healthManager = new HealthManager(3, hero, _game.ScreenManager);
 
         }
 
@@ -80,7 +80,7 @@ namespace MakingAPlatformer.LevelManagement
             _spriteBatch = new SpriteBatch(_graphics);
 
             // TODO: use this.Content to load your game content here
-            _contentLoader.LoadContent(_content, hero, mapMaker, healthManager);
+            _contentLoader.LoadContent(_content, hero, mapMaker, _healthManager);
         }
 
         public virtual void Update(GameTime gameTime)
@@ -97,7 +97,7 @@ namespace MakingAPlatformer.LevelManagement
 
             hero.Draw(_spriteBatch);
 
-            healthManager.Draw(_spriteBatch);
+            _healthManager.Draw(_spriteBatch);
 
             mapMaker.DrawLevel(_spriteBatch);
 
