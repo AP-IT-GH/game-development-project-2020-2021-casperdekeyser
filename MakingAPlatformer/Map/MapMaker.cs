@@ -15,10 +15,12 @@ namespace MakingAPlatformer.Map
         private List<int[,]> tileArrayList = new List<int[,]>();
 
         public List<IMapObject> Blocks;
+        public BlockGenerator blockgen;
 
         public MapMaker()
         {
             Blocks = new List<IMapObject>();
+            blockgen = new BlockGenerator();
             blockArray = new Block[mapLength, mapHeight];
             tileArrayList = new List<int[,]>
             {
@@ -38,7 +40,7 @@ namespace MakingAPlatformer.Map
                     {0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0 },
                     {0,0,0,0,1,1,0,0,0,0,0,0,0,0,1,1,0,1,0,0,0,0,0,0,0 },
                     {0,0,0,0,1,1,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0 },
-                    {2,8,7,2,2,8,8,2,7,9,2,7,2,9,9,7,8,8,8,2,9,2,8,7,2 },
+                    {2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2 },
                 },
                 new int[,] // level 2
                 {
@@ -56,7 +58,7 @@ namespace MakingAPlatformer.Map
                     {3,0,0,0,0,3,0,0,0,0,0,0,0,0,0,3,3,3,0,0,0,0,0,0,0 },
                     {3,0,0,0,3,3,0,0,0,0,0,0,0,0,3,3,0,3,0,0,0,0,0,0,0 },
                     {3,0,0,0,3,3,0,0,0,0,0,0,0,0,3,0,0,3,0,0,0,0,0,0,0 },
-                    {10,4,11,12,4,4,11,10,4,12,4,4,4,11,12,4,10,4,0,0,0,0,10,11,12 },
+                    {4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4 },
                 },
                 new int[,] // victory
                 {
@@ -122,19 +124,7 @@ namespace MakingAPlatformer.Map
                 {
                     if (tileArrayList[level][x, y] != 0)
                     {
-                        if (tileArrayList[level][x, y] == 1) blockArray[x, y] = new StoneBlock(new Vector2(y * blockSize, x * blockSize));
-                        if (tileArrayList[level][x, y] == 2) blockArray[x, y] = new GrassBlock(new Vector2(y * blockSize, x * blockSize));
-                        if (tileArrayList[level][x, y] == 3) blockArray[x, y] = new SandBlock(new Vector2(y * blockSize, x * blockSize));
-                        if (tileArrayList[level][x, y] == 4) blockArray[x, y] = new DirtBlock(new Vector2(y * blockSize, x * blockSize));
-                        if (tileArrayList[level][x, y] == 5) blockArray[x, y] = new StoneStairsBlock(new Vector2(y * blockSize, x * blockSize));
-                        if (tileArrayList[level][x, y] == 6) blockArray[x, y] = new SandStairsBlock(new Vector2(y * blockSize, x * blockSize));
-                        if (tileArrayList[level][x, y] == 7) blockArray[x, y] = new GrassBlock(new Vector2(y * blockSize, x * blockSize), 1);
-                        if (tileArrayList[level][x, y] == 8) blockArray[x, y] = new GrassBlock(new Vector2(y * blockSize, x * blockSize), 2);
-                        if (tileArrayList[level][x, y] == 9) blockArray[x, y] = new GrassBlock(new Vector2(y * blockSize, x * blockSize), 3);
-                        if (tileArrayList[level][x, y] == 10) blockArray[x, y] = new DirtBlock(new Vector2(y * blockSize, x * blockSize), 1);
-                        if (tileArrayList[level][x, y] == 11) blockArray[x, y] = new DirtBlock(new Vector2(y * blockSize, x * blockSize), 2);
-                        if (tileArrayList[level][x, y] == 12) blockArray[x, y] = new DirtBlock(new Vector2(y * blockSize, x * blockSize), 3);
-
+                        blockArray[x, y] = blockgen.GenerateBlockVariation(tileArrayList, level, x, y, blockSize);
                         Blocks.Add(blockArray[x, y]);
                     }
                 }

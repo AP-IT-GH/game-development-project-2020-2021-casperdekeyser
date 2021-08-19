@@ -1,0 +1,324 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="MakingAPlatformer.AnimateCommand" Collapsed="true">
+    <Position X="14.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Animation\AnimateCommand.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MakingAPlatformer.Animation" Collapsed="true">
+    <Position X="1.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>SASAAAAAACAAAAAEAAAAIERAIAAAAAEAAAAAAQAAAAA=</HashCode>
+      <FileName>Animation\Animation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MakingAPlatformer.AnimationFrame" Collapsed="true">
+    <Position X="16.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAA=</HashCode>
+      <FileName>Animation\AnimationFrame.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MakingAPlatformer.Animator" Collapsed="true">
+    <Position X="5.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACQAAAAAAAAAEAAAAAAAAAQQAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Animation\Animator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MakingAPlatformer.HeroAnimator" Collapsed="true">
+    <Position X="5.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Animation\HeroAnimator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MakingAPlatformer.MirroredAnimation" Collapsed="true">
+    <Position X="0.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Animation\MirroredAnimation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MakingAPlatformer.NormalAnimation" Collapsed="true">
+    <Position X="2.75" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Animation\NormalAnimation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MakingAPlatformer.BoxCollider" Collapsed="true">
+    <Position X="18.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAABAAAAgAgAAAAAEQAAAAgAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Collision\BoxCollider.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MakingAPlatformer.CollisionManager" Collapsed="true">
+    <Position X="20" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAsAAAAAIARAEAAAAAEQIAAAAAiQAAAACAABAAA=</HashCode>
+      <FileName>Collision\CollisionManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MakingAPlatformer.KeyboardReader" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="20" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Input\KeyboardReader.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="MakingAPlatformer.JumpCommand" Collapsed="true">
+    <Position X="18.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAQAAAAAAAAAQQgAAAAIAAAAAAAQAAAAAAgAAAAgAA=</HashCode>
+      <FileName>Jumping\JumpCommand.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MakingAPlatformer.ScreenManager" Collapsed="true">
+    <Position X="20" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>LevelManagement\ScreenManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MakingAPlatformer.Block" Collapsed="true">
+    <Position X="6.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgAgQAAgAAQAAAAAAAIQAAAAAAIAAAA=</HashCode>
+      <FileName>Map\Blocks\Block.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="MakingAPlatformer.MoveCommand" Collapsed="true">
+    <Position X="16.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAABAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Movement\MoveCommand.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MakingAPlatformer.Game1" Collapsed="true">
+    <Position X="14.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAEAABAAwAAAAAAAAAAAAAEAAACAIAAAAAAAAQ=</HashCode>
+      <FileName>Game1.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MakingAPlatformer.Hero" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="16.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgRAAAAAAAAAAwAgACAGIAAAAAAAiAAQBAAAJAQYAAA=</HashCode>
+      <FileName>Hero.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="MakingAPlatformer.Program" Collapsed="true">
+    <Position X="18.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MakingAPlatformer.LevelManagement.Levels.FirstLevel" Collapsed="true">
+    <Position X="5.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAQAAAAAAAAAAABAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>LevelManagement\Levels\FirstLevel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MakingAPlatformer.LevelManagement.Levels.SecondLevel" Collapsed="true">
+    <Position X="7.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAwAAAAEAAAAAABAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>LevelManagement\Levels\SecondLevel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MakingAPlatformer.LevelManagement.Level" Collapsed="true">
+    <Position X="6.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQACAAAAEAAgwABAAAAAAAoAhAAAAACQMAAEAAAAAQ=</HashCode>
+      <FileName>LevelManagement\Levels\Level.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="MakingAPlatformer.LevelManagement.Screens.DeathScreen" Collapsed="true">
+    <Position X="0.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAIAAAAAA=</HashCode>
+      <FileName>LevelManagement\Screens\DeathScreen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MakingAPlatformer.LevelManagement.Screens.Screen" Collapsed="true">
+    <Position X="1.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAigwABAAAAAAAgAAAAAAACAIIAMAAAAAQ=</HashCode>
+      <FileName>LevelManagement\Screens\Screen.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="MakingAPlatformer.LevelManagement.Screens.VictoryScreen" Collapsed="true">
+    <Position X="2.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAIAAAAAA=</HashCode>
+      <FileName>LevelManagement\Screens\VictoryScreen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MakingAPlatformer.Management.Transition" Collapsed="true">
+    <Position X="18.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAAAAgAgAAAAAEQAAAAgAACAAAAAAAAAAAA=</HashCode>
+      <FileName>LevelManagement\Transition.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MakingAPlatformer.Map.DirtBlock" Collapsed="true">
+    <Position X="5.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Map\Blocks\DirtBlock.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MakingAPlatformer.Map.GrassBlock" Collapsed="true">
+    <Position X="7.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Map\Blocks\GrassBlock.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MakingAPlatformer.Map.SandBlock" Collapsed="true">
+    <Position X="10" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Map\Blocks\SandBlock.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MakingAPlatformer.Map.StoneBlock" Collapsed="true">
+    <Position X="12.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Map\Blocks\StoneBlock.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MakingAPlatformer.Map.MapMaker" Collapsed="true">
+    <Position X="14.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AwAUAAAAAAAAAAAAAAAAAAACAAAAAFAAIAAAAAAAAAA=</HashCode>
+      <FileName>Map\MapMaker.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MakingAPlatformer.Map.TiledInterpreter" Collapsed="true">
+    <Position X="14.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAA=</HashCode>
+      <FileName>Map\TiledInterpreter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MakingAPlatformer.Map.Blocks.SandStairsBlock" Collapsed="true">
+    <Position X="1" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Map\Blocks\SandStairsBlock.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MakingAPlatformer.Map.Blocks.StoneStairsBlock" Collapsed="true">
+    <Position X="3.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Map\Blocks\StoneStairsBlock.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MakingAPlatformer.Timing.Timer" Collapsed="true">
+    <Position X="16.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gIAAAAAAAAAAAgAAABAAAAAABAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Timing\Timer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="MakingAPlatformer.IAnimateable" Collapsed="true">
+    <Position X="14.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAA=</HashCode>
+      <FileName>Interfaces\IAnimateable.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="MakingAPlatformer.ICollision" Collapsed="true">
+    <Position X="16.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\ICollision.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="MakingAPlatformer.IGameCommand" Collapsed="true">
+    <Position X="18.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\IGameCommand.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="MakingAPlatformer.IGameObject" Collapsed="true">
+    <Position X="20" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAgAgACAAAAAAAAAAAAAQAAAAAAQAAAA=</HashCode>
+      <FileName>Interfaces\IGameObject.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="MakingAPlatformer.IInputReader" Collapsed="true">
+    <Position X="16.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\IInputReader.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="MakingAPlatformer.IMapObject" Collapsed="true">
+    <Position X="20" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgAgQAAgAAAAAAAAAAAQAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\IMapObject.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="MakingAPlatformer.ITransform" Collapsed="true">
+    <Position X="14.75" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\ITransform.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="MakingAPlatformer.Interfaces.IGameScreen" Collapsed="true">
+    <Position X="14.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\IGameScreen.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="MakingAPlatformer.Interfaces.ILevelCreator" Collapsed="true">
+    <Position X="18.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEEAIAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAEA=</HashCode>
+      <FileName>Interfaces\ILevelCreator.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="MakingAPlatformer.Movement" Collapsed="true">
+    <Position X="14.75" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAABAAgAAAAAAAAAAAAAAAAAAAAAIQAAAAAAAAAA=</HashCode>
+      <FileName>Hero.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="MakingAPlatformer.PossibleAnimations" Collapsed="true">
+    <Position X="16.5" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgEAAAAAEAAAAAEAAAAAAABEAAAAAAAAAAAgAAAAQAA=</HashCode>
+      <FileName>Hero.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="MakingAPlatformer.States" Collapsed="true">
+    <Position X="18.25" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAACAAAAAIAA=</HashCode>
+      <FileName>Hero.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
