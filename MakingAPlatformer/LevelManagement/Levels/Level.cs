@@ -68,12 +68,7 @@ namespace MakingAPlatformer.LevelManagement
             mapMaker.CreateLevel(LevelId);
 
             // Collision
-            colliders = new List<BoxCollider>();
-            foreach (IMapObject block in mapMaker.Blocks)
-            {
-                colliders.Add(block.Collider);
-            }
-            collisionManager = new CollisionManager(colliders, hero);
+            collisionManager = new CollisionManager(mapMaker.Blocks, hero);
 
             // UI
             healthManager = new HealthManager(3);

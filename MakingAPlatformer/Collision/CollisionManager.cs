@@ -17,10 +17,20 @@ namespace MakingAPlatformer
         
         private int amountOfCollisions;
 
-        public CollisionManager(List<BoxCollider> collliders, IGameObject hero)
+        public CollisionManager(List<IMapObject> blocks, IGameObject hero)
         {
-            Colliders = collliders;
+            Colliders = new List<BoxCollider>();
             Hero = hero;
+
+            AddColliders(blocks);
+        }
+
+        private void AddColliders(List<IMapObject> blocks)
+        {
+            foreach (IMapObject block in blocks)
+            {
+                Colliders.Add(block.Collider);
+            }
         }
 
         public CollisionManager(List<BoxCollider> collliders)
