@@ -15,6 +15,7 @@ namespace MakingAPlatformer.LevelManagement.Screens
         public abstract int ScreenId { get; set; }
         public abstract Color DrawingColor { get; set; }
         public int Duration { get; set; } = 5;
+        public virtual Color BackgroundColor { get; set; } = Color.Beige;
 
         // Game
         protected ContentManager _content;

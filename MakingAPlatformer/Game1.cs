@@ -53,7 +53,7 @@ namespace MakingAPlatformer
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(CurrentLevel.BackgroundColor);
 
             CurrentLevel.Draw(gameTime, _spriteBatch);
 

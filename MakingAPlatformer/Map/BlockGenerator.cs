@@ -29,7 +29,7 @@ namespace MakingAPlatformer.Map
 
         public IMapObject GenerateBlockVariation(List<int[,]> tileArrayList, int level, int x, int y, int blockSize)
         {
-            int randomNumber = rng.Next(0, 4);
+            int randomNumber = rng.Next(4);
             if (tileArrayList[level][x, y] == 1) return new StoneBlock(new Vector2(y * blockSize, x * blockSize), randomNumber);
             if (tileArrayList[level][x, y] == 2) return new GrassBlock(new Vector2(y * blockSize, x * blockSize), randomNumber);
             if (tileArrayList[level][x, y] == 3) return new SandBlock(new Vector2(y * blockSize, x * blockSize), randomNumber);

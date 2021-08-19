@@ -11,6 +11,8 @@ namespace MakingAPlatformer.LevelManagement
     public abstract class Level : IGameScreen
     {
         public abstract int LevelId { get; set; }
+        public virtual Color BackgroundColor { get; set; } = Color.CornflowerBlue;
+
 
         // Game
         protected ContentManager _content;
