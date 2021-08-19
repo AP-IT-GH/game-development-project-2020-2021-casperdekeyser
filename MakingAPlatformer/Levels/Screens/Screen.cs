@@ -15,10 +15,10 @@ namespace MakingAPlatformer.LevelManagement.Screens
         public virtual Color BackgroundColor { get; set; } = Color.Beige;
 
         // Game
-        protected ContentManager _content;
-        protected GraphicsDevice _graphics;
-        protected SpriteBatch _spriteBatch;
-        protected Game1 _game;
+        protected ContentManager content;
+        protected GraphicsDevice graphics;
+        protected SpriteBatch spriteBatch;
+        protected Game1 game;
 
         // Map
         protected MapMaker mapMaker;
@@ -32,9 +32,9 @@ namespace MakingAPlatformer.LevelManagement.Screens
 
         public Screen(Game1 game)
         {
-            _game = game;
-            _content = game.Content;
-            _graphics = game.GraphicsDevice;
+            this.game = game;
+            content = game.Content;
+            graphics = game.GraphicsDevice;
 
             _timer = new Timing.Timer();
 
@@ -50,31 +50,29 @@ namespace MakingAPlatformer.LevelManagement.Screens
 
             // Collision
             collisionManager = new CollisionManager(mapMaker.Blocks);
-
         }
 
         protected virtual void LoadContent()
         {
-            _spriteBatch = new SpriteBatch(_graphics);
+            spriteBatch = new SpriteBatch(graphics);
 
             // TODO: use this.Content to load your game content here
-            _game.ContentLoader.LoadContent(_content, mapMaker);
+            game.ContentLoader.LoadContent(content, mapMaker);
         }
 
         public virtual void Update(GameTime gameTime)
         {
-            if (_timer.SecondsElapsed(Duration, gameTime)) _game.Exit();
+            if (_timer.SecondsElapsed(Duration, gameTime)) game.Exit();
         }
 
         public virtual void Draw(GameTime gameTime)
         {
-            _spriteBatch.Begin();
+            spriteBatch.Begin();
 
-            mapMaker.DrawLevel(_spriteBatch);
+            mapMaker.DrawLevel(spriteBatch);
+            collisionManager.DrawBlockColliders(spriteBatch, game.GraphicsDevice, DrawingColor); // fill out blocks
 
-            collisionManager.DrawBlockColliders(_spriteBatch, _game.GraphicsDevice, DrawingColor);
-
-            _spriteBatch.End();
+            spriteBatch.End();
         }
     }
 }

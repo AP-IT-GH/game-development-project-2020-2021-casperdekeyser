@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace MakingAPlatformer.Map
+namespace MakingAPlatformer.Map.Blocks
 {
     public class SandBlock : Block
     {

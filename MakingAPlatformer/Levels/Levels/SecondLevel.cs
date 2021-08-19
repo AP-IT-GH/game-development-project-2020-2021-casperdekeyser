@@ -29,7 +29,7 @@ namespace MakingAPlatformer.LevelManagement.Levels
         {
             foreach (Transition zone in DeathZone)
             {
-                if (zone.CheckCollision(hero)) _healthManager.TakeDamage();
+                if (zone.CheckCollision(hero)) healthManager.TakeDamage();
             }
             base.Update(gameTime);
         }

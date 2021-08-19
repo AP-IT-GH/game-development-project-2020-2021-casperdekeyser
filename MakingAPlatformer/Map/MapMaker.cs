@@ -1,10 +1,13 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+﻿using MakingAPlatformer.Map.Blocks;
+using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 
 namespace MakingAPlatformer.Map
 {
     public class MapMaker
     {
+        public List<IMapObject> Blocks;
+
         private int mapLength = 15;
         private int mapHeight = 25;
         private int blockSize = 62;
@@ -12,13 +15,12 @@ namespace MakingAPlatformer.Map
         private IMapObject[,] blockArray;
         private List<int[,]> tileArrayList = new List<int[,]>();
 
-        public List<IMapObject> Blocks;
-        public BlockGenerator blockgen;
+        private BlockGenerator _blockGenerator;
 
         public MapMaker()
         {
             Blocks = new List<IMapObject>();
-            blockgen = new BlockGenerator();
+            _blockGenerator = new BlockGenerator();
             blockArray = new Block[mapLength, mapHeight];
             tileArrayList = new List<int[,]>
             {
@@ -107,6 +109,8 @@ namespace MakingAPlatformer.Map
              * 4 -> dirt
              * 5 -> stone stairs
              * 6 -> sand stairs
+             * 7 -> grass trap
+             * 8 -> dirt trap
              */
 
             /* LEVEL IDs
@@ -122,7 +126,7 @@ namespace MakingAPlatformer.Map
                 {
                     if (tileArrayList[level][x, y] != 0)
                     {
-                        blockArray[x, y] = blockgen.GenerateBlockVariation(tileArrayList, level, x, y, blockSize);
+                        blockArray[x, y] = _blockGenerator.GenerateBlockVariation(tileArrayList, level, x, y, blockSize);
                         Blocks.Add(blockArray[x, y]);
                     }
                 }

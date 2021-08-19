@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace MakingAPlatformer
+namespace MakingAPlatformer.Map.Blocks
 {
     public abstract class Block : IMapObject
     {

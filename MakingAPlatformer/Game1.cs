@@ -32,7 +32,6 @@ namespace MakingAPlatformer
             _graphics.PreferredBackBufferWidth = 1550;
             _graphics.PreferredBackBufferHeight = 930;
             _graphics.ApplyChanges();
-
             base.Initialize();
         }
 
@@ -44,9 +43,7 @@ namespace MakingAPlatformer
         protected override void Update(GameTime gameTime)
         {
             if (Keyboard.GetState().IsKeyDown(Keys.Escape)) Exit();
-
             ScreenManager.CheckForNextLevel();
-
             CurrentLevel.Update(gameTime);
             base.Update(gameTime);
         }
@@ -54,9 +51,7 @@ namespace MakingAPlatformer
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(CurrentLevel.BackgroundColor);
-
             CurrentLevel.Draw(gameTime);
-
             base.Draw(gameTime);
         }
     }

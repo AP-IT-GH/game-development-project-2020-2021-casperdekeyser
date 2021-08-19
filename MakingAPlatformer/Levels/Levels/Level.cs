@@ -15,10 +15,10 @@ namespace MakingAPlatformer.LevelManagement
         public virtual Color BackgroundColor { get; set; } = Color.CornflowerBlue;
 
         // Game
-        protected ContentManager _content;
-        protected GraphicsDevice _graphics;
-        protected SpriteBatch _spriteBatch;
-        protected Game1 _game;
+        protected ContentManager content;
+        protected GraphicsDevice graphics;
+        protected SpriteBatch spriteBatch;
+        protected Game1 game;
 
         // Hero
         protected IGameObject hero;
@@ -36,7 +36,7 @@ namespace MakingAPlatformer.LevelManagement
         protected List<BoxCollider> colliders;
 
         // UI
-        protected HealthManager _healthManager;
+        protected HealthManager healthManager;
         protected Vector2 startPosition = new Vector2(50, 868 - 96);
 
         private int amountOfLives = 3;
@@ -44,9 +44,9 @@ namespace MakingAPlatformer.LevelManagement
 
         public Level(Game1 game)
         {
-            _graphics = game.GraphicsDevice;
-            _content = game.Content;
-            _game = game;
+            graphics = game.GraphicsDevice;
+            content = game.Content;
+            this.game = game;
 
             Initialize();
             LoadContent();
@@ -66,44 +66,38 @@ namespace MakingAPlatformer.LevelManagement
             mapMaker.CreateLevel(LevelId);
 
             // UI
-            _healthManager = new HealthManager(amountOfLives, hero, startPosition, _game.ScreenManager);
+            healthManager = new HealthManager(amountOfLives, hero, startPosition, game.ScreenManager);
 
             // Collision
             collisionManager = new CollisionManager(mapMaker.Blocks, hero);
-
         }
 
         protected virtual void LoadContent()
         {
-            _spriteBatch = new SpriteBatch(_graphics);
-
-            // TODO: use this.Content to load your game content here
-            _game.ContentLoader.LoadContent(_content, mapMaker, hero, _healthManager);
+            spriteBatch = new SpriteBatch(graphics);
+            game.ContentLoader.LoadContent(content, mapMaker, hero, healthManager);
         }
 
         public virtual void Update(GameTime gameTime)
         {
-            if (transitionZone.CheckCollision(hero)) _game.ScreenManager.ManageTransitions(LevelId);
-
-            collisionManager.CheckCollisions(_healthManager);
+            if (transitionZone.CheckCollision(hero)) game.ScreenManager.ManageTransitions(LevelId);
+            collisionManager.CheckCollisions(healthManager);
             hero.Update(gameTime);
         }
 
         public virtual void Draw(GameTime gameTime)
         {
-            _spriteBatch.Begin();
+            spriteBatch.Begin();
 
-            hero.Draw(_spriteBatch);
-
-            _healthManager.Draw(_spriteBatch);
-
-            mapMaker.DrawLevel(_spriteBatch);
+            hero.Draw(spriteBatch);
+            healthManager.Draw(spriteBatch);
+            mapMaker.DrawLevel(spriteBatch);
 
             // DRAW COLLIDERS
             //collisionManager.DrawAllColliders(_spriteBatch, _game.GraphicsDevice, Color.Red, Color.Green);
-            transitionZone.Draw(_spriteBatch, _graphics, Color.Fuchsia);
+            transitionZone.Draw(spriteBatch, graphics, Color.Fuchsia);
 
-            _spriteBatch.End();
+            spriteBatch.End();
         }
     }
 }
