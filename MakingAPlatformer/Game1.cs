@@ -55,7 +55,7 @@ namespace MakingAPlatformer
         {
             GraphicsDevice.Clear(CurrentLevel.BackgroundColor);
 
-            CurrentLevel.Draw(gameTime, _spriteBatch);
+            CurrentLevel.Draw(gameTime);
 
             base.Draw(gameTime);
         }

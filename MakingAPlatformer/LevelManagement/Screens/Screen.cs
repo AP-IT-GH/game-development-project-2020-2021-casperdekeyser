@@ -78,7 +78,7 @@ namespace MakingAPlatformer.LevelManagement.Screens
             if (_timer.SecondsElapsed(Duration, gameTime)) _game.Exit();
         }
 
-        public virtual void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        public virtual void Draw(GameTime gameTime)
         {
             _spriteBatch.Begin();
 

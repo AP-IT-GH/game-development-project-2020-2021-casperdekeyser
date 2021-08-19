@@ -1,6 +1,7 @@
 ﻿using MakingAPlatformer.Interfaces;
 using MakingAPlatformer.Management;
 using MakingAPlatformer.Map;
+using MakingAPlatformer.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -35,6 +36,9 @@ namespace MakingAPlatformer.LevelManagement
         protected CollisionManager collisionManager;
         protected List<BoxCollider> colliders;
 
+        // UI
+        protected HealthManager healthManager;
+
         public Level(Game1 game)
         {
             _graphics = game.GraphicsDevice;
@@ -65,6 +69,10 @@ namespace MakingAPlatformer.LevelManagement
                 colliders.Add(block.Collider);
             }
             collisionManager = new CollisionManager(colliders, hero);
+
+            // UI
+            healthManager = new HealthManager(3);
+
         }
 
         protected virtual void LoadContent()
@@ -82,6 +90,11 @@ namespace MakingAPlatformer.LevelManagement
             {
                 block.Spritesheet = _content.Load<Texture2D>(block.SpritesheetPath);
             }
+
+            foreach (Heart heart in healthManager.HealthBar)
+            {
+                heart.Spritesheet = _content.Load<Texture2D>(heart.SpritesheetPath);
+            }
         }
 
         public virtual void Update(GameTime gameTime)
@@ -92,11 +105,13 @@ namespace MakingAPlatformer.LevelManagement
             hero.Update(gameTime);
         }
 
-        public virtual void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        public virtual void Draw(GameTime gameTime)
         {
             _spriteBatch.Begin();
 
             hero.Draw(_spriteBatch);
+
+            healthManager.Draw(_spriteBatch);
 
             mapMaker.DrawLevel(_spriteBatch);
 
