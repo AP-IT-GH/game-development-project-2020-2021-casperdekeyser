@@ -15,7 +15,6 @@ namespace MakingAPlatformer.LevelManagement
         public abstract int LevelId { get; set; }
         public virtual Color BackgroundColor { get; set; } = Color.CornflowerBlue;
 
-
         // Game
         protected ContentManager _content;
         protected GraphicsDevice _graphics;
@@ -39,7 +38,10 @@ namespace MakingAPlatformer.LevelManagement
 
         // UI
         protected HealthManager _healthManager;
+        protected Vector2 startPosition = new Vector2(50, 868 - 96);
+
         private int amountOfLives = 3;
+
 
         public Level(Game1 game)
         {
@@ -54,7 +56,7 @@ namespace MakingAPlatformer.LevelManagement
         protected virtual void Initialize()
         {
             // Hero
-            heroPosition = new Vector2(50, 868 - 96);
+            heroPosition = startPosition;
             heroAnimator = new HeroAnimator();
             inputReader = new KeyboardReader();
             animateCommand = new AnimateCommand();
@@ -68,7 +70,7 @@ namespace MakingAPlatformer.LevelManagement
             collisionManager = new CollisionManager(mapMaker.Blocks, hero);
 
             // UI
-            _healthManager = new HealthManager(amountOfLives, hero, _game.ScreenManager);
+            _healthManager = new HealthManager(amountOfLives, hero, startPosition, _game.ScreenManager);
         }
 
         protected virtual void LoadContent()
