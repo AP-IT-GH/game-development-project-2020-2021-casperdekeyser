@@ -9,7 +9,7 @@ namespace MakingAPlatformer.Map.Blocks
     {
         public override int RowOnMasterTileset { get; set; } = 3;
 
-        public DirtTrap(Vector2 position) : base(position) { }
+        public DirtTrap(Vector2 position, int variation = 0) : base(position) { }
 
     }
 }

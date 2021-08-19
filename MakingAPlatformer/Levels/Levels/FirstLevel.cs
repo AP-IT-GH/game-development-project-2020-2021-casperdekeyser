@@ -1,5 +1,4 @@
 ﻿using MakingAPlatformer.Management;
-using MakingAPlatformer.UI;
 using Microsoft.Xna.Framework;
 
 namespace MakingAPlatformer.LevelManagement.Levels

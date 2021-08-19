@@ -3,7 +3,9 @@ using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Text;
+using System.Linq;
+using System.Reflection;
+
 
 namespace MakingAPlatformer.Map
 {
@@ -27,40 +29,69 @@ namespace MakingAPlatformer.Map
             return null;
         }
 
+        /*
+        * Block factory with reflection
+        * Manier nodig om nummers te vertalen naar klasses zonder if te gebruiken
+        */
         public IMapObject GenerateBlockVariation(List<int[,]> tileArrayList, int level, int x, int y, int blockSize)
         {
             Random rng = new Random();
             int randomNumber = rng.Next(4);
 
-            if (tileArrayList[level][x, y] == 1) return new StoneBlock(new Vector2(y * blockSize, x * blockSize), randomNumber);
-            if (tileArrayList[level][x, y] == 2) return new GrassBlock(new Vector2(y * blockSize, x * blockSize), randomNumber);
-            if (tileArrayList[level][x, y] == 3) return new SandBlock(new Vector2(y * blockSize, x * blockSize), randomNumber);
-            if (tileArrayList[level][x, y] == 4) return new DirtBlock(new Vector2(y * blockSize, x * blockSize), randomNumber);
-            if (tileArrayList[level][x, y] == 5) return new StoneStairsBlock(new Vector2(y * blockSize, x * blockSize));
-            if (tileArrayList[level][x, y] == 6) return new SandStairsBlock(new Vector2(y * blockSize, x * blockSize));
-            if (tileArrayList[level][x, y] == 7) return new GrassTrap(new Vector2(y * blockSize, x * blockSize));
-            if (tileArrayList[level][x, y] == 8) return new DirtTrap(new Vector2(y * blockSize, x * blockSize));
-            return null;
+            // ATTEMPT 1: using if's
 
-            /*
-             * Block factory with reflection
-             * Manier nodig om nummers te vertalen naar klasses zonder if te gebruiken
-             */
+            //if (tileArrayList[level][x, y] == 1) return new StoneBlock(new Vector2(y * blockSize, x * blockSize), randomNumber);
+            //if (tileArrayList[level][x, y] == 2) return new GrassBlock(new Vector2(y * blockSize, x * blockSize), randomNumber);
+            //if (tileArrayList[level][x, y] == 3) return new SandBlock(new Vector2(y * blockSize, x * blockSize), randomNumber);
+            //if (tileArrayList[level][x, y] == 4) return new DirtBlock(new Vector2(y * blockSize, x * blockSize), randomNumber);
+            //if (tileArrayList[level][x, y] == 5) return new StoneStairsBlock(new Vector2(y * blockSize, x * blockSize));
+            //if (tileArrayList[level][x, y] == 6) return new SandStairsBlock(new Vector2(y * blockSize, x * blockSize));
+            //if (tileArrayList[level][x, y] == 7) return new GrassTrap(new Vector2(y * blockSize, x * blockSize));
+            //if (tileArrayList[level][x, y] == 8) return new DirtTrap(new Vector2(y * blockSize, x * blockSize));
+            //return null;
 
-            //string blockName = "StoneBlock";
-            //try
-            //{
-            //    Debug.WriteLine("--- TEST: " + typeof(GrassTrap));
 
-            //    IMapObject block = (IMapObject)Activator.CreateInstance(Type.GetType($"MakingAPlatformer.Map.Blocks.{blockName}"), new object[] { new Vector2(y * blockSize, x * blockSize), randomNumber });
+            // ATTEMPT 2: using translation between int and string, still manual adding
 
-            //    return block;
-            //}
-            //catch (Exception e)
-            //{
-            //    Debug.WriteLine("--- EXCEPTION: " + e.Message);
-            //    return null;
-            //}
+            //string blockName = "";
+
+            //if (tileArrayList[level][x, y] == 1) blockName = "StoneBlock";
+            //if (tileArrayList[level][x, y] == 2) blockName = "GrassBlock";
+            //if (tileArrayList[level][x, y] == 3) blockName = "SandBlock";
+            //if (tileArrayList[level][x, y] == 4) blockName = "DirtBlock";
+            //if (tileArrayList[level][x, y] == 5) blockName = "StoneStairsBlock";
+            //if (tileArrayList[level][x, y] == 6) blockName = "SandStairsBlock";
+            //if (tileArrayList[level][x, y] == 7) blockName = "GrassTrap";
+            //if (tileArrayList[level][x, y] == 8) blockName = "DirtTrap";
+
+
+            // ATTEMPT 3: using a list of types, still manual adding
+            List<Type> blockTypes = new List<Type>
+            {
+                typeof(StoneBlock),
+                typeof(GrassBlock),
+                typeof(SandBlock),
+                typeof(DirtBlock),
+                typeof(StoneStairsBlock),
+                typeof(SandStairsBlock),
+                typeof(GrassTrap),
+                typeof(DirtTrap),
+            };
+
+            try
+            {
+                //Debug.WriteLine("--- TEST: " + );
+
+                //IMapObject block = (IMapObject)Activator.CreateInstance(Type.GetType($"MakingAPlatformer.Map.Blocks.{blockName}"), new object[] { new Vector2(y * blockSize, x * blockSize), randomNumber });
+                IMapObject block = (IMapObject)Activator.CreateInstance(blockTypes[tileArrayList[level][x, y] - 1], new object[] { new Vector2(y * blockSize, x * blockSize), randomNumber });
+
+                return block;
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine("--- EXCEPTION: " + e.Message);
+                return null;
+            }
         }
     }
 }
