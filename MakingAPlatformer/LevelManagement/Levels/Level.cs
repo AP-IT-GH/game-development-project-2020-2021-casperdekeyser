@@ -1,4 +1,5 @@
-﻿using MakingAPlatformer.Interfaces;
+﻿using MakingAPlatformer.Content;
+using MakingAPlatformer.Interfaces;
 using MakingAPlatformer.Management;
 using MakingAPlatformer.Map;
 using MakingAPlatformer.UI;
@@ -20,6 +21,8 @@ namespace MakingAPlatformer.LevelManagement
         protected GraphicsDevice _graphics;
         protected SpriteBatch _spriteBatch;
         protected Game1 _game;
+
+        protected ContentLoader _contentLoader;
 
         // Hero
         protected IGameObject hero;
@@ -44,6 +47,8 @@ namespace MakingAPlatformer.LevelManagement
             _graphics = game.GraphicsDevice;
             _content = game.Content;
             _game = game;
+
+            _contentLoader = game.ContentLoader;
 
             Initialize();
             LoadContent();
@@ -80,21 +85,7 @@ namespace MakingAPlatformer.LevelManagement
             _spriteBatch = new SpriteBatch(_graphics);
 
             // TODO: use this.Content to load your game content here
-
-            foreach (Animation animation in hero.Animator.Animations)
-            {
-                animation.SpriteSheet = _content.Load<Texture2D>(animation.SpriteSheetPath);
-            }
-
-            foreach (IMapObject block in mapMaker.Blocks)
-            {
-                block.Spritesheet = _content.Load<Texture2D>(block.SpritesheetPath);
-            }
-
-            foreach (Heart heart in healthManager.HealthBar)
-            {
-                heart.Spritesheet = _content.Load<Texture2D>(heart.SpritesheetPath);
-            }
+            _contentLoader.LoadContent(_content, hero, mapMaker, healthManager);
         }
 
         public virtual void Update(GameTime gameTime)

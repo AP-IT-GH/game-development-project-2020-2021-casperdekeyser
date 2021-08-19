@@ -1,4 +1,5 @@
-﻿using MakingAPlatformer.Interfaces;
+﻿using MakingAPlatformer.Content;
+using MakingAPlatformer.Interfaces;
 using MakingAPlatformer.LevelManagement.Levels;
 using MakingAPlatformer.Map;
 using Microsoft.Xna.Framework;
@@ -10,9 +11,9 @@ namespace MakingAPlatformer
     public class Game1 : Game
     {
         private GraphicsDeviceManager _graphics;
-        private SpriteBatch _spriteBatch;
 
         public ScreenManager ScreenManager;
+        public ContentLoader ContentLoader;
 
         public IGameScreen CurrentLevel;
         public IGameScreen NextLevel;
@@ -24,6 +25,7 @@ namespace MakingAPlatformer
             IsMouseVisible = true;
 
             ScreenManager = new ScreenManager(this);
+            ContentLoader = new ContentLoader();
         }
 
         protected override void Initialize()
@@ -37,7 +39,6 @@ namespace MakingAPlatformer
 
         protected override void LoadContent()
         {
-            _spriteBatch = new SpriteBatch(GraphicsDevice);
             CurrentLevel = new FirstLevel(this);
         }
 
