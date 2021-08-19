@@ -1,5 +1,4 @@
-﻿using MakingAPlatformer.Content;
-using MakingAPlatformer.Interfaces;
+﻿using MakingAPlatformer.Interfaces;
 using MakingAPlatformer.Management;
 using MakingAPlatformer.Map;
 using MakingAPlatformer.UI;
@@ -66,11 +65,12 @@ namespace MakingAPlatformer.LevelManagement
             mapMaker = new MapMaker();
             mapMaker.CreateLevel(LevelId);
 
+            // UI
+            _healthManager = new HealthManager(amountOfLives, hero, startPosition, _game.ScreenManager);
+
             // Collision
             collisionManager = new CollisionManager(mapMaker.Blocks, hero);
 
-            // UI
-            _healthManager = new HealthManager(amountOfLives, hero, startPosition, _game.ScreenManager);
         }
 
         protected virtual void LoadContent()
@@ -85,7 +85,7 @@ namespace MakingAPlatformer.LevelManagement
         {
             if (transitionZone.CheckCollision(hero)) _game.ScreenManager.ManageTransitions(LevelId);
 
-            collisionManager.Execute();
+            collisionManager.CheckCollisions(_healthManager);
             hero.Update(gameTime);
         }
 

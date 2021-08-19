@@ -1,4 +1,6 @@
-﻿using Microsoft.Xna.Framework;
+﻿using MakingAPlatformer.Map.Blocks;
+using MakingAPlatformer.UI;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
@@ -13,7 +15,7 @@ namespace MakingAPlatformer
         public static bool VerticalColliding;
 
         public List<BoxCollider> Colliders = new List<BoxCollider>();
-
+        public List<IMapObject> Blocks = new List<IMapObject>();
         public IGameObject Hero;
         
         private int amountOfCollisions;
@@ -21,7 +23,7 @@ namespace MakingAPlatformer
         public CollisionManager(List<IMapObject> blocks, IGameObject hero)
         {
             Hero = hero;
-
+            Blocks = blocks;
             AddColliders(blocks);
         }
 
@@ -39,7 +41,7 @@ namespace MakingAPlatformer
         }
 
 
-        public void Execute()
+        public void CheckCollisions(HealthManager healthManager)
         {
             SyncColliders();
             HorizontalColliding = FutureCollisionX();
@@ -47,6 +49,14 @@ namespace MakingAPlatformer
             //Debug.WriteLine($"Position HeroCollider: {Hero.Collider.Position.X} / {Hero.Collider.Position.Y} ");
             //Debug.WriteLine($"Position Hero: {Hero.Position.X} / {Hero.Position.Y} ");
 
+            foreach (IMapObject block in Blocks)
+            {
+                if (block is Trap)
+                {
+                    Trap temp = block as Trap;
+                    temp.CheckCollision(Hero, healthManager);
+                }
+            }
         }
 
         private void BasicCollision()

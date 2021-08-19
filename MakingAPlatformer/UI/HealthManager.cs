@@ -47,9 +47,9 @@ namespace MakingAPlatformer.UI
             }
         }
 
-        public void Execute()
+        public void TakeDamage()
         {
-            if (HealthBar.Count == 1) _screenManager.ManageTransitions(2); // when on last live, die
+            if (HealthBar.Count == 1) _screenManager.ManageTransitions(2); // when on last life, die
             else
             {
                 HealthBar.RemoveAt(HealthBar.Count-1);

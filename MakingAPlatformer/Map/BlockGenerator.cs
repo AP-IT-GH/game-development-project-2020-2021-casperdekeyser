@@ -36,6 +36,8 @@ namespace MakingAPlatformer.Map
             if (tileArrayList[level][x, y] == 4) return new DirtBlock(new Vector2(y * blockSize, x * blockSize), randomNumber);
             if (tileArrayList[level][x, y] == 5) return new StoneStairsBlock(new Vector2(y * blockSize, x * blockSize));
             if (tileArrayList[level][x, y] == 6) return new SandStairsBlock(new Vector2(y * blockSize, x * blockSize));
+            if (tileArrayList[level][x, y] == 7) return new GrassTrap(new Vector2(y * blockSize, x * blockSize));
+            if (tileArrayList[level][x, y] == 8) return new DirtTrap(new Vector2(y * blockSize, x * blockSize));
             return null;
         }
     }
