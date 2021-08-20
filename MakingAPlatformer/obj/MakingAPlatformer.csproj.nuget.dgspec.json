@@ -48,17 +48,9 @@
               "target": "Package",
               "version": "[3.8.0.1641, )"
             },
-            "MonoGame.Extended.Tiled": {
-              "target": "Package",
-              "version": "[3.8.0, )"
-            },
             "MonoGame.Framework.WindowsDX": {
               "target": "Package",
               "version": "[3.8.0.1641, )"
-            },
-            "TiledSharp": {
-              "target": "Package",
-              "version": "[1.0.1, )"
             }
           },
           "imports": [
