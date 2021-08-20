@@ -3,15 +3,12 @@ using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Reflection;
 
 
 namespace MakingAPlatformer.Map
 {
     public class BlockGenerator
     {
-
         public IMapObject GenerateBlock(List<int[,]> tileArrayList, int level, int x, int y, int blockSize)
         {
             if (tileArrayList[level][x, y] == 1) return new StoneBlock(new Vector2(y * blockSize, x * blockSize));
@@ -78,12 +75,24 @@ namespace MakingAPlatformer.Map
                 typeof(DirtTrap),
             };
 
+            //IEnumerable<string> files = BlockManager.GetAllFiles(@"C:\GitHub\game-development-project-2020-2021-casperdekeyser\MakingAPlatformer\Map\Blocks", "*.cs");
+            //foreach (string file in files)
+            //{
+            //    Debug.WriteLine("Filename: " + file);
+            //}
+            //BlockManager.GetFileNamesFromPath(BlockManager.GetAllFiles(@"C:\GitHub\game-development-project-2020-2021-casperdekeyser\MakingAPlatformer\Map\Blocks", "*.cs"));
+            
             try
             {
                 //Debug.WriteLine("--- TEST: " + );
 
                 //IMapObject block = (IMapObject)Activator.CreateInstance(Type.GetType($"MakingAPlatformer.Map.Blocks.{blockName}"), new object[] { new Vector2(y * blockSize, x * blockSize), randomNumber });
-                IMapObject block = (IMapObject)Activator.CreateInstance(blockTypes[tileArrayList[level][x, y] - 1], new object[] { new Vector2(y * blockSize, x * blockSize), randomNumber });
+                //IMapObject block = (IMapObject)Activator.CreateInstance(blockTypes[tileArrayList[level][x, y] - 1], new object[] { new Vector2(y * blockSize, x * blockSize), randomNumber });
+
+                // ATTEMPT 4: using static class, timing isn't correct so doesn't work
+
+                // ATTEMPT 5: loading classes from folder, IT WORKS!!!
+                IMapObject block = (IMapObject)Activator.CreateInstance(Type.GetType($"MakingAPlatformer.Map.Blocks.{BlockManager.BlockTypeNames[tileArrayList[level][x, y] - 1]}"), new object[] { new Vector2(y * blockSize, x * blockSize), randomNumber });
 
                 return block;
             }
