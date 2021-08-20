@@ -10,19 +10,19 @@ namespace MakingAPlatformer.UI
 
         private ScreenManager _screenManager;
         private IGameObject _hero;
-        private Vector2 _startPosition;
+        private Vector2 _respawnPosition;
 
         private int xOffset = 5;
         private int yOffset = 5;
         private double _spacing = 1.2;
 
-        public HealthManager(int amountOfLives, IGameObject hero, Vector2 startpos, ScreenManager screenmng)
+        public HealthManager(int amountOfLives, IGameObject hero, Vector2 respawnPosition, ScreenManager screenmng)
         {
             HealthBar = new List<Heart>();
             GenerateHearts(amountOfLives);
 
             _hero = hero;
-            _startPosition = startpos;
+            _respawnPosition = respawnPosition;
             _screenManager = screenmng;
         }
 
@@ -36,7 +36,7 @@ namespace MakingAPlatformer.UI
 
         private void Respawn()
         {
-            _hero.Position = _startPosition;
+            _hero.Position = _respawnPosition;
         }
 
         public void Draw(SpriteBatch spriteBatch)

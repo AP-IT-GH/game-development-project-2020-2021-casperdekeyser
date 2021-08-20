@@ -40,6 +40,7 @@ namespace MakingAPlatformer.LevelManagement.Levels
             spriteBatch.Begin();
 
             hero.Draw(spriteBatch);
+            healthManager.Draw(spriteBatch);
 
             mapMaker.DrawLevel(spriteBatch);
 
