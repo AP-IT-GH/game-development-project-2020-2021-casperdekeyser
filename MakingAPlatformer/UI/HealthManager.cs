@@ -14,7 +14,7 @@ namespace MakingAPlatformer.UI
 
         private int xOffset = 5;
         private int yOffset = 5;
-        private double _spacing = 1.2;
+        private double _spacing = 1.8;
 
         public HealthManager(int amountOfLives, IGameObject hero, Vector2 respawnPosition, ScreenManager screenmng)
         {

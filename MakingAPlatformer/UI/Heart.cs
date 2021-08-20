@@ -12,10 +12,11 @@ namespace MakingAPlatformer.UI
         private int _size = 32;
 
 
-        public Heart(Vector2 position)
+        public Heart(Vector2 position, int size = 48)
         {
             Position = position;
-            SpritesheetPath = "UI/heart-pixel-art-32x32";
+            _size = size;
+            SpritesheetPath = $"UI/heart-pixel-art-{size}x{size}";
         }
 
         public void Draw(SpriteBatch spriteBatch)
