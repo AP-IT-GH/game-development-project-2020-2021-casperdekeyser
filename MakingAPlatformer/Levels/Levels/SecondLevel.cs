@@ -29,27 +29,27 @@ namespace MakingAPlatformer.LevelManagement.Levels
         {
             foreach (Transition zone in DeathZone)
             {
-                if (zone.CheckCollision(hero)) healthManager.TakeDamage();
+                if (zone.CheckCollision(hero)) game.ScreenManager.ManageTransitions(2); // game over
             }
             base.Update(gameTime);
         }
 
         // DEBUG: remove method
-        //public override void Draw(GameTime gameTime)
-        //{
-        //    _spriteBatch.Begin();
+        public override void Draw(GameTime gameTime)
+        {
+            spriteBatch.Begin();
 
-        //    hero.Draw(_spriteBatch);
+            hero.Draw(spriteBatch);
 
-        //    mapMaker.DrawLevel(_spriteBatch);
+            mapMaker.DrawLevel(spriteBatch);
 
-        //    // DRAW COLLIDERS
-        //    //collisionManager.DrawAllColliders(_spriteBatch, _game.GraphicsDevice, Color.Red, Color.Green);
-        //    foreach (Transition zone in DeathZone) zone.Draw(_spriteBatch, _graphics, Color.Fuchsia);
-        //    transitionZone.Draw(_spriteBatch, _graphics, Color.Fuchsia);
+            // DRAW COLLIDERS
+            //collisionManager.DrawAllColliders(_spriteBatch, _game.GraphicsDevice, Color.Red, Color.Green);
+            foreach (Transition zone in DeathZone) zone.Draw(spriteBatch, game.GraphicsDevice, Color.Fuchsia);
+            transitionZone.Draw(spriteBatch, graphics, Color.Fuchsia);
 
-        //    _spriteBatch.End();
+            spriteBatch.End();
 
-        //}
+        }
     }
 }

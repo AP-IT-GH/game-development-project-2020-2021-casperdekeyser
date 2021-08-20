@@ -10,18 +10,6 @@ namespace MakingAPlatformer.Map
 {
     public static class BlockManager
     {
-        //public static List<Type> BlockTypes = new List<Type>            
-        //{
-        //        typeof(StoneBlock),
-        //        typeof(GrassBlock),
-        //        typeof(SandBlock),
-        //        typeof(DirtBlock),
-        //        typeof(StoneStairsBlock),
-        //        typeof(SandStairsBlock),
-        //        typeof(GrassTrap),
-        //        typeof(DirtTrap),
-        //};
-
         public static List<string> BlockTypeNames = new List<string>();
 
         public static void LoadBlocks()

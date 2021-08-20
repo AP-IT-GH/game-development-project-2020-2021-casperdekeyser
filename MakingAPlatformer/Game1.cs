@@ -38,7 +38,7 @@ namespace MakingAPlatformer
 
         protected override void LoadContent()
         {
-            BlockManager.LoadBlocks();
+            //BlockManager.LoadBlocks();
             CurrentLevel = new FirstLevel(this);
         }
 
