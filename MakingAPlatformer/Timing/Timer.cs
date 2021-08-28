@@ -1,26 +1,24 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace MakingAPlatformer.Timing
 {
-    public class Timer
+    public static class Timer
     {
-        private TimeSpan timeToWait;
-        private TimeSpan timeStamp;
-        private bool timeIsSet = false;
+        private static TimeSpan timeToWait;
+        private static TimeSpan timeStamp;
+        private static bool timeIsSet = false;
 
-        public bool SecondsElapsed(int seconds, GameTime gameTime)
+        public static bool SecondsElapsed(int seconds, GameTime gameTime)
         {
             timeToWait = TimeSpan.FromMilliseconds(seconds * 1000);
-            setReferenceTimeStamp(timeIsSet, gameTime);
+            SetReferenceTimeStamp(timeIsSet, gameTime);
 
             if (timeStamp + timeToWait < gameTime.TotalGameTime) return true;
             return false;
         }
 
-        private void setReferenceTimeStamp(bool isSet, GameTime gameTime)
+        private static void SetReferenceTimeStamp(bool isSet, GameTime gameTime)
         {
             if (!isSet)
             {

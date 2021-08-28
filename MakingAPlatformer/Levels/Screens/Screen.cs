@@ -1,5 +1,6 @@
 ﻿using MakingAPlatformer.Interfaces;
 using MakingAPlatformer.Map;
+using MakingAPlatformer.Timing;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -27,16 +28,11 @@ namespace MakingAPlatformer.LevelManagement.Screens
         protected CollisionManager collisionManager;
         protected List<BoxCollider> colliders;
 
-        // Timer
-        private Timing.Timer _timer;
-
         public Screen(Game1 game)
         {
             this.game = game;
             content = game.Content;
             graphics = game.GraphicsDevice;
-
-            _timer = new Timing.Timer();
 
             Initialize();
             LoadContent();
@@ -62,7 +58,7 @@ namespace MakingAPlatformer.LevelManagement.Screens
 
         public virtual void Update(GameTime gameTime)
         {
-            if (_timer.SecondsElapsed(Duration, gameTime)) game.Exit();
+            if (Timer.SecondsElapsed(Duration, gameTime)) game.Exit();
         }
 
         public virtual void Draw(GameTime gameTime)
