@@ -8,12 +8,12 @@ namespace MakingAPlatformer.Map
     {
         public List<IMapObject> Blocks;
 
-        private int mapLength = 15;
-        private int mapHeight = 25;
-        private int blockSize = 62;
+        private int _mapLength = 15;
+        private int _mapHeight = 25;
+        private int _blockSize = 62;
 
-        private IMapObject[,] blockArray;
-        private List<int[,]> tileArrayList = new List<int[,]>();
+        private IMapObject[,] _blockArray;
+        private List<int[,]> _tileArrayList = new List<int[,]>();
 
         private BlockGenerator _blockGenerator;
 
@@ -21,8 +21,8 @@ namespace MakingAPlatformer.Map
         {
             Blocks = new List<IMapObject>();
             _blockGenerator = new BlockGenerator();
-            blockArray = new Block[mapLength, mapHeight];
-            tileArrayList = new List<int[,]>
+            _blockArray = new Block[_mapLength, _mapHeight];
+            _tileArrayList = new List<int[,]>
             {
                 new int[,] // level 1
                 {
@@ -130,14 +130,14 @@ namespace MakingAPlatformer.Map
              * 3 -> death
              */
 
-            for (int x = 0; x < mapLength; x++)
+            for (int x = 0; x < _mapLength; x++)
             {
-                for (int y = 0; y < mapHeight; y++)
+                for (int y = 0; y < _mapHeight; y++)
                 {
-                    if (tileArrayList[level][x, y] != 0)
+                    if (_tileArrayList[level][x, y] != 0)
                     {
-                        blockArray[x, y] = _blockGenerator.GenerateBlockVariation(tileArrayList, level, x, y, blockSize);
-                        Blocks.Add(blockArray[x, y]);
+                        _blockArray[x, y] = _blockGenerator.GenerateBlockVariation(_tileArrayList, level, x, y, _blockSize);
+                        Blocks.Add(_blockArray[x, y]);
                     }
                 }
             }
@@ -145,11 +145,11 @@ namespace MakingAPlatformer.Map
 
         public void DrawLevel(SpriteBatch spriteBatch)
         {
-            for (int x = 0; x < mapLength; x++)
+            for (int x = 0; x < _mapLength; x++)
             {
-                for (int y = 0; y < mapHeight; y++)
+                for (int y = 0; y < _mapHeight; y++)
                 {
-                    if (blockArray[x, y] != null) blockArray[x, y].Draw(spriteBatch);
+                    if (_blockArray[x, y] != null) _blockArray[x, y].Draw(spriteBatch);
                 }
             }
         }
