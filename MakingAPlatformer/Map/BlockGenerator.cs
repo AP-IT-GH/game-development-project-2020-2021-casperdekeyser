@@ -53,6 +53,8 @@ namespace MakingAPlatformer.Map
             if (tileArrayList[level][x, y] == 6) blockName = "SandStairsBlock";
             if (tileArrayList[level][x, y] == 7) blockName = "StoneBlock";
             if (tileArrayList[level][x, y] == 8) blockName = "StoneStairsBlock";
+            if (tileArrayList[level][x, y] == 9) blockName = "SandTrap";
+
 
 
             // ATTEMPT 3: using a list of types, still manual adding
