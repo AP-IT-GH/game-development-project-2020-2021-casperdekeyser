@@ -11,12 +11,13 @@ namespace MakingAPlatformer.Management
         public int Width;
         public int Height;
 
-        public Transition(Vector2 position, string name, int width, int height)
+        public Transition(int blocksFromRight, int blocksFromBottom, int widthBlocks, int heightBlocks, string name)
         {
-            Position = position;
+            Position = new Vector2(1550 - (62 * blocksFromRight), 930 - (62 * blocksFromBottom) - 10);
+            Width = widthBlocks * 62;
+            Height = (heightBlocks * 62) + 10;
+
             Name = name;
-            Width = width;
-            Height = height;
             Rectangle = new Rectangle((int)Position.X, (int)Position.Y, Width, Height);
         }
 

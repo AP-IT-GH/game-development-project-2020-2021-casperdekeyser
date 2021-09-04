@@ -14,13 +14,17 @@ namespace MakingAPlatformer.LevelManagement.Levels
 
         protected override void Initialize()
         {
-            transitionZone = new Transition(new Vector2(1500, 0), "Victory zone", 62, 62);
+            transitionZone = new Transition(1, 10, 1, 1, "Victory zone");
 
             DeathZone = new List<Transition>
             {
-                new DeathZone(new Vector2(1550 - (62 * 10), 930 - (62 * 1) - 10), "First zone 2 blocks", (62 * 2), (62 * 1) + 10), //screen width - (amount of blocks), screen height - (amount of blocks) - block height
-                new DeathZone(new Vector2(1550 - (62 * 7), 930 - (62 * 1) - 10), "Second zone 2 blocks", (62 * 2), (62 * 1) + 10),
-                new DeathZone(new Vector2(1550 - (62 * 3), 930 - (62 * 1) - 10), "Third zone 1 blocks", (62 * 1), (62 * 1) + 10),
+                //new DeathZone(new Vector2(1550 - (62 * 10), 930 - (62 * 1) - 10), "First zone 2 blocks", (62 * 2), (62 * 1) + 10), //screen width - (amount of blocks), screen height - (amount of blocks) - block height
+                //new DeathZone(new Vector2(1550 - (62 * 7), 930 - (62 * 1) - 10), "Second zone 2 blocks", (62 * 2), (62 * 1) + 10),
+                //new DeathZone(new Vector2(1550 - (62 * 3), 930 - (62 * 1) - 10), "Third zone 1 blocks", (62 * 1), (62 * 1) + 10),
+
+                new DeathZone(10, 1, 2, 1, "First zone 2 blocks"),
+                new DeathZone(7, 1, 2, 1, "Second zone 2 blocks"),
+                new DeathZone(3, 1, 1, 1, "Third zone 1 block"),
             };
 
             base.Initialize();

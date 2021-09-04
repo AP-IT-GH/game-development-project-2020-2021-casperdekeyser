@@ -5,6 +5,9 @@ namespace MakingAPlatformer.Levels
 {
     public class DeathZone : Transition
     {
-        public DeathZone(Vector2 position, string name, int width, int height) : base(new Vector2(position.X + 20, position.Y), name, width - 40, height) { }
+        public DeathZone(int blocksFromRight, int blocksFromBottom, int widthBlocks, int heightBlocks, string name) : base(blocksFromRight, blocksFromBottom, widthBlocks, heightBlocks, name)
+        {
+            Position.X = 100;
+        }
     }
 }
