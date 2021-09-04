@@ -9,6 +9,19 @@ namespace MakingAPlatformer.Map
 {
     public class BlockGenerator
     {
+        private string[] _blockNames = {
+            "--- Testing Block ---",
+            "DirtBlock",
+            "DirtTrap",
+            "GrassBlock",
+            "GrassTrap",
+            "SandBlock",
+            "SandStairsBlock",
+            "StoneBlock",
+            "StoneStairsBlock",
+            "SandTrap"
+        };
+
         public IMapObject GenerateBlock(List<int[,]> tileArrayList, int level, int x, int y, int blockSize)
         {
             if (tileArrayList[level][x, y] == 1) return new StoneBlock(new Vector2(y * blockSize, x * blockSize));
@@ -44,17 +57,16 @@ namespace MakingAPlatformer.Map
 
 
             // ATTEMPT 2: using translation between int and string, still manual adding
-            string blockName = "";
-            if (tileArrayList[level][x, y] == 1) blockName = "DirtBlock";
-            if (tileArrayList[level][x, y] == 2) blockName = "DirtTrap";
-            if (tileArrayList[level][x, y] == 3) blockName = "GrassBlock";
-            if (tileArrayList[level][x, y] == 4) blockName = "GrassTrap";
-            if (tileArrayList[level][x, y] == 5) blockName = "SandBlock";
-            if (tileArrayList[level][x, y] == 6) blockName = "SandStairsBlock";
-            if (tileArrayList[level][x, y] == 7) blockName = "StoneBlock";
-            if (tileArrayList[level][x, y] == 8) blockName = "StoneStairsBlock";
-            if (tileArrayList[level][x, y] == 9) blockName = "SandTrap";
-
+            //string blockName = "";
+            //if (tileArrayList[level][x, y] == 1) blockName = "DirtBlock";
+            //if (tileArrayList[level][x, y] == 2) blockName = "DirtTrap";
+            //if (tileArrayList[level][x, y] == 3) blockName = "GrassBlock";
+            //if (tileArrayList[level][x, y] == 4) blockName = "GrassTrap";
+            //if (tileArrayList[level][x, y] == 5) blockName = "SandBlock";
+            //if (tileArrayList[level][x, y] == 6) blockName = "SandStairsBlock";
+            //if (tileArrayList[level][x, y] == 7) blockName = "StoneBlock";
+            //if (tileArrayList[level][x, y] == 8) blockName = "StoneStairsBlock";
+            //if (tileArrayList[level][x, y] == 9) blockName = "SandTrap";
 
 
             // ATTEMPT 3: using a list of types, still manual adding
@@ -72,8 +84,9 @@ namespace MakingAPlatformer.Map
 
             try
             {
-                IMapObject block = (IMapObject)Activator.CreateInstance(Type.GetType($"MakingAPlatformer.Map.Blocks.{blockName}"), new object[] { new Vector2(y * blockSize, x * blockSize), randomNumber });
-                
+                //IMapObject block = (IMapObject)Activator.CreateInstance(Type.GetType($"MakingAPlatformer.Map.Blocks.{blockName}"), new object[] { new Vector2(y * blockSize, x * blockSize), randomNumber });
+                IMapObject block = (IMapObject)Activator.CreateInstance(Type.GetType($"MakingAPlatformer.Map.Blocks.{_blockNames[tileArrayList[level][x, y]]}"), new object[] { new Vector2(y * blockSize, x * blockSize), randomNumber });
+
                 //IMapObject block = (IMapObject)Activator.CreateInstance(blockTypes[tileArrayList[level][x, y] - 1], new object[] { new Vector2(y * blockSize, x * blockSize), randomNumber });
 
                 // ATTEMPT 4: using static class, timing isn't correct so doesn't work
@@ -86,7 +99,7 @@ namespace MakingAPlatformer.Map
             catch (Exception e)
             {
                 Debug.WriteLine("--- EXCEPTION: " + e.Message);
-                return null;
+                throw;
             }
         }
     }
