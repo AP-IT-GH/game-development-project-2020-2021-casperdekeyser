@@ -39,5 +39,4 @@ namespace MakingAPlatformer.Management
             spriteBatch.Draw(pixel, Rectangle, color);
         }
     }
-
 }
