@@ -8,8 +8,9 @@ namespace MakingAPlatformer.LevelManagement.Levels
     public class SecondLevel : Level
     {
         public override int LevelId { get; set; } = 1;
+        public override Color BackgroundColor { get; set; } = Color.Ivory;
         public List<Transition> DeathZone { get; set; }
-        
+    
         public SecondLevel(Game1 game) : base(game) { }
 
         protected override void Initialize()
