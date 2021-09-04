@@ -9,83 +9,82 @@ namespace MakingAPlatformer
 {
     public class JumpCommand
     {
-        private bool rising = false;
-        private bool falling = false;
-        private bool jumping = false;
-        private int jumpSpeed = 5;
-        private int jumpHeight = 150;
-        private float startY;
-        private float ground;
+        private bool _rising = false;
+        private bool _falling = false;
+        private bool _jumping = false;
+        private int _jumpSpeed = 5;
+        private int _jumpHeight = 150;
+        private float _startY;
+        private float _ground;
 
         public float CurrentHeight;
 
 
         public JumpCommand(int speed, int height, float ground)
         {
-            jumpSpeed = speed;
-            jumpHeight = height;
-            startY = ground;
+            _jumpSpeed = speed;
+            _jumpHeight = height;
+            _startY = ground;
             CurrentHeight = ground;
-            this.ground = ground;
+            _ground = ground;
         }
 
         public void CheckJumping()
         {
             KeyboardState keyState = Keyboard.GetState();
-            if (keyState.IsKeyDown(Keys.Space) && (!jumping) && (!falling))
+            if (keyState.IsKeyDown(Keys.Space) && (!_jumping) && (!_falling))
             {
                 Hero.State = States.Jumping;
-                rising = true;
+                _rising = true;
             }
         }
 
         public void Execute(IGameObject Hero)
         {
-            if (falling && !CollisionManager.VerticalColliding)
+            if (_falling && !CollisionManager.VerticalColliding)
             {
-                CurrentHeight += jumpSpeed; // falling speed
+                CurrentHeight += _jumpSpeed; // falling speed
                 Hero.Position = new Vector2(Hero.Position.X, CurrentHeight);
                 Hero.Direction = new Vector2(Hero.Position.X, CurrentHeight);
 
-                if (Hero.Position.Y >= startY)
+                if (Hero.Position.Y >= _startY)
                 {
-                    Hero.Position = new Vector2(Hero.Position.X, startY);
-                    falling = false;
+                    Hero.Position = new Vector2(Hero.Position.X, _startY);
+                    _falling = false;
                     MakingAPlatformer.Hero.State = States.Idling;
-                    jumping = false;
-                    startY = Hero.Position.Y;
+                    _jumping = false;
+                    _startY = Hero.Position.Y;
                 }
             }
 
-            if (rising)
+            if (_rising)
             {
-                jumping = true;
+                _jumping = true;
                 Hero.Position = new Vector2(Hero.Position.X, CurrentHeight);
-                if (Hero.Position.Y <= startY - jumpHeight)
+                if (Hero.Position.Y <= _startY - _jumpHeight)
                 {
-                    rising = false;
-                    falling = true;
+                    _rising = false;
+                    _falling = true;
                 }
-                CurrentHeight -= jumpSpeed; // rising speed
+                CurrentHeight -= _jumpSpeed; // rising speed
             }
 
             if (CollisionManager.VerticalColliding)
             {
                 MakingAPlatformer.Hero.State = States.Idling;
-                jumping = false;
-                falling = false;
-                startY = Hero.Position.Y;
+                _jumping = false;
+                _falling = false;
+                _startY = Hero.Position.Y;
             }
 
             else
             {
-                if(!jumping)
-                    startY = ground; // FIX
+                if(!_jumping) _startY = _ground; // FIX
             }
 
-            if (!CollisionManager.VerticalColliding && (!jumping) && (Hero.Position.Y < ground))
+            if (!CollisionManager.VerticalColliding && (!_jumping) && (Hero.Position.Y < _ground))
             {
-                falling = true;
+                _falling = true;
             }
         }
     }
