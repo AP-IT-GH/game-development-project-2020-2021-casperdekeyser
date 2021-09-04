@@ -139,6 +139,7 @@ namespace MakingAPlatformer.Map
              * SandStairsBlock  6
              * StoneBlock       7
              * StoneStairsBlock 8
+             * SandTrap 9
              */
 
             /* LEVEL IDs

@@ -40,21 +40,21 @@ namespace MakingAPlatformer.LevelManagement.Levels
         }
 
         // DEBUG: remove method
-        public override void Draw(GameTime gameTime)
-        {
-            spriteBatch.Begin();
+        //public override void Draw(GameTime gameTime)
+        //{
+        //    spriteBatch.Begin();
 
-            hero.Draw(spriteBatch);
-            healthManager.Draw(spriteBatch);
+        //    hero.Draw(spriteBatch);
+        //    healthManager.Draw(spriteBatch);
 
-            mapMaker.DrawLevel(spriteBatch);
+        //    mapMaker.DrawLevel(spriteBatch);
 
-            // DRAW COLLIDERS
-            //collisionManager.DrawAllColliders(_spriteBatch, _game.GraphicsDevice, Color.Red, Color.Green);
-            foreach (Transition zone in DeathZone) zone.Draw(spriteBatch, game.GraphicsDevice, Color.Fuchsia);
-            transitionZone.Draw(spriteBatch, graphics, Color.Fuchsia);
+        //    // DRAW COLLIDERS
+        //    collisionManager.DrawAllColliders(spriteBatch, graphics, Color.Red, Color.Green);
+        //    foreach (Transition zone in DeathZone) zone.Draw(spriteBatch, game.GraphicsDevice, Color.Fuchsia);
+        //    transitionZone.Draw(spriteBatch, graphics, Color.Fuchsia);
 
-            spriteBatch.End();
-        }
+        //    spriteBatch.End();
+        //}
     }
 }
