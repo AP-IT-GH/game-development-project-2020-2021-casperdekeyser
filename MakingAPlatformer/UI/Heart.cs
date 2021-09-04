@@ -11,7 +11,6 @@ namespace MakingAPlatformer.UI
 
         private int _size = 32;
 
-
         public Heart(Vector2 position, int size = 48)
         {
             Position = position;
@@ -23,6 +22,5 @@ namespace MakingAPlatformer.UI
         {
             spriteBatch.Draw(Spritesheet, Position, new Rectangle(0, 0, _size, _size), Color.White);
         }
-
     }
 }

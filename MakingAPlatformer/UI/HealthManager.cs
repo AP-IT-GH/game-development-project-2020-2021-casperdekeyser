@@ -6,7 +6,7 @@ namespace MakingAPlatformer.UI
 {
     public class HealthManager
     {
-        public List<Heart> HealthBar;
+        public List<Heart> HealthBar { get; set; }
 
         private ScreenManager _screenManager;
         private Hero _hero;

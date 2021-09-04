@@ -1,15 +1,16 @@
-﻿using Microsoft.Xna.Framework;
+﻿using MakingAPlatformer.Interfaces;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace MakingAPlatformer.Management
 {
-    public class Transition
+    public class Transition : ITransition
     {
-        public Rectangle Rectangle;
-        public Vector2 Position;
-        public string Name;
-        public int Width;
-        public int Height;
+        public Rectangle Rectangle { get; set; }
+        public Vector2 Position { get; set; }
+        public string Name { get; set; }
+        public int Width { get; set; }
+        public int Height { get; set; }
 
         private int _sizeOffset = 20;
 

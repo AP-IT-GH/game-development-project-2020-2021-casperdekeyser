@@ -1,8 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace MakingAPlatformer
 {
@@ -41,7 +39,7 @@ namespace MakingAPlatformer
         {
             CurrentFrame = frames[counter];
 
-            frameMovement += CurrentFrame.sourceRectangle.Width * gameTime.ElapsedGameTime.TotalSeconds;
+            frameMovement += CurrentFrame.SourceRectangle.Width * gameTime.ElapsedGameTime.TotalSeconds;
 
             FrameCountConditions();
         }

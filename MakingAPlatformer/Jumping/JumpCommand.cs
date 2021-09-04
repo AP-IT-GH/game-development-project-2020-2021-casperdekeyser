@@ -1,14 +1,12 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Text;
 
 namespace MakingAPlatformer
 {
     public class JumpCommand
     {
+        public float CurrentHeight;
+
         private bool _rising = false;
         private bool _falling = false;
         private bool _jumping = false;
@@ -16,9 +14,6 @@ namespace MakingAPlatformer
         private int _jumpHeight = 150;
         private float _startY;
         private float _ground;
-
-        public float CurrentHeight;
-
 
         public JumpCommand(int speed, int height, float ground)
         {

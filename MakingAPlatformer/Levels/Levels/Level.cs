@@ -28,8 +28,8 @@ namespace MakingAPlatformer.LevelManagement
         protected AnimateCommand animateCommand;
 
         // Map
-        protected MapMaker mapMaker;
-        protected Transition transitionZone;
+        protected ILevelCreator mapMaker;
+        protected ITransition transitionZone;
 
         // Collision
         protected CollisionManager collisionManager;
@@ -39,7 +39,7 @@ namespace MakingAPlatformer.LevelManagement
         protected HealthManager healthManager;
         protected Vector2 startPosition = new Vector2(50, 868 - 96);
 
-        private int amountOfLives = 3;
+        private int _amountOfLives = 3;
 
 
         public Level(Game1 game)
@@ -66,7 +66,7 @@ namespace MakingAPlatformer.LevelManagement
             mapMaker.CreateLevel(LevelId);
 
             // UI
-            healthManager = new HealthManager(amountOfLives, hero, startPosition, game.ScreenManager);
+            healthManager = new HealthManager(_amountOfLives, hero, startPosition, game.ScreenManager);
 
             // Collision
             collisionManager = new CollisionManager(mapMaker.Blocks, hero);

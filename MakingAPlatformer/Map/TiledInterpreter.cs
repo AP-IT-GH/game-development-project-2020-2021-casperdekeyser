@@ -1,13 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Text;
 
 namespace MakingAPlatformer.Map
 {
     public class TiledInterpreter // not used, too complex
     {
-        private string tiledPath = @"C:\GitHub\game-development-project-2020-2021-casperdekeyser\MakingAPlatformer\Map\Tiled\Death.tmx";
+        private string _tiledPath = @"C:\GitHub\game-development-project-2020-2021-casperdekeyser\MakingAPlatformer\Map\Tiled\Death.tmx";
         public TiledInterpreter()
         {
             ParseMatrix();
@@ -15,7 +13,7 @@ namespace MakingAPlatformer.Map
 
         public void ReadTmxFile()
         {
-            string[] lines = System.IO.File.ReadAllLines(tiledPath);
+            string[] lines = System.IO.File.ReadAllLines(_tiledPath);
             for (int i = 5; i < 20; i++)
             {
                 lines[i] = "{" + lines[i] + "}";

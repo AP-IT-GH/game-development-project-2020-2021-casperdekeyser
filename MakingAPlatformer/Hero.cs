@@ -8,7 +8,7 @@ namespace MakingAPlatformer
     public enum PossibleAnimations { RunRight, RunLeft, IdleRight, IdleLeft, AttackRight, AttackLeft, JumpLeft, JumpRight }
     public enum States { Jumping, Idling, Falling}
 
-    public class Hero : IGameObject, ITransform, IAnimateable, IJumpable
+    public class Hero : IGameObject, ITransform, IAnimateable
     {
         public static States State = States.Idling;
         public Vector2 Position { get; set; }
@@ -17,22 +17,18 @@ namespace MakingAPlatformer
         public Animator Animator { get; set; }
         public PossibleAnimations AnimToPlay { get; set; }
         public JumpCommand JumpCommand { get; set; }
-
+        public BoxCollider Collider { get; set; }
 
         public IInputReader KeyboardReader;
         public MoveCommand MoveCommand;
         public AnimateCommand AnimateCommand;
 
-        private int runSpeed = 3;
-        private Animation currentAnimation;
-        private int jumpSpeed = 5;
-        private int jumpHeight = 150;
-
-        // Colliders
-        public BoxCollider Collider { get; set; }
-
-        int Xoffset = 60;
-        int Yoffset = 45;
+        private int _runSpeed = 3;
+        private Animation _currentAnimation;
+        private int _jumpSpeed = 5;
+        private int _jumpHeight = 150;
+        private int _xOffset = 60;
+        private int _yOffset = 45;
 
         public Hero(Vector2 pos, HeroAnimator anim, IInputReader input, AnimateCommand animcom)
         {
@@ -42,8 +38,8 @@ namespace MakingAPlatformer
             Animator = anim;
             KeyboardReader = input;
             AnimateCommand = animcom;
-            MoveCommand = new MoveCommand(runSpeed);
-            JumpCommand = new JumpCommand(jumpSpeed, jumpHeight, Position.Y);
+            MoveCommand = new MoveCommand(_runSpeed);
+            JumpCommand = new JumpCommand(_jumpSpeed, _jumpHeight, Position.Y);
 
             // Add animations that need to be used
             Animator.Animations.Add(new NormalAnimation("Hero-Idle-Right", "Hero/Normal/Idle", 8, 150));
@@ -57,10 +53,10 @@ namespace MakingAPlatformer
             Animator.InitializeAnimations();
 
             // Set start animation
-            currentAnimation = Animator.Animations[0];
+            _currentAnimation = Animator.Animations[0];
 
             // Collision
-            Collider = new BoxCollider(Position, "Hero-Collider", 30, 50, Xoffset, Yoffset);
+            Collider = new BoxCollider(Position, "Hero-Collider", 30, 50, _xOffset, _yOffset);
         }
 
         public void Update(GameTime gameTime)
@@ -76,20 +72,20 @@ namespace MakingAPlatformer
             Direction = MoveCommand.Execute(this, MoveDirection);
 
             // Update collider
-            Collider = CollisionManager.UpdateCollider(Position, Collider, Xoffset, Yoffset);
+            Collider = CollisionManager.UpdateCollider(Position, Collider, _xOffset, _yOffset);
 
             // Choose animation according to direction
             AnimateCommand.Execute(this, MoveDirection);
 
             // Animate accordingly
-            currentAnimation = Animator.Animate(AnimToPlay);
+            _currentAnimation = Animator.Animate(AnimToPlay);
 
             Animator.Update(gameTime);
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(currentAnimation.SpriteSheet, Position, currentAnimation.CurrentFrame.sourceRectangle, Color.White);
+            spriteBatch.Draw(_currentAnimation.SpriteSheet, Position, _currentAnimation.CurrentFrame.SourceRectangle, Color.White);
         }
     }
 }

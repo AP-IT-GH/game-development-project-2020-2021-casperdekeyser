@@ -1,8 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Text;
-
+﻿
 namespace MakingAPlatformer
 {
     public class AnimateCommand
@@ -11,9 +7,9 @@ namespace MakingAPlatformer
         {
             if (Hero.State == States.Jumping)
             {
-                if (transform.Animator.previousAnimation == PossibleAnimations.RunLeft || transform.Animator.previousAnimation == PossibleAnimations.IdleLeft)
+                if (transform.Animator.PreviousAnimation == PossibleAnimations.RunLeft || transform.Animator.PreviousAnimation == PossibleAnimations.IdleLeft)
                     transform.AnimToPlay = PossibleAnimations.JumpLeft;
-                if (transform.Animator.previousAnimation == PossibleAnimations.RunRight || transform.Animator.previousAnimation == PossibleAnimations.IdleRight)
+                if (transform.Animator.PreviousAnimation == PossibleAnimations.RunRight || transform.Animator.PreviousAnimation == PossibleAnimations.IdleRight)
                     transform.AnimToPlay = PossibleAnimations.JumpRight;
             }
             else
@@ -24,9 +20,9 @@ namespace MakingAPlatformer
                     transform.AnimToPlay = PossibleAnimations.RunRight;
                 if (moveDirection == Movement.Idle)
                 {
-                    if (transform.Animator.previousAnimation == PossibleAnimations.RunLeft || transform.Animator.previousAnimation == PossibleAnimations.JumpLeft)
+                    if (transform.Animator.PreviousAnimation == PossibleAnimations.RunLeft || transform.Animator.PreviousAnimation == PossibleAnimations.JumpLeft)
                         transform.AnimToPlay = PossibleAnimations.IdleLeft;
-                    if (transform.Animator.previousAnimation == PossibleAnimations.RunRight || transform.Animator.previousAnimation == PossibleAnimations.JumpRight)
+                    if (transform.Animator.PreviousAnimation == PossibleAnimations.RunRight || transform.Animator.PreviousAnimation == PossibleAnimations.JumpRight)
                         transform.AnimToPlay = PossibleAnimations.IdleRight;
                 }
             }

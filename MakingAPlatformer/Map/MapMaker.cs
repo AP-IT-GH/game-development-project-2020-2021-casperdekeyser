@@ -1,12 +1,13 @@
-﻿using MakingAPlatformer.Map.Blocks;
+﻿using MakingAPlatformer.Interfaces;
+using MakingAPlatformer.Map.Blocks;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 
 namespace MakingAPlatformer.Map
 {
-    public class MapMaker
+    public class MapMaker : ILevelCreator
     {
-        public List<IMapObject> Blocks;
+        public List<IMapObject> Blocks { get; set; }
 
         private int _mapLength = 15;
         private int _mapHeight = 25;
@@ -119,37 +120,6 @@ namespace MakingAPlatformer.Map
 
         public void CreateLevel(int level)
         {
-            /* TYPES OF BLOCKS
-             * 0 -> empty
-             * 1 -> stone
-             * 2 -> grass
-             * 3 -> sand
-             * 4 -> dirt
-             * 5 -> stone stairs
-             * 6 -> sand stairs
-             * 7 -> grass trap
-             * 8 -> dirt trap
-             * 
-             * NEW RANKING 
-             * DirtBlock        1
-             * DirtTrap         2
-             * GrassBlock       3
-             * GrassTrap        4
-             * SandBlock        5
-             * SandStairsBlock  6
-             * StoneBlock       7
-             * StoneStairsBlock 8
-             * SandTrap 9
-             */
-
-            /* LEVEL IDs
-             * 0 -> level1
-             * 1 -> level2
-             * 2 -> victory
-             * 3 -> death
-             * 4 -> start
-             */
-
             for (int x = 0; x < _mapLength; x++)
             {
                 for (int y = 0; y < _mapHeight; y++)

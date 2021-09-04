@@ -1,19 +1,15 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace MakingAPlatformer
 {
     public class BoxCollider
     {
-        public Rectangle Rectangle;
-        public Vector2 Position;
-        public string Name;
-        public int Width;
-        public int Height;
-
+        public Rectangle Rectangle { get; set; }
+        public Vector2 Position { get; set; }
+        public string Name { get; set; }
+        public int Width { get; set; }
+        public int Height { get; set; }
 
         public BoxCollider(Vector2 position, string name, int width, int height)
         {
@@ -45,6 +41,5 @@ namespace MakingAPlatformer
         {
             Position = new Vector2(Rectangle.X, Rectangle.Y);
         }
-
     }
 }

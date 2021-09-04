@@ -1,14 +1,12 @@
 ﻿using Microsoft.Xna.Framework;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace MakingAPlatformer
 {
     public abstract class Animator
     {
-        public List<Animation> Animations;
-        public PossibleAnimations previousAnimation;
+        public List<Animation> Animations { get; set; }
+        public PossibleAnimations PreviousAnimation { get; set; }
 
         public Animator()
         {

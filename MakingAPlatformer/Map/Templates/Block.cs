@@ -12,21 +12,21 @@ namespace MakingAPlatformer.Map.Blocks
 
         public virtual int RowOnMasterTileset { get; set; }
 
-        protected int _size = 62;
-        protected int _variation = 0;
+        protected int size = 62;
+        protected int variation = 0;
 
         public Block(Vector2 position, int variation = 0)
         {
             Position = position;
             SpritesheetPath = "Map/master-tileset";
-            Collider = new BoxCollider(Position, "Block-Collider", _size, _size);
+            Collider = new BoxCollider(Position, "Block-Collider", size, size);
 
-            _variation = variation;
+            this.variation = variation;
         }
 
         public virtual void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(Spritesheet, Position, new Rectangle(_size * (_variation * 2), _size * RowOnMasterTileset, _size, _size), Color.White);
+            spriteBatch.Draw(Spritesheet, Position, new Rectangle(size * (variation * 2), size * RowOnMasterTileset, size, size), Color.White);
         }
     }
 }

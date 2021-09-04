@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
+﻿
 namespace MakingAPlatformer
 {
     public class HeroAnimator : Animator
     {
-
         public override Animation Animate(PossibleAnimations animToPlay)
         {
-            previousAnimation = animToPlay;
+            PreviousAnimation = animToPlay;
 
             if (animToPlay == PossibleAnimations.RunLeft)
             {

@@ -1,17 +1,13 @@
-﻿using MakingAPlatformer.LevelManagement;
-using MakingAPlatformer.Map;
+﻿using MakingAPlatformer.Interfaces;
 using MakingAPlatformer.UI;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace MakingAPlatformer.Content
 {
     public class ContentLoader
     {
-        public void LoadContent(ContentManager content, MapMaker mapMaker, IGameObject hero = null, HealthManager healthManager = null)
+        public void LoadContent(ContentManager content, ILevelCreator mapMaker, IGameObject hero = null, HealthManager healthManager = null)
         {
             foreach (IMapObject block in mapMaker.Blocks)
             {

@@ -1,8 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Text;
-
+﻿
 namespace MakingAPlatformer
 {
     public class NormalAnimation : Animation
@@ -12,7 +8,7 @@ namespace MakingAPlatformer
              
         public override void FrameCountConditions()
         {
-            if (frameMovement >= CurrentFrame.sourceRectangle.Width / framesPerSecond)
+            if (frameMovement >= CurrentFrame.SourceRectangle.Width / framesPerSecond)
             {
                 counter++;
                 frameMovement = 0;
