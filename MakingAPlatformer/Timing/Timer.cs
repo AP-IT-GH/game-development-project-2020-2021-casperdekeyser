@@ -5,16 +5,16 @@ namespace MakingAPlatformer.Timing
 {
     public class Timer
     {
-        private TimeSpan timeToWait;
-        private TimeSpan timeStamp;
-        private bool timeIsSet = false;
+        private TimeSpan _timeToWait;
+        private TimeSpan _timeStamp;
+        private bool _timeIsSet = false;
 
         public bool SecondsElapsed(int seconds, GameTime gameTime)
         {
-            timeToWait = TimeSpan.FromMilliseconds(seconds * 1000);
-            SetReferenceTimeStamp(timeIsSet, gameTime);
+            _timeToWait = TimeSpan.FromMilliseconds(seconds * 1000);
+            SetReferenceTimeStamp(_timeIsSet, gameTime);
 
-            if (timeStamp + timeToWait < gameTime.TotalGameTime) return true;
+            if (_timeStamp + _timeToWait < gameTime.TotalGameTime) return true;
             return false;
         }
 
@@ -22,8 +22,8 @@ namespace MakingAPlatformer.Timing
         {
             if (!isSet)
             {
-                timeStamp = gameTime.TotalGameTime;
-                timeIsSet = true;
+                _timeStamp = gameTime.TotalGameTime;
+                _timeIsSet = true;
             }
         }
     }

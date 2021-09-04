@@ -1,4 +1,5 @@
-﻿using MakingAPlatformer.Management;
+﻿using MakingAPlatformer.Levels;
+using MakingAPlatformer.Management;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 
@@ -17,9 +18,9 @@ namespace MakingAPlatformer.LevelManagement.Levels
 
             DeathZone = new List<Transition>
             {
-                new Transition(new Vector2(1550 - (62 * 10), 930 - (62 * 1) - 10), "First dead zone 2 blocks", (62 * 2), (62 * 1) + 10), //screen width - (amount of blocks), screen height - (amount of blocks) - block height
-                new Transition(new Vector2(1550 - (62 * 7), 930 - (62 * 1) - 10), "Second dead zone 2 blocks", (62 * 2), (62 * 1) + 10),
-                new Transition(new Vector2(1550 - (62 * 3), 930 - (62 * 1) - 10), "Third dead zone 1 blocks", (62 * 1), (62 * 1) + 10),
+                new DeathZone(new Vector2(1550 - (62 * 10), 930 - (62 * 1) - 10), "First zone 2 blocks", (62 * 2), (62 * 1) + 10), //screen width - (amount of blocks), screen height - (amount of blocks) - block height
+                new DeathZone(new Vector2(1550 - (62 * 7), 930 - (62 * 1) - 10), "Second zone 2 blocks", (62 * 2), (62 * 1) + 10),
+                new DeathZone(new Vector2(1550 - (62 * 3), 930 - (62 * 1) - 10), "Third zone 1 blocks", (62 * 1), (62 * 1) + 10),
             };
 
             base.Initialize();
@@ -50,7 +51,6 @@ namespace MakingAPlatformer.LevelManagement.Levels
             transitionZone.Draw(spriteBatch, graphics, Color.Fuchsia);
 
             spriteBatch.End();
-
         }
     }
 }

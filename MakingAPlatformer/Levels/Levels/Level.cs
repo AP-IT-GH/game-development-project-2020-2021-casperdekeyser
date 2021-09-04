@@ -95,7 +95,7 @@ namespace MakingAPlatformer.LevelManagement
 
             // DRAW COLLIDERS
             //collisionManager.DrawAllColliders(_spriteBatch, _game.GraphicsDevice, Color.Red, Color.Green);
-            transitionZone.Draw(spriteBatch, graphics, Color.Fuchsia);
+            //transitionZone.Draw(spriteBatch, graphics, Color.Fuchsia);
 
             spriteBatch.End();
         }

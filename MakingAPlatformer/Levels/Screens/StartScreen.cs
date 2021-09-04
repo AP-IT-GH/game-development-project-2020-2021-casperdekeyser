@@ -1,9 +1,5 @@
 ﻿using MakingAPlatformer.LevelManagement.Screens;
-using MakingAPlatformer.Timing;
 using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace MakingAPlatformer.Levels.Screens
 {
