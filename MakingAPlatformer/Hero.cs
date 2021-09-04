@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using MakingAPlatformer.Interfaces;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace MakingAPlatformer
@@ -7,7 +8,7 @@ namespace MakingAPlatformer
     public enum PossibleAnimations { RunRight, RunLeft, IdleRight, IdleLeft, AttackRight, AttackLeft, JumpLeft, JumpRight }
     public enum States { Jumping, Idling, Falling}
 
-    public class Hero : IGameObject, ITransform, IAnimateable
+    public class Hero : IGameObject, ITransform, IAnimateable, IJumpable
     {
         public static States State = States.Idling;
         public Vector2 Position { get; set; }
@@ -15,10 +16,11 @@ namespace MakingAPlatformer
         public Movement MoveDirection;
         public Animator Animator { get; set; }
         public PossibleAnimations AnimToPlay { get; set; }
+        public JumpCommand JumpCommand { get; set; }
+
 
         public IInputReader KeyboardReader;
         public MoveCommand MoveCommand;
-        public JumpCommand JumpCommand;
         public AnimateCommand AnimateCommand;
 
         private int runSpeed = 3;
@@ -28,6 +30,7 @@ namespace MakingAPlatformer
 
         // Colliders
         public BoxCollider Collider { get; set; }
+
         int Xoffset = 60;
         int Yoffset = 45;
 

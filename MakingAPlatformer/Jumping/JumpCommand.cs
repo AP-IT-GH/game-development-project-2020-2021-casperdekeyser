@@ -15,15 +15,17 @@ namespace MakingAPlatformer
         private int jumpSpeed = 5;
         private int jumpHeight = 150;
         private float startY;
-        private float currentHeight = 0;
         private float ground;
+
+        public float CurrentHeight;
+
 
         public JumpCommand(int speed, int height, float ground)
         {
             jumpSpeed = speed;
             jumpHeight = height;
             startY = ground;
-            currentHeight = ground;
+            CurrentHeight = ground;
             this.ground = ground;
         }
 
@@ -41,9 +43,9 @@ namespace MakingAPlatformer
         {
             if (falling && !CollisionManager.VerticalColliding)
             {
-                currentHeight += jumpSpeed; // falling speed
-                Hero.Position = new Vector2(Hero.Position.X, currentHeight);
-                Hero.Direction = new Vector2(Hero.Position.X, currentHeight);
+                CurrentHeight += jumpSpeed; // falling speed
+                Hero.Position = new Vector2(Hero.Position.X, CurrentHeight);
+                Hero.Direction = new Vector2(Hero.Position.X, CurrentHeight);
 
                 if (Hero.Position.Y >= startY)
                 {
@@ -58,13 +60,13 @@ namespace MakingAPlatformer
             if (rising)
             {
                 jumping = true;
-                Hero.Position = new Vector2(Hero.Position.X, currentHeight);
+                Hero.Position = new Vector2(Hero.Position.X, CurrentHeight);
                 if (Hero.Position.Y <= startY - jumpHeight)
                 {
                     rising = false;
                     falling = true;
                 }
-                currentHeight -= jumpSpeed; // rising speed
+                CurrentHeight -= jumpSpeed; // rising speed
             }
 
             if (CollisionManager.VerticalColliding)

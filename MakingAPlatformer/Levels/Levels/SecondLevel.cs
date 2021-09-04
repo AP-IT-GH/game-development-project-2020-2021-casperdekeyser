@@ -17,8 +17,9 @@ namespace MakingAPlatformer.LevelManagement.Levels
 
             DeathZone = new List<Transition>
             {
-                new Transition(new Vector2(1550 - (62 * 7), 930 - (62 * 1) - 10), "Lower right death zone", (62 * 4), (62 * 1) + 10), //screen width - (amount of blocks), screen height - (amount of blocks) - block height
-                new Transition(new Vector2(1550 - (62 * 1), 930 - (62 * 5) - 10), "Right wall death zone", (62 * 1), (62 * 5) + 10),
+                new Transition(new Vector2(1550 - (62 * 10), 930 - (62 * 1) - 10), "First dead zone 2 blocks", (62 * 2), (62 * 1) + 10), //screen width - (amount of blocks), screen height - (amount of blocks) - block height
+                new Transition(new Vector2(1550 - (62 * 7), 930 - (62 * 1) - 10), "Second dead zone 2 blocks", (62 * 2), (62 * 1) + 10),
+                new Transition(new Vector2(1550 - (62 * 3), 930 - (62 * 1) - 10), "Third dead zone 1 blocks", (62 * 1), (62 * 1) + 10),
             };
 
             base.Initialize();

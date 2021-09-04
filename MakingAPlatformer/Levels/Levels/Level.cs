@@ -21,7 +21,7 @@ namespace MakingAPlatformer.LevelManagement
         protected Game1 game;
 
         // Hero
-        protected IGameObject hero;
+        protected Hero hero;
         protected Vector2 heroPosition;
         protected HeroAnimator heroAnimator;
         protected IInputReader inputReader;

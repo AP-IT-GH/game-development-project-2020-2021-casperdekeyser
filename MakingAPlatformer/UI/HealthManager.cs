@@ -9,14 +9,14 @@ namespace MakingAPlatformer.UI
         public List<Heart> HealthBar;
 
         private ScreenManager _screenManager;
-        private IGameObject _hero;
+        private Hero _hero;
         private Vector2 _respawnPosition;
 
-        private int xOffset = 5;
-        private int yOffset = 5;
+        private int _xOffset = 5;
+        private int _yOffset = 5;
         private double _spacing = 1.8;
 
-        public HealthManager(int amountOfLives, IGameObject hero, Vector2 respawnPosition, ScreenManager screenmng)
+        public HealthManager(int amountOfLives, Hero hero, Vector2 respawnPosition, ScreenManager screenmng)
         {
             HealthBar = new List<Heart>();
             GenerateHearts(amountOfLives);
@@ -30,13 +30,14 @@ namespace MakingAPlatformer.UI
         {
             for (int i = 0; i < amount; i++)
             {
-                HealthBar.Add(new Heart(new Vector2((float)((i * _spacing * 32) + xOffset), yOffset)));
+                HealthBar.Add(new Heart(new Vector2((float)((i * _spacing * 32) + _xOffset), _yOffset)));
             }
         }
 
         private void Respawn()
         {
             _hero.Position = _respawnPosition;
+            _hero.JumpCommand.CurrentHeight = _respawnPosition.Y;
         }
 
         public void Draw(SpriteBatch spriteBatch)
