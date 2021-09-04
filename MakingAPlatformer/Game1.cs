@@ -1,7 +1,6 @@
 ﻿using MakingAPlatformer.Content;
 using MakingAPlatformer.Interfaces;
-using MakingAPlatformer.LevelManagement.Levels;
-using MakingAPlatformer.Map;
+using MakingAPlatformer.Levels.Screens;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -38,8 +37,7 @@ namespace MakingAPlatformer
 
         protected override void LoadContent()
         {
-            //BlockManager.LoadBlocks();
-            CurrentLevel = new FirstLevel(this);
+            CurrentLevel = new StartScreen(this);
         }
 
         protected override void Update(GameTime gameTime)

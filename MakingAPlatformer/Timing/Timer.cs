@@ -3,13 +3,13 @@ using System;
 
 namespace MakingAPlatformer.Timing
 {
-    public static class Timer
+    public class Timer
     {
-        private static TimeSpan timeToWait;
-        private static TimeSpan timeStamp;
-        private static bool timeIsSet = false;
+        private TimeSpan timeToWait;
+        private TimeSpan timeStamp;
+        private bool timeIsSet = false;
 
-        public static bool SecondsElapsed(int seconds, GameTime gameTime)
+        public bool SecondsElapsed(int seconds, GameTime gameTime)
         {
             timeToWait = TimeSpan.FromMilliseconds(seconds * 1000);
             SetReferenceTimeStamp(timeIsSet, gameTime);
@@ -18,7 +18,7 @@ namespace MakingAPlatformer.Timing
             return false;
         }
 
-        private static void SetReferenceTimeStamp(bool isSet, GameTime gameTime)
+        private void SetReferenceTimeStamp(bool isSet, GameTime gameTime)
         {
             if (!isSet)
             {

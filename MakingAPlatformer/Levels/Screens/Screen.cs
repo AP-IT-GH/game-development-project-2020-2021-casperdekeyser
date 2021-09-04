@@ -12,7 +12,7 @@ namespace MakingAPlatformer.LevelManagement.Screens
     {
         public abstract int ScreenId { get; set; }
         public abstract Color DrawingColor { get; set; }
-        public int Duration { get; set; } = 5;
+        public virtual int Duration { get; set; } = 5;
         public virtual Color BackgroundColor { get; set; } = Color.Beige;
 
         // Game
@@ -28,11 +28,16 @@ namespace MakingAPlatformer.LevelManagement.Screens
         protected CollisionManager collisionManager;
         protected List<BoxCollider> colliders;
 
+        // Timing
+        protected Timer timer;
+
         public Screen(Game1 game)
         {
             this.game = game;
             content = game.Content;
             graphics = game.GraphicsDevice;
+
+            timer = new Timer();
 
             Initialize();
             LoadContent();
@@ -58,7 +63,7 @@ namespace MakingAPlatformer.LevelManagement.Screens
 
         public virtual void Update(GameTime gameTime)
         {
-            if (Timer.SecondsElapsed(Duration, gameTime)) game.Exit();
+            if (timer.SecondsElapsed(Duration, gameTime)) game.Exit();
         }
 
         public virtual void Draw(GameTime gameTime)
