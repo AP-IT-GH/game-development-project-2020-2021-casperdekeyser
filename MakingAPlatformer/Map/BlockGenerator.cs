@@ -24,11 +24,9 @@ namespace MakingAPlatformer.Map
         public IMapObject GenerateBlock(int[,] tileArray, int x, int y, int blockSize)
         {
             Random rng = new Random();
-            int randomNumber = rng.Next(4);
-
             try
             {
-                return (IMapObject)Activator.CreateInstance(Type.GetType($"MakingAPlatformer.Map.Blocks.{_blockNames[tileArray[x, y]]}"), new object[] { new Vector2(y * blockSize, x * blockSize), randomNumber });
+                return (IMapObject)Activator.CreateInstance(Type.GetType($"MakingAPlatformer.Map.Blocks.{_blockNames[tileArray[x, y]]}"), new object[] { new Vector2(y * blockSize, x * blockSize), rng.Next(4) });
             }
             catch (Exception e)
             {

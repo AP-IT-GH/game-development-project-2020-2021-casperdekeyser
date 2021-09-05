@@ -13,7 +13,7 @@ namespace MakingAPlatformer
         public static States State = States.Idling;
         public Vector2 Position { get; set; }
         public Vector2 Direction { get; set; }
-        public Movement MoveDirection;
+        public Movement MoveDirection { get; set; }
         public IAnimator Animator { get; set; }
         public PossibleAnimations AnimToPlay { get; set; }
         public JumpCommand JumpCommand { get; set; }

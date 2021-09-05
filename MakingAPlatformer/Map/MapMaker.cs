@@ -13,8 +13,8 @@ namespace MakingAPlatformer.Map
         private int _mapHeight = 25;
         private int _blockSize = 62;
 
-        private IMapObject[,] _blockArray;
         private IBlockCreator _blockGenerator;
+        private IMapObject[,] _blockArray;
 
         public MapMaker(IBlockCreator blockCreator)
         {

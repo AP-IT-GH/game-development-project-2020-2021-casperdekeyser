@@ -24,7 +24,8 @@ namespace MakingAPlatformer.Levels.Screens
             { 1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1 },
             { 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1 },
         };
-        public override Color DrawingColor { get; set; } = Color.CornflowerBlue;
+        public override Color DrawingColor { get; set; } = Color.CornflowerBlue; // Cornflower blue
+        public override Color BackgroundColor { get; set; } = Color.Beige; // beige
         public override int Duration { get; set; } = 3;
 
         public StartScreen(Game1 game) : base(game) { }

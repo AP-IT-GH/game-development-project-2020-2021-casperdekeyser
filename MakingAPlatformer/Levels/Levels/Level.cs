@@ -19,7 +19,7 @@ namespace MakingAPlatformer.LevelManagement
         // UI
         protected IHealthManager healthManager;
 
-        private int _amountOfLives = 3;
+        private int _amountOfLives = 5;
 
 
         public Level(Game1 game) : base(game) { }

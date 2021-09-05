@@ -7,7 +7,7 @@ using System.Text.RegularExpressions;
 
 namespace MakingAPlatformer.Map
 {
-    public static class BlockManager
+    public static class BlockManager // unused
     {
         public static List<string> BlockTypeNames = new List<string>();
 

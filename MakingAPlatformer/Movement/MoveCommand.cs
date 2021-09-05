@@ -17,13 +17,16 @@ namespace MakingAPlatformer
 
             if (moveDirection == Movement.MoveLeft && transform.Position.X > -62) direction = new Vector2(-1, 0);
             if (moveDirection == Movement.MoveRight && transform.Position.X < 1550-89) direction = new Vector2(1, 0);
-            if (!CollisionManager.HorizontalColliding)
-            {
-                direction.X *= _speed.X;
-                transform.Position += direction;
-            }
+
+            if (!CollisionManager.HorizontalColliding) Move(direction, transform);
 
             return direction;
+        }
+
+        private void Move(Vector2 direction, ITransform transform)
+        {
+            direction.X *= _speed.X;
+            transform.Position += direction;
         }
     }
 }
