@@ -27,7 +27,7 @@ namespace MakingAPlatformer.LevelManagement.Screens
         protected override void LoadContent()
         {
             base.LoadContent();
-            game.ContentLoader.LoadContent(content, mapMaker);
+            game.ContentLoader.LoadContent(content, mapMaker, soundManager);
         }
 
         public override void Update(GameTime gameTime)

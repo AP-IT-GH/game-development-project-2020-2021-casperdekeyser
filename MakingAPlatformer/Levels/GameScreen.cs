@@ -1,5 +1,6 @@
 ﻿using MakingAPlatformer.Interfaces;
 using MakingAPlatformer.Map;
+using MakingAPlatformer.Sound;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -25,6 +26,9 @@ namespace MakingAPlatformer.Levels
         // Collision
         protected ICollisionManager collisionManager;
 
+        // Sound
+        protected ISoundManager soundManager;
+
 
         public GameScreen(Game1 game)
         {
@@ -34,6 +38,8 @@ namespace MakingAPlatformer.Levels
 
             Initialize();
             LoadContent();
+
+            soundManager.PlaySound(ScreenId);
         }
 
         protected virtual void Initialize()
@@ -42,6 +48,9 @@ namespace MakingAPlatformer.Levels
             blockGenerator = new BlockGenerator();
             mapMaker = new MapMaker(blockGenerator);
             mapMaker.CreateLevel(TileArray);
+
+            // Sound
+            soundManager = new SoundManager();
         }
 
         protected virtual void LoadContent()

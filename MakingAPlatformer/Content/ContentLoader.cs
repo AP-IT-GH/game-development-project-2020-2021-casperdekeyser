@@ -7,12 +7,14 @@ namespace MakingAPlatformer.Content
 {
     public class ContentLoader : IContentLoader
     {
-        public void LoadContent(ContentManager content, ILevelCreator mapMaker, IAnimateable hero = null, IHealthManager healthManager = null)
+        public void LoadContent(ContentManager content, ILevelCreator mapMaker, ISoundManager soundManager, IAnimateable hero = null, IHealthManager healthManager = null)
         {
             foreach (IMapObject block in mapMaker.Blocks)
             {
                 block.Spritesheet = content.Load<Texture2D>(block.SpritesheetPath);
             }
+
+            soundManager.LoadSound(content);
 
             if (hero != null)
             {

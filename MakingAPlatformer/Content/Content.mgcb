@@ -265,6 +265,24 @@
 /processorParam:TextureFormat=Color
 /build:Map/master-tileset.png
 
+#begin Sound/background-music.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Sound/background-music.mp3
+
+#begin Sound/death-music.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Sound/death-music.mp3
+
+#begin Sound/victory-music.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Sound/victory-music.mp3
+
 #begin UI/heart-pixel-art-32x32.png
 /importer:TextureImporter
 /processor:TextureProcessor

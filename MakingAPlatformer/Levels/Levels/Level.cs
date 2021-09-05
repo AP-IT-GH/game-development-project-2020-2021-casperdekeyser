@@ -27,6 +27,7 @@ namespace MakingAPlatformer.LevelManagement
         protected override void Initialize()
         {
             base.Initialize();
+
             // Hero
             heroAnimator = new HeroAnimator();
             inputReader = new KeyboardReader();
@@ -38,12 +39,13 @@ namespace MakingAPlatformer.LevelManagement
 
             // Collision
             collisionManager = new CollisionManager(mapMaker.Blocks, hero);
+
         }
 
         protected override void LoadContent()
         {
             base.LoadContent();
-            game.ContentLoader.LoadContent(content, mapMaker, hero, healthManager);
+            game.ContentLoader.LoadContent(content, mapMaker, soundManager, hero, healthManager);
         }
 
         public override void Update(GameTime gameTime)
