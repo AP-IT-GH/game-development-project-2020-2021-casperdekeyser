@@ -21,8 +21,7 @@ namespace MakingAPlatformer.Sound
         public void PlaySound(int songNumber)
         {
             MediaPlayer.IsRepeating = true;
-            //MediaPlayer.Volume = 0.01f;
-            MediaPlayer.Volume = 0f;
+            MediaPlayer.Volume = 0.01f;
             if (songNumber == 0 || songNumber == 1 || songNumber == 4) MediaPlayer.Play(_songList[0]);
             if (songNumber == 2) MediaPlayer.Play(_songList[1]);
             if (songNumber == 3) MediaPlayer.Play(_songList[2]);
