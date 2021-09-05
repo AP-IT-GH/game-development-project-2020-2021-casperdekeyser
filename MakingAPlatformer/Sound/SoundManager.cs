@@ -8,15 +8,20 @@ namespace MakingAPlatformer.Sound
 {
     public class SoundManager : ISoundManager
     {
-        private List<IMusicTrack> _trackList;
+        private List<IMusicTrack> _trackList = new List<IMusicTrack>
+            {
+                new BackGroundTrack(),
+                new VictoryTrack(),
+                new DeathTrack(),
+                new StartTrack(),
+            };
+
         public void LoadSound(ContentManager content)
         {
-            _trackList = new List<IMusicTrack>
+            foreach (IMusicTrack track in _trackList)
             {
-                new BackGroundTrack(content.Load<Song>("Sound/background-music")),
-                new VictoryTrack(content.Load<Song>("Sound/victory-music")),
-                new DeathTrack(content.Load<Song>("Sound/death-music")),
-            };
+                track.LoadSong(content);
+            }
         }
 
         public void PlaySound(int songNumber)
