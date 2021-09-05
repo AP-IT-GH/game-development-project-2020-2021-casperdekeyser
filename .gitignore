@@ -350,3 +350,5 @@ MigrationBackup/
 .ionide/
 
 MakingAPlatformer/obj/Debug/netcoreapp3.1/MakingAPlatformer.csprojAssemblyReference.cache
+
+MakingAPlatformer/TiledTestProject.tiled-session
