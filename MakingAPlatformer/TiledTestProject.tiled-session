@@ -1,0 +1,117 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "Map/Tiled/Level2.tmx",
+    "expandedProjectPaths": [
+    ],
+    "file.lastUsedOpenFilter": "All Files (*)",
+    "fileStates": {
+        "C:/Users/caspe/OneDrive - AP Hogeschool Antwerpen/Bureaublad/Level1.tmx": {
+            "scale": 0.75,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 801.3333333333335,
+                "y": 392.66666666666663
+            }
+        },
+        "C:/Users/caspe/OneDrive - AP Hogeschool Antwerpen/Bureaublad/master-tileset.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "Map/Tiled/Death.tmx": {
+            "scale": 0.6270471464019851,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 774.2639493470517,
+                "y": 465.6747130985358
+            }
+        },
+        "Map/Tiled/Level1.tmx": {
+            "scale": 0.5,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 774,
+                "y": 465
+            }
+        },
+        "Map/Tiled/Level2.tmx": {
+            "scale": 0.5351116625310174,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 775.5390679341525,
+                "y": 466.25782517968923
+            }
+        },
+        "Map/Tiled/Start.tmx": {
+            "scale": 0.6264578163771711,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 778.9830172797941,
+                "y": 465.3146506906967
+            }
+        },
+        "Map/Tiled/Title.tmx": {
+            "scale": 0.556516129032258,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 775.3593786227685,
+                "y": 465.3953164850453
+            }
+        },
+        "Map/Tiled/Titles.tmx": {
+            "scale": 0.5,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 755,
+                "y": 544
+            }
+        },
+        "Map/Tiled/Victory.tmx": {
+            "scale": 0.6270471464019851,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 775.0613375544124,
+                "y": 466.4721013058962
+            }
+        },
+        "Map/Tiled/master-tileset.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        }
+    },
+    "last.imagePath": "C:/GitHub/game-development-project-2020-2021-casperdekeyser/MakingAPlatformer/Content/Map",
+    "map.height": 15,
+    "map.lastUsedFormat": "tmx",
+    "map.tileHeight": 62,
+    "map.tileWidth": 62,
+    "map.width": 25,
+    "openFiles": [
+        "Map/Tiled/Level1.tmx",
+        "Map/Tiled/Level2.tmx",
+        "Map/Tiled/master-tileset.tsx",
+        "Map/Tiled/Victory.tmx",
+        "Map/Tiled/Death.tmx",
+        "Map/Tiled/Title.tmx",
+        "Map/Tiled/Start.tmx"
+    ],
+    "project": "",
+    "recentFiles": [
+        "Map/Tiled/Level1.tmx",
+        "Map/Tiled/Start.tmx",
+        "Map/Tiled/Title.tmx",
+        "Map/Tiled/Death.tmx",
+        "Map/Tiled/Victory.tmx",
+        "Map/Tiled/master-tileset.tsx",
+        "Map/Tiled/Level2.tmx",
+        "Map/Tiled/Titles.tmx",
+        "C:/Users/caspe/OneDrive - AP Hogeschool Antwerpen/Bureaublad/master-tileset.tsx",
+        "C:/Users/caspe/OneDrive - AP Hogeschool Antwerpen/Bureaublad/Level1.tmx"
+    ],
+    "tileset.lastUsedFormat": "tsx",
+    "tileset.tileSize": {
+        "height": 62,
+        "width": 62
+    }
+}
