@@ -8,20 +8,19 @@ namespace MakingAPlatformer
     public enum PossibleAnimations { RunRight, RunLeft, IdleRight, IdleLeft, AttackRight, AttackLeft, JumpLeft, JumpRight }
     public enum States { Jumping, Idling, Falling}
 
-    public class Hero : IGameObject, ITransform, IAnimateable
+    public class Hero : ICharacter
     {
         public static States State = States.Idling;
         public Vector2 Position { get; set; }
         public Vector2 Direction { get; set; }
         public Movement MoveDirection;
-        public Animator Animator { get; set; }
+        public IAnimator Animator { get; set; }
         public PossibleAnimations AnimToPlay { get; set; }
         public JumpCommand JumpCommand { get; set; }
         public BoxCollider Collider { get; set; }
-
-        public IInputReader KeyboardReader;
-        public MoveCommand MoveCommand;
-        public AnimateCommand AnimateCommand;
+        public IInputReader KeyboardReader { get; set; }
+        public MoveCommand MoveCommand { get; set; }
+        public IAnimateCommand AnimateCommand { get; set; }
 
         private int _runSpeed = 3;
         private Animation _currentAnimation;
@@ -30,14 +29,15 @@ namespace MakingAPlatformer
         private int _xOffset = 60;
         private int _yOffset = 45;
 
-        public Hero(Vector2 pos, HeroAnimator anim, IInputReader input, AnimateCommand animcom)
+        public Hero(Vector2 position, IAnimator animator, IInputReader input, IAnimateCommand animcom)
         {
             // Startposition
-            Position = pos;
+            Position = position;
 
-            Animator = anim;
+            Animator = animator;
             KeyboardReader = input;
             AnimateCommand = animcom;
+
             MoveCommand = new MoveCommand(_runSpeed);
             JumpCommand = new JumpCommand(_jumpSpeed, _jumpHeight, Position.Y);
 

@@ -21,23 +21,22 @@ namespace MakingAPlatformer.LevelManagement
         protected Game1 game;
 
         // Hero
-        protected Hero hero;
-        protected Vector2 heroPosition;
-        protected HeroAnimator heroAnimator;
+        protected ICharacter hero;
+        protected Vector2 heroStartPosition = new Vector2(50, 868 - 96);
+        protected IAnimator heroAnimator;
         protected IInputReader inputReader;
-        protected AnimateCommand animateCommand;
+        protected IAnimateCommand animateCommand;
 
         // Map
+        protected IBlockCreator blockGenerator;
         protected ILevelCreator mapMaker;
         protected ITransition transitionZone;
 
         // Collision
-        protected CollisionManager collisionManager;
-        protected List<BoxCollider> colliders;
+        protected ICollisionManager collisionManager;
 
         // UI
-        protected HealthManager healthManager;
-        protected Vector2 startPosition = new Vector2(50, 868 - 96);
+        protected IHealthManager healthManager;
 
         private int _amountOfLives = 3;
 
@@ -55,18 +54,18 @@ namespace MakingAPlatformer.LevelManagement
         protected virtual void Initialize()
         {
             // Hero
-            heroPosition = startPosition;
             heroAnimator = new HeroAnimator();
             inputReader = new KeyboardReader();
             animateCommand = new AnimateCommand();
-            hero = new Hero(heroPosition, heroAnimator, inputReader, animateCommand);
+            hero = new Hero(heroStartPosition, heroAnimator, inputReader, animateCommand);
 
             // Map
-            mapMaker = new MapMaker();
+            blockGenerator = new BlockGenerator();
+            mapMaker = new MapMaker(blockGenerator);
             mapMaker.CreateLevel(LevelId);
 
             // UI
-            healthManager = new HealthManager(_amountOfLives, hero, startPosition, game.ScreenManager);
+            healthManager = new HealthManager(_amountOfLives, hero, heroStartPosition, game.ScreenManager);
 
             // Collision
             collisionManager = new CollisionManager(mapMaker.Blocks, hero);

@@ -1,9 +1,10 @@
-﻿using Microsoft.Xna.Framework;
+﻿using MakingAPlatformer.Interfaces;
+using Microsoft.Xna.Framework;
 using System;
 
 namespace MakingAPlatformer.Timing
 {
-    public class Timer
+    public class Timer : ITimeManager
     {
         private TimeSpan _timeToWait;
         private TimeSpan _timeStamp;

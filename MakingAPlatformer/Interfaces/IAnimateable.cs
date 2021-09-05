@@ -1,9 +1,10 @@
-﻿
+﻿using MakingAPlatformer.Interfaces;
+
 namespace MakingAPlatformer
 {
     public interface IAnimateable
     {
         PossibleAnimations AnimToPlay { get; set; }
-        Animator Animator { get; set; }
+        IAnimator Animator { get; set; }
     }
 }

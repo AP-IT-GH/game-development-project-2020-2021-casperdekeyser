@@ -16,12 +16,13 @@ namespace MakingAPlatformer.Map
         private IMapObject[,] _blockArray;
         private List<int[,]> _tileArrayList = new List<int[,]>();
 
-        private BlockGenerator _blockGenerator;
+        private IBlockCreator _blockGenerator;
 
-        public MapMaker()
+        public MapMaker(IBlockCreator blockCreator)
         {
+            _blockGenerator = blockCreator;
+
             Blocks = new List<IMapObject>();
-            _blockGenerator = new BlockGenerator();
             _blockArray = new Block[_mapLength, _mapHeight];
             _tileArrayList = new List<int[,]>
             {
@@ -126,7 +127,7 @@ namespace MakingAPlatformer.Map
                 {
                     if (_tileArrayList[level][x, y] != 0)
                     {
-                        _blockArray[x, y] = _blockGenerator.GenerateBlockVariation(_tileArrayList, level, x, y, _blockSize);
+                        _blockArray[x, y] = _blockGenerator.GenerateBlock(_tileArrayList, level, x, y, _blockSize);
                         Blocks.Add(_blockArray[x, y]);
                     }
                 }

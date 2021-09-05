@@ -1,4 +1,4 @@
-﻿using MakingAPlatformer.Map.Blocks;
+﻿using MakingAPlatformer.Interfaces;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -7,7 +7,7 @@ using System.Diagnostics;
 
 namespace MakingAPlatformer.Map
 {
-    public class BlockGenerator
+    public class BlockGenerator : IBlockCreator
     {
         private string[] _blockNames = {
             "--- Testing Block ---",
@@ -22,7 +22,7 @@ namespace MakingAPlatformer.Map
             "SandTrap",
         };
 
-        public IMapObject GenerateBlockVariation(List<int[,]> tileArrayList, int level, int x, int y, int blockSize)
+        public IMapObject GenerateBlock(List<int[,]> tileArrayList, int level, int x, int y, int blockSize)
         {
             Random rng = new Random();
             int randomNumber = rng.Next(4);

@@ -1,5 +1,5 @@
-﻿using MakingAPlatformer.Map.Blocks;
-using MakingAPlatformer.UI;
+﻿using MakingAPlatformer.Interfaces;
+using MakingAPlatformer.Map.Blocks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -8,7 +8,7 @@ using System.Diagnostics;
 
 namespace MakingAPlatformer
 {
-    public class CollisionManager
+    public class CollisionManager : ICollisionManager
     {
         public static bool HorizontalColliding { get; set; }
         public static bool VerticalColliding { get; set; }
@@ -30,7 +30,7 @@ namespace MakingAPlatformer
             AddColliders(blocks);
         }
 
-        public void CheckCollisions(HealthManager healthManager)
+        public void CheckCollisions(IHealthManager healthManager)
         {
             SyncColliders();
             HorizontalColliding = FutureCollisionX();

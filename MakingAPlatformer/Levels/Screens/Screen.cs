@@ -22,14 +22,14 @@ namespace MakingAPlatformer.LevelManagement.Screens
         protected Game1 game;
 
         // Map
-        protected MapMaker mapMaker;
+        protected IBlockCreator blockGenerator;
+        protected ILevelCreator mapMaker;
 
         // Collision
-        protected CollisionManager collisionManager;
-        protected List<BoxCollider> colliders;
+        protected ICollisionManager collisionManager;
 
         // Timing
-        protected Timer timer;
+        protected ITimeManager timer;
 
         public Screen(Game1 game)
         {
@@ -46,7 +46,8 @@ namespace MakingAPlatformer.LevelManagement.Screens
         protected virtual void Initialize()
         {
             // Map
-            mapMaker = new MapMaker();
+            blockGenerator = new BlockGenerator();
+            mapMaker = new MapMaker(blockGenerator);
             mapMaker.CreateLevel(ScreenId);
 
             // Collision

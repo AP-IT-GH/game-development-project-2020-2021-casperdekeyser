@@ -7,7 +7,7 @@ namespace MakingAPlatformer.Content
 {
     public class ContentLoader
     {
-        public void LoadContent(ContentManager content, ILevelCreator mapMaker, IGameObject hero = null, HealthManager healthManager = null)
+        public void LoadContent(ContentManager content, ILevelCreator mapMaker, IAnimateable hero = null, IHealthManager healthManager = null)
         {
             foreach (IMapObject block in mapMaker.Blocks)
             {

@@ -1,9 +1,10 @@
-﻿using Microsoft.Xna.Framework;
+﻿using MakingAPlatformer.Interfaces;
+using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 
 namespace MakingAPlatformer
 {
-    public abstract class Animator
+    public abstract class Animator : IAnimator
     {
         public List<Animation> Animations { get; set; }
         public PossibleAnimations PreviousAnimation { get; set; }

@@ -1,7 +1,8 @@
-﻿
+﻿using MakingAPlatformer.Interfaces;
+
 namespace MakingAPlatformer
 {
-    public class AnimateCommand
+    public class AnimateCommand : IAnimateCommand
     {
         public void Execute(IAnimateable transform, Movement moveDirection)
         {
@@ -26,7 +27,6 @@ namespace MakingAPlatformer
                         transform.AnimToPlay = PossibleAnimations.IdleRight;
                 }
             }
-
         }
     }
 }
