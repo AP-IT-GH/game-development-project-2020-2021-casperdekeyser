@@ -4,18 +4,13 @@ using MakingAPlatformer.LevelManagement.Screens;
 
 namespace MakingAPlatformer
 {
-    public class ScreenManager
+    public class ScreenManager : IScreenManager
     {
         private Game1 _game;
 
         public ScreenManager(Game1 game)
         {
             _game = game;
-        }
-
-        public void ChangeScreen(IGameScreen nextScreen)
-        {
-            _game.NextLevel = nextScreen;
         }
 
         public void CheckForNextLevel()
@@ -41,6 +36,11 @@ namespace MakingAPlatformer
             if (levelId == 1) ChangeScreen(new VictoryScreen(_game)); // from level2 to victory
             if (levelId == 2) ChangeScreen(new DeathScreen(_game)); // from level2 to death
             if (levelId == 4) ChangeScreen(new FirstLevel(_game)); // from start to level1
+        }
+
+        private void ChangeScreen(IGameScreen nextScreen)
+        {
+            _game.NextLevel = nextScreen;
         }
     }
 }

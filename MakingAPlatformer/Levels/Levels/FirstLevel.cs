@@ -23,9 +23,10 @@ namespace MakingAPlatformer.LevelManagement.Levels
             { 0,0,0,0,0,7,0,0,0,0,0,0,0,0,0,7,7,7,0,0,0,0,0,0,0 },
             { 0,0,0,0,7,7,0,0,0,0,0,0,0,0,7,7,0,7,0,0,0,0,0,0,0 },
             { 0,0,0,0,7,7,0,0,0,0,0,0,0,0,7,0,0,7,0,0,0,0,0,0,0 },
-            { 3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,4,3,4,3,3 },
+            { 3,3,3,3,3,3,3,3,3,3,3,3,4,3,3,3,3,3,3,3,4,3,4,3,3 },
         };
         public override Color BackgroundColor { get; set; } = Color.LightGray;
+
 
         public FirstLevel(Game1 game) : base(game) { }
 

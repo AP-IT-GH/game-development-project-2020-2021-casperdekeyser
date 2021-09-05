@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace MakingAPlatformer.Content
 {
-    public class ContentLoader
+    public class ContentLoader : IContentLoader
     {
         public void LoadContent(ContentManager content, ILevelCreator mapMaker, IAnimateable hero = null, IHealthManager healthManager = null)
         {

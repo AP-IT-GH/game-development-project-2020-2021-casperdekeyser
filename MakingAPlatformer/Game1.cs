@@ -11,8 +11,8 @@ namespace MakingAPlatformer
     {
         private GraphicsDeviceManager _graphics;
 
-        public ScreenManager ScreenManager;
-        public ContentLoader ContentLoader;
+        public IScreenManager ScreenManager;
+        public IContentLoader ContentLoader;
 
         public IGameScreen CurrentLevel;
         public IGameScreen NextLevel;
@@ -29,6 +29,7 @@ namespace MakingAPlatformer
 
         protected override void Initialize()
         {
+            IsMouseVisible = false;
             _graphics.PreferredBackBufferWidth = 1550;
             _graphics.PreferredBackBufferHeight = 930;
             _graphics.ApplyChanges();

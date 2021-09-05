@@ -9,7 +9,7 @@ namespace MakingAPlatformer.UI
     {
         public List<Heart> HealthBar { get; set; }
 
-        private ScreenManager _screenManager;
+        private IScreenManager _screenManager;
         private IRespawnable _hero;
         private Vector2 _respawnPosition;
 
@@ -17,7 +17,7 @@ namespace MakingAPlatformer.UI
         private int _yOffset = 5;
         private double _spacing = 1.8;
 
-        public HealthManager(int amountOfLives, IRespawnable hero, Vector2 respawnPosition, ScreenManager screenmng)
+        public HealthManager(int amountOfLives, IRespawnable hero, Vector2 respawnPosition, IScreenManager screenmng)
         {
             HealthBar = new List<Heart>();
             GenerateHearts(amountOfLives);
