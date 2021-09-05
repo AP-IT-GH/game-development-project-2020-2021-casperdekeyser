@@ -6,7 +6,7 @@ namespace MakingAPlatformer.Interfaces
     public interface ILevelCreator
     {
         public List<IMapObject> Blocks { get; set; }
-        void CreateLevel(int levelId);
+        void CreateLevel(int[,] tileArray);
         void DrawLevel(SpriteBatch spriteBatch);
     }
 }

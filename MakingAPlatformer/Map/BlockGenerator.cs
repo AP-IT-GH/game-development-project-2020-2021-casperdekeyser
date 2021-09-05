@@ -1,7 +1,6 @@
 ﻿using MakingAPlatformer.Interfaces;
 using Microsoft.Xna.Framework;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 
 
@@ -22,7 +21,7 @@ namespace MakingAPlatformer.Map
             "SandTrap",
         };
 
-        public IMapObject GenerateBlock(List<int[,]> tileArrayList, int level, int x, int y, int blockSize)
+        public IMapObject GenerateBlock(int[,] tileArray, int x, int y, int blockSize)
         {
             Random rng = new Random();
             int randomNumber = rng.Next(4);
@@ -68,7 +67,7 @@ namespace MakingAPlatformer.Map
             try
             {
                 //IMapObject block = (IMapObject)Activator.CreateInstance(Type.GetType($"MakingAPlatformer.Map.Blocks.{blockName}"), new object[] { new Vector2(y * blockSize, x * blockSize), randomNumber });
-                IMapObject block = (IMapObject)Activator.CreateInstance(Type.GetType($"MakingAPlatformer.Map.Blocks.{_blockNames[tileArrayList[level][x, y]]}"), new object[] { new Vector2(y * blockSize, x * blockSize), randomNumber });
+                IMapObject block = (IMapObject)Activator.CreateInstance(Type.GetType($"MakingAPlatformer.Map.Blocks.{_blockNames[tileArray[x, y]]}"), new object[] { new Vector2(y * blockSize, x * blockSize), randomNumber });
 
                 //IMapObject block = (IMapObject)Activator.CreateInstance(blockTypes[tileArrayList[level][x, y] - 1], new object[] { new Vector2(y * blockSize, x * blockSize), randomNumber });
 
