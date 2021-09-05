@@ -1,4 +1,5 @@
 ﻿using MakingAPlatformer.Interfaces;
+using MakingAPlatformer.Sound.Music;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Media;
 using System.Collections.Generic;
@@ -7,24 +8,29 @@ namespace MakingAPlatformer.Sound
 {
     public class SoundManager : ISoundManager
     {
-        private List<Song> _songList;
+        private List<IMusicTrack> _trackList;
         public void LoadSound(ContentManager content)
         {
-            _songList = new List<Song>
+            _trackList = new List<IMusicTrack>
             {
-                content.Load<Song>("Sound/background-music"),
-                content.Load<Song>("Sound/victory-music"),
-                content.Load<Song>("Sound/death-music"),
+                new BackGroundTrack(content.Load<Song>("Sound/background-music")),
+                new VictoryTrack(content.Load<Song>("Sound/victory-music")),
+                new DeathTrack(content.Load<Song>("Sound/death-music")),
             };
         }
 
         public void PlaySound(int songNumber)
         {
             MediaPlayer.IsRepeating = true;
-            MediaPlayer.Volume = 0.01f;
-            if (songNumber == 0 || songNumber == 1 || songNumber == 4) MediaPlayer.Play(_songList[0]);
-            if (songNumber == 2) MediaPlayer.Play(_songList[1]);
-            if (songNumber == 3) MediaPlayer.Play(_songList[2]);
+            MediaPlayer.Volume = 0.1f;
+
+            foreach (IMusicTrack track in _trackList)
+            {
+                for (int i = 0; i < track.LevelsToPlayTrack.Length; i++)
+                {
+                    if (track.LevelsToPlayTrack[i] == songNumber) MediaPlayer.Play(track.Song);
+                }
+            }
         }
     }
 }
